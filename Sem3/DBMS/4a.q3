@@ -1,0 +1,14 @@
+declare
+
+s NUMBER := 0;
+
+begin
+
+for i in 1..20 LOOP
+    s :=i+s;
+
+end LOOP;
+
+dbms_output.put_line('sum = ' || s);
+
+end;
