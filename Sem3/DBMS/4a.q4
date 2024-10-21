@@ -1,0 +1,32 @@
+declare
+
+a NUMBER;
+b NUMBER;
+op CHAR;
+res NUMBER;
+
+begin
+
+a:=5;
+b:=7;
+op:='+';
+
+if op='+' then
+    res:=a+b;
+elsif op='-' then
+    res:=ABS(a-b);
+elsif op='*' then
+    res:=a*b;
+elsif op='/' then
+    if b=0 then 
+    	dbms_output.put_line('cannot divide by 0');
+	else
+    	res:=a/b;
+	end if;
+else
+    dbms_output.put_line('wrong inputs');
+end if;
+
+dbms_output.put_line('result is = ' || res);
+
+end;
