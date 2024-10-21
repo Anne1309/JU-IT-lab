@@ -1,0 +1,27 @@
+declare
+
+todays_date DATE;
+
+current_day varchar(9);
+
+begin
+
+todays_date :=sysdate;
+
+current_day:=to_char(todays_date,'day');
+
+current_day:=initcap(current_day);
+
+current_day:=rtrim(current_day);
+
+if current_day='Sunday' or current_day='Saturday' then
+
+dbms_output.put_line('Today is fall on weekend');
+
+else
+
+dbms_output.put_line('Today is fall on weekdays');
+
+end if;
+
+end;
