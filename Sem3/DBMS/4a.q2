@@ -11,7 +11,7 @@ c:=initcap(input_char);
 if c='A' or c='E' or c='I' or c='O' or c='U' then
 
 dbms_output.put_line('Character is a vowel');
-dbms_output.put_line( input_char || ' is the character');
+dbms_output.put_line('The character is ' || input_char);
 
 else
 
