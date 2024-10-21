@@ -1,0 +1,21 @@
+declare
+
+s NUMBER := 0;
+f NUMBER :=0;
+
+begin
+
+for i in 1..50 LOOP
+    f :=0;
+    for j in 2..i/2 LOOP
+    	if MOD(i,j)=0 then
+    		f :=1;
+			end if;
+			end LOOP;
+	if f=0 then
+        dbms_output.put_line(i || ' is Prime');
+	end if;
+
+end LOOP;
+
+end;
