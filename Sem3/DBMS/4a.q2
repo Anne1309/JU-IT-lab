@@ -1,0 +1,22 @@
+declare
+
+input_char CHAR;
+c CHAR;
+
+begin
+
+input_char:='a';
+c:=initcap(input_char);
+
+if c='A' or c='E' or c='I' or c='O' or c='U' then
+
+dbms_output.put_line('Character is a vowel');
+dbms_output.put_line( input_char || ' is the character');
+
+else
+
+dbms_output.put_line('Character is a consonant');
+
+end if;
+
+end;
