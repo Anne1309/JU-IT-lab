@@ -71,10 +71,11 @@ public:
             double root1 = (-b + sqrt(discriminant)) / (2 * a);
             double root2 = (-b - sqrt(discriminant)) / (2 * a);
             cout << "Real roots: " << root1 << " and " << root2 << endl;
-        }        {
-            double root = -b / (2 * a);
-            cout << "One real root: " << root << endl;
         }
+        else if (discriminant == 0)
+        {    double root = -b / (2 * a);
+            cout << "One real root: " << root << endl;
+        }    
         else
         {
             Complex root1((-b) / (2 * a), sqrt(-discriminant) / (2 * a));
@@ -101,6 +102,3 @@ int main()
 
     return 0;
 }
-
-        else if (discriminant == 0)
-
