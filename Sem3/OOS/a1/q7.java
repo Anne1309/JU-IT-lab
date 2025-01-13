@@ -108,7 +108,7 @@ class Library {
     }
 }
 
-public class Main {
+class Demo {
     public static void main(String[] args) {
         Library library = new Library();
 
