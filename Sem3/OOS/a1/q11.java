@@ -29,36 +29,40 @@ class Date
         }
 
         int leap[]={31,29,31,30,31,30,31,31,30,31,30,31};
-        int nonleap[]={31,28,31,30,31,30,31,30,31,30,31};
+        int nonleap[]={31,28,31,30,31,30,31,31,30,31,30,31};
+
+        void tod(){
+                System.out.println("Today date: " + day + "/" + month + "/" + year);
+        }
 
         void prev(){
                 if ((year%4==0 && year%100!=0)|| (year%400==0)){
-                        if (date==1 && month!=1){
+                        if (day==1 && month!=1){
                                 int d=leap[month-1];
                                 system.out.println("The previous date is: " + d + "/" + (month-1) + "/" + year);
                         }
-                        else if (date==1 && month==1){
+                        else if (day==1 && month==1){
                                 int d=31;
                                 system.out.println("The previous date is: " + d + "/" + 12 + "/" + (year-1));
                         }
                         else{
-                                int d=date-1;
+                                int d=day-1;
                                 system.out.println("The previous date is: " + d + "/" + month + "/" + year);
                         }
                 }
 
                 else{
-                        if (date==1 && month!=1){
+                        if (day==1 && month!=1){
                                 int d=nonleap[month-1];
                                 system.out.println("The previous date is: " + d + "/" + (month-1) + "/" + year);
                         }
                         }
-                        else if (date==1 && month==1){
+                        else if (day==1 && month==1){
                                 int d=31;
                                 system.out.println("The previous date is: " + d + "/" + 12 + "/" + (year-1));
                         }
                         else{
-                                int d=date-1;
+                                int d=day-1;
                                 system.out.println("The previous date is: " + d + "/" + month + "/" + year);
                         }
                 }
@@ -66,30 +70,31 @@ class Date
 
         void next(){
                 if ((year%4==0 && year%100!=0)|| (year%400==0)){
-                        if (date==nonleap[month-1] && month!=12){
-                                system.out.println("The previous date is: " + 1 + "/" + (month+1) + "/" + year);
+                        if (day==leap[month-1] && month!=12){
+                                system.out.println("The next date is: " + 1 + "/" + (month+1) + "/" + year);
                         }
-                        else if (date==nonleap[month-1] && month==12){
-                                system.out.println("The previous date is: " + "1/1" + "/" + (year+1));
+                        else if (day==nonleap[month-1] && month==12){
+                                system.out.println("The next date is: " + "1/1" + "/" + (year+1));
                         }
                         else{
-                                int d=date+1;
-                                system.out.println("The previous date is: " + d + "/" + month + "/" + year);
+                                int d=day+1;
+                                system.out.println("The next date is: " + d + "/" + month + "/" + year);
                         }
                 }
 
                 else{
-                        if (date==nonleap[month-1] && month!=12){
-                                system.out.println("The previous date is: " + 1 + "/" + (month+1) + "/" + year);
+                        if (dadayte==nonleap[month-1] && month!=12){
+                                system.out.println("The next date is: " + 1 + "/" + (month+1) + "/" + year);
                         }
-                        else if (date==nonleap[month-1] && month==12){
-                                system.out.println("The previous date is: " + "1/1" + "/" + (year+1));
+                        else if (day==nonleap[month-1] && month==12){
+                                system.out.println("The next date is: " + "1/1" + "/" + (year+1));
                         }
                         else{
-                                int d=date+1;
-                                system.out.println("The previous date is: " + d + "/" + month + "/" + year);
+                                int d=day+1;
+                                system.out.println("The next date is: " + d + "/" + month + "/" + year);
                         }
                 }
+        System.out.println(" ");
         }
 
         public static void main(String args[]){
@@ -98,12 +103,16 @@ class Date
                 Date ob3=new Date(28,2,2020);
                 Date ob4=new Date(31,12,2023);
 
+                ob1.tod();
                 ob1.prev();
                 ob1.next();
+                ob2.tod();
                 ob2.prev();
                 ob2.next();
+                ob3.tod();
                 ob3.prev();
                 ob3.next();
+                ob4.tod();
                 ob4.prev();
                 ob4.next();
         }
