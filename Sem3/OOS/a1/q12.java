@@ -89,7 +89,7 @@ class MarkSheet {
     }
 }
 
-public class Main {
+class Demo {
     public static void main(String[] args) {
         String[] subjects = {"Math", "Physics", "Chemistry", "Biology", "English"};
 
