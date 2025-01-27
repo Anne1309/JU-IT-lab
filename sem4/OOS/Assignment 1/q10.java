@@ -1,6 +1,5 @@
 import java.util.*;
 
-
 class Book {
    String author;
    String title;
@@ -47,10 +46,10 @@ class Demo {
    public static void main(String[] args) {
        Scanner sc = new Scanner(System.in);
        Book[] inventory = {
-               new Book("The Mountain is You", "David Goggins", "Bloomsbury", 500, 5),
-               new Book("The Alchemist", "Paulo Coelho", "HarperCollins", 300, 10),
-               new Book("Zero to One", "J.R.R. Tolkien", "Allen & Unwin", 400, 8),
-               new Book("Atomic Habits", "James Clear", "Secker & Warburg", 350, 6)
+               new Book("Book 1", "author 1", "publisher 1", 500, 5),
+               new Book("Book 2", "author 2", "publisher 2", 300, 10),
+               new Book("Book 3", "author 3", "publisher 3", 400, 8),
+               new Book("Book 4", "author 4", "publisher 4", 350, 6)
        };
        boolean found = false;
 
