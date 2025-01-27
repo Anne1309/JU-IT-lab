@@ -21,7 +21,7 @@ class Tomato implements Fruit,Vegetable
 	}
 }
 
-class Plant
+class Demo
 {
 	public static void main(String args[])
 	{
