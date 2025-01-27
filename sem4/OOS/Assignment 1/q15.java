@@ -42,7 +42,7 @@ class Tollbooth
 	}
 }
 
-class Traffic
+class Demo
 {
 	public static void main(String args[])
 	{
