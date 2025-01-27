@@ -80,7 +80,7 @@ class Rectangle implements Shape
 	}
 }
 
-class Shapes
+class Demo
 {
 	public static void main(String args[])
 	{
