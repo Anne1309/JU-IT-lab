@@ -29,7 +29,9 @@ class Complex
                 int i=(real*ob.imag)+(imag*ob.real);
                 System.out.println("The product is: " + a+" + "+i+"i");
         }
+}
 
+class Demo{
         public static void main(String args[]){
                 Complex c1= new Complex(3,2);
                 Complex c2= new Complex(4,-2);
