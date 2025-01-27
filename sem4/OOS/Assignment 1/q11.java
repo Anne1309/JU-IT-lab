@@ -96,7 +96,9 @@ class Date
                 }
         System.out.println(" ");
         }
+}
 
+class Demo{
         public static void main(String args[]){
                 Date ob1=new Date();
                 Date ob2=new Date(13,9,2004);
