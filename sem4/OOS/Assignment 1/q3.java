@@ -39,7 +39,9 @@ class Stack
                         System.out.println(arr[i]);
                 }
         }
+}
 
+class Demo{
         public static void main(String args[])
         {
                 Stack s1=new Stack(30);
@@ -52,9 +54,9 @@ class Stack
 
                 s1.print();
 
-                System.out.println(s1.pop());
-                System.out.println(s1.pop());
-                System.out.println(s1.pop());
+                System.out.println(s1.pop() + " popped");
+                System.out.println(s1.pop() + " popped");
+                System.out.println(s1.pop() + " popped");
 
                 s1.print();
         }
