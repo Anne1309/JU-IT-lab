@@ -20,7 +20,9 @@ class student
                 System.out.println("name is: " + name);
                 System.out.println("Total marks is: " + (s1m+s2m+s3m));
         }
+}
 
+class Demo{
         public static void main(String args[])
         {
                 student ob1=new student();
