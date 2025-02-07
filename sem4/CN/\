@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/select.h>
+
+void WaitForEvent()
+{
+	//ask sir about implementation
+	
+	//create file descriptor set
+	fd_set readfds;
+	FD_ZERO(&readfds);
+
+	//add relevant fd's to the set
+	int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+	FD_SET(sockfd,&readfds);
+
+	//setting the timeout value to 5 seconds
+	struct timeval timeout;
+	timeout.tv_sec = 5;
+	timeout.tv_usec = 0;
+
+	//wait for an event on the file descriptors
+	int ready = select(FD_SETSIZE,&readfds.NULL,NULL,&timeout);
+
+	if(ready == -1)
+	{
+		perror("select");
+		exit(EXIT_FAILURE);
+	}
+
+	else if(ready == 0)
+	{
+		printf("Timeout occured\n");
+	}
+
+	else
+		printf("Event Occured\n");
+}
+
+char* GetData()
+{
+	//define the string data
+	char* data = "Hello receiver.";
+
+	//creating a copy to send back to main()
+	size_t length = strlen(data);
+	char* dataCopy = (char*)malloc((length+1)*sizeof(char));
+
+	if(dataCopy == NULL)
+	{
+		perror("Failed to allocate memory for data");
+		exit(EXIT_FAILURE);
+	}
+
+	strcpy(dataCopy,data);
+	return dataCopy;
+}
+
+char* MakeFrame(char* data)
+{
+	//calculate the length of the data
+	size_t length = strlen(data);
+
+	char* frame = (char*)malloc((length+1)*sizeof(char));
+	if(frame == NULL)
+	{
+		perror("failed to allocate memory for frame");
+		exit(EXIT_FAILURE);
+	}
+
+	strcpy(frame,data);
+	return frame;
+
+}
+
+void SendFrame()
+{
+	//ask sir about implementation
+	
+}
+
+
+int main()
+{
+	return 0;
+	WaitForEvent();
+	char* data = GetData();
+	char* frame = MakeFrame(data);
+	SendFrame(frame);
+	return 0;
+}
