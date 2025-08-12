@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-"" 05-08-2025 ::: Debodit Ray  
-"" Team: 08 
+"" 05-08-2025 :::  Team: 08 
+"" 
 "" Name: Debodit Ray, Roll: 13
 "" Name: Kaustav Mondal , Roll: 17
 "" Name: Anuska Nath , Roll: 03
@@ -106,20 +106,20 @@ def multiply_row_chunk(row_indices):
 
 def print_matrix(matrix, name="Matrix"):
     """Helper function to print a matrix."""
-    print(f"\n--- {name} ---")
+    print("\n--- {} ---".format(name))
     if not matrix:
         print("[]")
         return
     # For large matrices, print only a corner
     dimension = len(matrix)
     if dimension > 10:
-        print(f"(Showing top-left 10x10 corner of {dimension}x{dimension} matrix)")
+        print("(Showing top-left 10x10 corner of {}x{} matrix)".format(dimension, dimension))
         for row in matrix[:10]:
-            print(f"[{', '.join(map(str, row[:10]))}, ...]")
+            print("[{}, ...]".format(', '.join(map(str, row[:10]))))
         print("...")
     else:
         for row in matrix:
-            print(f"[{', '.join(map(str, row))}]")
+            print("[{}]".format(', '.join(map(str, row))))
 
 def main():
     """Main function to drive the program."""
@@ -140,7 +140,7 @@ def main():
         sys.exit(1)
 
     # 2. Matrix Initialization
-    print(f"---> Initializing {dimension}x{dimension} matrices with random integers mod {mod_value}...")
+    print("---> Initializing {}x{} matrices with random integers mod {}...".format(dimension, dimension, mod_value))
     # These matrices will be passed to workers. They are read-only in the workers.
     matrix_a = [[random.randint(0, mod_value - 1) for _ in range(dimension)] for _ in range(dimension)]
     matrix_b = [[random.randint(0, mod_value - 1) for _ in range(dimension)] for _ in range(dimension)]
@@ -160,18 +160,21 @@ def main():
         end_row = (i + 1) * chunk_size if i != num_processes - 1 else dimension
         row_chunks.append((start_row, end_row))
 
-    print(f"---> Starting parallel matrix multiplication with {num_processes} processes...")
+    print("---> Starting parallel matrix multiplication with {} processes...".format(num_processes))
 
     # 5. Parallel Execution and Timing
-    start_time = time.perf_counter()
+    start_time = time.time()
 
     # Create a pool of processes
     # The 'initializer' and 'initargs' pass the large matrices to each worker
     # once upon creation, avoiding repeated serialization.
-    with Pool(processes=num_processes, initializer=init_worker, initargs=(matrix_a, matrix_b, shared_result_arr, dimension)) as pool:
-        pool.map(multiply_row_chunk, row_chunks)
+    pool = Pool(processes=num_processes, initializer=init_worker, initargs=(matrix_a, matrix_b, shared_result_arr, dimension))
+    pool.map(multiply_row_chunk, row_chunks)
+    pool.close()
+    pool.join()
 
-    end_time = time.perf_counter()
+
+    end_time = time.time()
 
     elapsed_time = end_time - start_time
 
@@ -184,7 +187,7 @@ def main():
         result_matrix = [list(shared_result_arr[i*dimension:(i+1)*dimension]) for i in range(dimension)]
         print_matrix(result_matrix, "Result Matrix C")
 
-    print(f"\n---> Time elapsed for multiplication: {elapsed_time:.6f} seconds.")
+    print("\n---> Time elapsed for multiplication: {:.6f} seconds.".format(elapsed_time))
 
 
 if __name__ == "__main__":
