@@ -1,0 +1,7 @@
+# Missionaries and Cannibals Problem
+Start:
+3 3 1 0 0
+Goal:
+0 0 0 3 3
+Depth: 20
+
