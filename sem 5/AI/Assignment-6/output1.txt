@@ -1,0 +1,76 @@
+Step 0: Initial
+1 2 3
+4 0 5
+6 7 8
+
+Step 1: Right
+1 2 3
+4 5 0
+6 7 8
+
+Step 2: Down
+1 2 3
+4 5 8
+6 7 0
+
+Step 3: Left
+1 2 3
+4 5 8
+6 0 7
+
+Step 4: Left
+1 2 3
+4 5 8
+0 6 7
+
+Step 5: Up
+1 2 3
+0 5 8
+4 6 7
+
+Step 6: Right
+1 2 3
+5 0 8
+4 6 7
+
+Step 7: Down
+1 2 3
+5 6 8
+4 0 7
+
+Step 8: Right
+1 2 3
+5 6 8
+4 7 0
+
+Step 9: Up
+1 2 3
+5 6 0
+4 7 8
+
+Step 10: Left
+1 2 3
+5 0 6
+4 7 8
+
+Step 11: Left
+1 2 3
+0 5 6
+4 7 8
+
+Step 12: Down
+1 2 3
+4 5 6
+0 7 8
+
+Step 13: Right
+1 2 3
+4 5 6
+7 0 8
+
+Step 14: Right
+1 2 3
+4 5 6
+7 8 0
+
+Total steps: 14
