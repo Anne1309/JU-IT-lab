@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Q1</title>
+</head>
+
+<body>
+    <input type="text" id="num1" placeholder="Enter a number here" />
+    <button onclick="check()">Validate</button>
+    <p id="para"></p>
+    <script>
+        function check() {
+            const num = document.getElementById("num1").value;
+            const p = document.getElementById("para");
+            for (let c = 0; c < num.length; c++) {
+                if (isNaN(Number(num[c]))) {
+                    p.innerText = "INVALID";
+                    return;
+                }
+            }
+            if (num.length >= 4) {
+                p.innerText = "Invalid";
+                return;
+            }
+            const num1 = parseInt(num);
+            if (num1 < 0) {
+                p.innerText = "Invalid";
+                return;
+            }
+            console.log(numberToWords(num1));
+            p.innerText = numberToWords(num1);
+        }
+
+        function numberToWords(num) {
+            if (num === 0) return 'zero';
+
+            const units = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+            const teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+            const tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+            const scales = ['', 'thousand', 'million', 'billion', 'trillion'];
+
+            function convertChunk(n) {
+                let chunk = '';
+                if (n >= 100) {
+                    chunk += units[Math.floor(n / 100)] + ' hundred ';
+                    n %= 100;
+                }
+                if (n < 10) {
+                    chunk += units[n];
+                } else if (n >= 10 && n < 20) {
+                    chunk += teens[n - 10];
+                } else {
+                    chunk += tens[Math.floor(n / 10)] + (n % 10 !== 0 ? ' ' + units[n % 10] : '');
+                }
+                return chunk.trim();
+            }
+
+            let words = '';
+            let scaleIndex = 0;
+
+            while (num > 0) {
+                if (num % 1000 !== 0) {
+                    const chunkWords = convertChunk(num % 1000);
+                    words = chunkWords + (scales[scaleIndex] ? ' ' + scales[scaleIndex] : '') + (words ? ' ' + words : '');
+                }
+                num = Math.floor(num / 1000);
+                scaleIndex++;
+            }
+
+            return words.trim();
+        }
+    </script>
+</body>
+
+</html>

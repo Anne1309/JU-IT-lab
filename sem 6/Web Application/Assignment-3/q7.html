@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tech Club</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* ===== Global Styles ===== */
+        
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1f4037, #99f2c8);
+            /* Gradient background */
+            color: #fff;
+        }
+        /* ===== Header ===== */
+        
+        header {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            /* Shadow effect */
+        }
+        
+        header h1 {
+            margin: 0;
+        }
+        /* ===== Navigation ===== */
+        
+        nav {
+            background: #111;
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            /* Transition effect */
+        }
+        
+        nav a:hover {
+            color: #99f2c8;
+        }
+        /* ===== Main Content ===== */
+        
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        
+        .card {
+            background: #ffffff;
+            color: #333;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            /* Rounded corners */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            /* Shadow effect */
+            transition: transform 0.3s ease;
+            /* Transition */
+        }
+        
+        .card:hover {
+            transform: scale(1.03);
+            /* Transform effect */
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(to right, #1f4037, #99f2c8);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            /* Transform effect */
+        }
+        /* ===== Footer ===== */
+        
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #111;
+            margin-top: 40px;
+        }
+        /* ===== Responsive Design ===== */
+        
+        @media (max-width: 600px) {
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== Header ===== -->
+    <header>
+        <h1>College Tech Club</h1>
+        <p>Innovate • Create • Collaborate</p>
+    </header>
+
+    <!-- ===== Navigation ===== -->
+    <nav>
+        <a href="#about">About</a>
+        <a href="#activities">Activities</a>
+        <a href="#join">Join Us</a>
+    </nav>
+
+    <!-- ===== Content Section ===== -->
+    <div class="container">
+
+        <div class="card" id="about">
+            <h2>About the Club</h2>
+            <p>
+                The College Tech Club is a community of students passionate about technology, innovation, and problem-solving.
+            </p>
+        </div>
+
+        <div class="card" id="activities">
+            <h2>Our Activities</h2>
+            <ul>
+                <li>Workshops & Seminars</li>
+                <li>Hackathons</li>
+                <li>Project Development</li>
+                <li>Guest Lectures</li>
+            </ul>
+        </div>
+
+        <div class="card" id="join">
+            <h2>Become a Member</h2>
+            <p>Click the button below to join our club.</p>
+            <button onclick="joinClub()">Join Now</button>
+            <p id="message"></p>
+        </div>
+
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer>
+        <p>&copy; 2026 College Tech Club</p>
+    </footer>
+
+    <!-- ===== JavaScript ===== -->
+    <script>
+        function joinClub() {
+            document.getElementById("message").innerText =
+                "Thank you for joining the College Tech Club!";
+        }
+    </script>
+
+</body>
+
+</html>
