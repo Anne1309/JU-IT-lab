@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Q5</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        button {
+            padding: 6px 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="displayDateTime()">Display Date and Time</button>
+    <p id="dateTime"></p>
+
+    <script>
+        function displayDateTime() {
+            var currentDate = new Date();
+            var day = currentDate.toLocaleString('en-us', {
+                weekday: 'long'
+            });
+            var date = currentDate.toLocaleDateString();
+            var time = currentDate.toLocaleTimeString();
+            document.getElementById("dateTime").innerText = "Today is " + day + ", " + date + " and the time is " + time;
+        }
+    </script>
+</body>
+
+</html>

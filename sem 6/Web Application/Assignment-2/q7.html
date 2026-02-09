@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Q7</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        button {
+            padding: 6px 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="toggleView()">Toggle Paragrpah</button>
+    <p id="para" style="display: none">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro consequuntur officiis neque magnam dolorum exercitationem ea soluta dicta ipsa odio temporibus velit perspiciatis iusto, nesciunt animi ab magni consectetur tempora. Iusto debitis nesciunt
+        dolorum voluptate. Minima, dicta! Fugit sequi similique esse ipsam maiores non illo natus facilis ducimus saepe asperiores quam perspiciatis labore atque nemo, accusantium error rem, veniam repellat. Blanditiis reiciendis quam illo similique a
+        fugit saepe impedit nihil, quo atque vero autem et accusamus at, debitis ab tenetur veniam, quis maxime id beatae modi mollitia natus? Maiores repellendus et, illo molestias ea eos reprehenderit? Id dolore beatae eos.
+    </p>
+
+    <script>
+        const para = document.getElementById("para");
+
+        function toggleView() {
+            para.style.display = para.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Q3</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        button {
+            padding: 6px 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="increaseCount()">Press</button>
+    <p id="para">button press count: 0</p>
+    <script>
+        let count = 0;
+
+        function increaseCount() {
+            count++;
+            const str = `button press count: ${count}`;
+            document.getElementById("para").innerHTML = str;
+        }
+    </script>
+</body>
+
+</html>

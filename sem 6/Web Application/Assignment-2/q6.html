@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Q6</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        button {
+            padding: 6px 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="number" name="sub1" id="sub1" placeholder="Subject 1: Marks">
+    <input type="number" name="sub2" id="sub2" placeholder="Subject 2: Marks">
+    <input type="number" name="sub3" id="sub3" placeholder="Subject 3: Marks">
+    <button onclick="getResult()">Get Result</button>
+    <p id="result"></p>
+    <p id="avg"></p>
+    <p id="total"></p>
+    <script>
+        function getResult() {
+            const m1 = parseInt(document.getElementById('sub1').value);
+            const m2 = parseInt(document.getElementById('sub2').value);
+            const m3 = parseInt(document.getElementById('sub3').value);
+            const total = m1 + m2 + m3;
+            const avg = total / 3;
+            const result = (m1 >= 40 && m2 >= 40 && m3 >= 40) ? 'Congratulations you Passed' : 'Better luck next time';
+            document.getElementById('result').innerHTML = result;
+            document.getElementById('avg').innerHTML = "average: " + avg.toFixed(2);
+            document.getElementById('total').innerHTML = "total: " + total;
+        }
+    </script>
+</body>
+
+</html>
+
+</html>

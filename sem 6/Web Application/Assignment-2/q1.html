@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Q1</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        button {
+            padding: 6px 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="number" id="num1" placeholder="Enter a number here" />
+    <button onclick="check()">Check</button>
+    <p id="para"></p>
+    <script>
+        function check() {
+            const num1 = document.getElementById("num1").value;
+            let result = num1 % 2 == 0 ? "Even" : "Odd";
+            document.getElementById("para").innerHTML = `The Number is ${result}`;
+        }
+    </script>
+</body>
+
+</html>

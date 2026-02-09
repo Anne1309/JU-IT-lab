@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Q8</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        button {
+            padding: 6px 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="textBox" placeholder="Enter something" />
+    <button onclick="validateInput()">Validate Input</button>
+    <p id="warningMessage" style="color: red"></p>
+
+    <script>
+        function validateInput() {
+            var input = document.getElementById("textBox").value;
+            if (input === "") {
+                document.getElementById("warningMessage").innerText =
+                    "Please fill out this field.";
+            } else {
+                document.getElementById("warningMessage").innerText = "Valid!";
+            }
+        }
+    </script>
+</body>
+
+</html>
