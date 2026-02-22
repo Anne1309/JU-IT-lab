@@ -23,7 +23,7 @@
 11. Paint: Select Paintbrush tool and 65-pixel soft brush. Selecting colors from the Swatches palette paint on the grayscale image to color it.
 12. Save file: Save as XXX_A1_Task4a.psd and XXX_A1_Task4a.jpg [XXX: your last 3 digit roll number]
 
-**3. Grayscale to Tritone**
+**Grayscale to Tritone**
 
 1. Open file: Open file CAMEO_GS.TIF in Photoshop.
 2. Change mode: Choose Image > Mode > Duotone color. Choose Tritone type setting.
