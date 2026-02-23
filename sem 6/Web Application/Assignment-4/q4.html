@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Live search filter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        input {
+            margin: 5px;
+            padding: 5px;
+        }
+        
+        button {
+            padding: 5px 10px;
+            margin: 5px;
+        }
+        /* .student-item {
+            margin: 8px 0;
+            padding: 8px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <h2>Live search</h2>
+    <input type="text" id="search" placeholder="Search item..." onkeyup="filterStudents()">
+
+    <div id="list">
+
+    </div>
+    <script>
+        const list = ["Keyboard", "Mouse", "Laptop", "GPU", "CPU", "Headphone", "Airpods", "Mobile", "Charger", "Monitor"];
+
+        function displayStudents(list) {
+            const d = document.getElementById("list")
+            let ul = document.createElement("ul");
+            list.forEach((item) => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                ul.appendChild(li);
+            })
+            d.appendChild(ul);
+        }
+
+        function filterStudents() {
+            let d = document.getElementById("list");
+            d.removeChild(d.lastElementChild)
+            const searchValue = document.getElementById("search").value.toLowerCase();
+            const filtered = list.filter(function(item) {
+                return item.toLowerCase().includes(searchValue);
+            });
+            displayStudents(filtered);
+        }
+        displayStudents(list);
+    </script>
+
+</body>
+
+</html>

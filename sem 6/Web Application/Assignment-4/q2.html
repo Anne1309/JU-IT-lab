@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>OTP Generator & Validator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        
+        input {
+            padding: 8px;
+            font-size: 16px;
+        }
+        
+        button {
+            padding: 8px 15px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>OTP Generator & Verification</h2>
+
+    <button onclick="generateOTP()">Generate OTP</button>
+    <br><br>
+
+    <input type="text" id="userOTP" placeholder="Enter 6-digit OTP">
+    <br><br>
+
+    <button onclick="verifyOTP()">Verify OTP</button>
+
+    <div id="message"></div>
+
+    <script>
+        let generatedOTP = "";
+
+        function generateOTP() {
+            // Generate 6-digit OTP using Math.random()
+            generatedOTP = Math.floor(100000 + Math.random() * 900000);
+
+            // For demo purposes (normally you wouldn't show this)
+            alert("Generated OTP: " + generatedOTP);
+
+            document.getElementById("message").innerHTML = "";
+        }
+
+        function verifyOTP() {
+            let userInput = document.getElementById("userOTP").value;
+
+            if (userInput.length !== 6) {
+                document.getElementById("message").innerHTML = "Please enter a 6-digit OTP";
+                document.getElementById("message").style.color = "orange";
+                return;
+            }
+
+            if (userInput == generatedOTP) {
+                document.getElementById("message").innerHTML = "Valid OTP";
+                document.getElementById("message").style.color = "green";
+            } else {
+                document.getElementById("message").innerHTML = "Invalid OTP";
+                document.getElementById("message").style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

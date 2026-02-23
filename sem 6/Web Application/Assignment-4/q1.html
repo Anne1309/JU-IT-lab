@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student List Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        input {
+            margin: 5px;
+            padding: 5px;
+        }
+        
+        button {
+            padding: 5px 10px;
+            margin: 5px;
+        }
+        
+        .student-item {
+            margin: 8px 0;
+            padding: 8px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Student List Manager</h2>
+
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="number" id="age" placeholder="Enter Age">
+    <input type="text" id="grade" placeholder="Enter Grade">
+    <button onclick="addStudent()">Add Student</button>
+    <hr>
+    <div id="count">
+        <div>
+            <span id="count">
+
+                </span>
+        </div>
+    </div>
+    <div id="studentList"></div>
+
+    <script>
+        let count = 0;
+
+        function showTotal() {
+            document.getElementById("count").textContent = "Count of total students: " + count;
+        }
+
+        function addStudent() {
+            count++;
+            let name = document.getElementById("name").value;
+            let age = document.getElementById("age").value;
+            let grade = document.getElementById("grade").value;
+
+            if (name === "" || age === "" || grade === "") {
+                alert("Please fill all fields!");
+                return;
+            }
+            let studentDiv = document.createElement("div");
+            studentDiv.className = "student-item";
+            let studentText = document.createElement("span");
+            studentText.textContent = "Name: " + name +
+                " | Age: " + age +
+                " | Grade: " + grade;
+            let deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Delete";
+            deleteBtn.style.marginLeft = "10px";
+
+            deleteBtn.onclick = function() {
+                count--;
+                showTotal();
+                studentDiv.remove();
+            };
+            studentDiv.appendChild(studentText);
+            studentDiv.appendChild(deleteBtn);
+            document.getElementById("studentList").appendChild(studentDiv);
+            showTotal();
+            document.getElementById("name").value = "";
+            document.getElementById("age").value = "";
+            document.getElementById("grade").value = "";
+        }
+    </script>
+
+</body>
+
+</html>

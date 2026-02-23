@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fetch JSON Students</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 70%;
+        }
+        
+        th,
+        td {
+            border: 1px solid #333;
+            padding: 8px;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        input {
+            padding: 6px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Student Data</h2>
+
+    <input type="text" id="search" placeholder="Search by name..." onkeyup="searchStudent()">
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Course</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+
+    <script>
+        let students = [];
+
+        // Load JSON file using fetch()
+        fetch("students.json")
+            .then(response => response.text())
+            .then(data => {
+                students = JSON.parse(data); // Convert JSON string to object
+                displayStudents(students);
+            })
+            .catch(error => console.error("Error loading JSON:", error));
+
+        // Display data in table (DOM manipulation)
+        function displayStudents(data) {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = "";
+
+            data.forEach(student => {
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>${student.id}</td>
+                        <td>${student.name}</td>
+                        <td>${student.age}</td>
+                        <td>${student.course}</td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Search function
+        function searchStudent() {
+            const searchValue = document.getElementById("search").value.toLowerCase();
+
+            const filtered = students.filter(student =>
+                student.name.toLowerCase().includes(searchValue)
+            );
+
+            displayStudents(filtered);
+        }
+    </script>
+
+</body>
+
+</html>

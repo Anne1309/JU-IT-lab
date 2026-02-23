@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Quiz Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .option {
+            display: block;
+            margin: 8px;
+        }
+        
+        button {
+            padding: 8px 15px;
+            margin-top: 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Simple Quiz App</h2>
+
+    <div id="quiz-container">
+        <h3 id="question"></h3>
+        <div id="options"></div>
+        <button onclick="nextQuestion()">Next</button>
+    </div>
+
+    <div id="result" style="display:none;"></div>
+
+    <script>
+        // Quiz questions (Array of Objects)
+        const quizData = [{
+            question: "Which language is used for web structure?",
+            options: ["HTML", "CSS", "JavaScript", "Python"],
+            correct: 0
+        }, {
+            question: "Which method is used to select an element by ID?",
+            options: ["querySelector()", "getElementById()", "getElementsByClass()", "selectElement()"],
+            correct: 1
+        }, {
+            question: "Which company developed JavaScript?",
+            options: ["Microsoft", "Google", "Netscape", "Apple"],
+            correct: 2
+        }];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        const questionEl = document.getElementById("question");
+        const optionsEl = document.getElementById("options");
+        const resultEl = document.getElementById("result");
+
+        function loadQuestion() {
+            const currentQuiz = quizData[currentQuestion];
+            questionEl.innerText = currentQuiz.question;
+
+            optionsEl.innerHTML = ""; // Clear previous options
+
+            currentQuiz.options.forEach((option, index) => {
+                optionsEl.innerHTML += `
+                    <label class="option">
+                        <input type="radio" name="answer" value="${index}">
+                        ${option}
+                    </label>
+                `;
+            });
+        }
+
+        function nextQuestion() {
+            const selected = document.querySelector('input[name="answer"]:checked');
+
+            if (!selected) {
+                alert("Please select an answer!");
+                return;
+            }
+
+            if (parseInt(selected.value) === quizData[currentQuestion].correct) {
+                score++;
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById("quiz-container").style.display = "none";
+            resultEl.style.display = "block";
+            resultEl.innerHTML = `<h3>Your Score: ${score} / ${quizData.length}</h3>`;
+        }
+
+        // Load first question
+        loadQuestion();
+    </script>
+
+</body>
+
+</html>
