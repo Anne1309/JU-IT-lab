@@ -3,6 +3,28 @@
 
 <head>
     <title>Change Background Color</title>
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>Change Background Color</title>
+    <style>
+    button{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+</head>
+<body>
+    <button  onclick="changeColor()">Change Background Color</button>
+    <script>
+        function changeColor() {
+            document.body.style.backgroundColor = "lightblue";
+        }
+    </script>
+</body>
+</html>
 </head>
 
 <body>
