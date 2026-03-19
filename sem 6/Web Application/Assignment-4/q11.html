@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,17 +13,14 @@
             transition: background-color 0.3s, color 0.3s;
             font-family: Arial, sans-serif;
         }
-        
         body.light {
             background-color: #f4f4f4;
             color: #222222;
         }
-        
         body.dark {
             background-color: #121212;
             color: #ffffff;
         }
-        
         .container {
             display: flex;
             flex-direction: column;
@@ -33,25 +29,21 @@
             height: 100%;
             user-select: none;
         }
-        
         .icon {
             font-size: 48px;
             margin-bottom: 20px;
         }
-        
         label.switch {
             position: relative;
             display: inline-block;
             width: 60px;
             height: 34px;
         }
-        
         label.switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
-        
         .slider {
             position: absolute;
             cursor: pointer;
@@ -63,7 +55,6 @@
             border-radius: 34px;
             transition: 0.4s;
         }
-        
         .slider:before {
             position: absolute;
             content: "";
@@ -75,17 +66,14 @@
             border-radius: 50%;
             transition: 0.4s;
         }
-        
         input:checked+.slider {
             background-color: #4caf50;
         }
-        
         input:checked+.slider:before {
             transform: translateX(26px);
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <div class="icon" id="themeIcon">☀️</div>
@@ -94,20 +82,16 @@
       <span class="slider"></span>
     </label>
     </div>
-
     <script>
         const body = document.body;
         const toggle = document.getElementById('themeToggle');
         const icon = document.getElementById('themeIcon');
-
         // Load saved theme or default to light
         let savedTheme = localStorage.getItem('theme') || 'light';
-
         // Apply saved theme class
         body.classList.add(savedTheme);
         toggle.checked = savedTheme === 'dark';
         icon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
-
         toggle.addEventListener('change', () => {
             if (toggle.checked) {
                 body.classList.replace('light', 'dark');
@@ -121,5 +105,4 @@
         });
     </script>
 </body>
-
 </html>
