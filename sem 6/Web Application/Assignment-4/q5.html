@@ -1,22 +1,15 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Countdown Timer</title>
 </head>
-
 <body>
-
     <h2>Countdown Timer</h2>
-
     <input type="number" id="seconds" placeholder="Enter seconds">
     <button onclick="startTimer()">Start</button>
-
     <h3 id="display">0</h3>
-
     <script>
         let timer;
-
         function startTimer() {
             let time = parseInt(document.getElementById("seconds").value);
             document.getElementById("seconds").textContent = "Enter seconds";
@@ -24,29 +17,21 @@
                 alert("Enter valid seconds");
                 return;
             }
-
             clearInterval(timer);
             document.getElementById("display").textContent = time;
-
             timer = setInterval(function () {
                 time--;
                 document.getElementById("display").textContent = time;
-
                 if (time <= 0) {
                     clearInterval(timer);
                     document.getElementById("display").textContent = "Time Over";
-
-                   
                     setTimeout(function () {
                         document.getElementById("display").textContent = "";
                         document.getElementById("seconds").value = "";
                     }, 2000);
                 }
-
             }, 1000);
         }
     </script>
-
 </body>
-
 </html>
