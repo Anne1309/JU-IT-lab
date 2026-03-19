@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Fetch JSON Students</title>
     <style>
@@ -9,19 +8,16 @@
             text-align: center;
             margin-top: 40px;
         }
-        
         table {
             margin: 20px auto;
             border-collapse: collapse;
             width: 70%;
         }
-        
         th,
         td {
             border: 1px solid #333;
             padding: 8px;
         }
-        
         th {
             background-color: #f2f2f2;
         }
@@ -32,13 +28,9 @@
         }
     </style>
 </head>
-
 <body>
-
     <h2>Student Data</h2>
-
     <input type="text" id="search" placeholder="Search by name..." onkeyup="searchStudent()">
-
     <table>
         <thead>
             <tr>
@@ -51,10 +43,8 @@
         <tbody id="tableBody">
         </tbody>
     </table>
-
     <script>
         let students = [];
-
         // Load JSON file using fetch()
         fetch("students.json")
             .then(response => response.text())
@@ -63,12 +53,10 @@
                 displayStudents(students);
             })
             .catch(error => console.error("Error loading JSON:", error));
-
         // Display data in table (DOM manipulation)
         function displayStudents(data) {
             const tableBody = document.getElementById("tableBody");
             tableBody.innerHTML = "";
-
             data.forEach(student => {
                 tableBody.innerHTML += `
                     <tr>
@@ -80,19 +68,14 @@
                 `;
             });
         }
-
         // Search function
         function searchStudent() {
             const searchValue = document.getElementById("search").value.toLowerCase();
-
             const filtered = students.filter(student =>
                 student.name.toLowerCase().includes(searchValue)
             );
-
             displayStudents(filtered);
         }
     </script>
-
 </body>
-
 </html>
