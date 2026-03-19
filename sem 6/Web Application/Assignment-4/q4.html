@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title> Live search filter</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
-        }
-        
+        }  
         input {
             margin: 5px;
             padding: 5px;
         }
-        
         button {
             padding: 5px 10px;
             margin: 5px;
@@ -26,18 +23,13 @@
         } */
     </style>
 </head>
-
 <body>
-
     <h2>Live search</h2>
     <input type="text" id="search" placeholder="Search item..." onkeyup="filterStudents()">
-
     <div id="list">
-
     </div>
     <script>
         const list = ["Keyboard", "Mouse", "Laptop", "GPU", "CPU", "Headphone", "Airpods", "Mobile", "Charger", "Monitor"];
-
         function displayStudents(list) {
             const d = document.getElementById("list")
             let ul = document.createElement("ul");
@@ -48,7 +40,6 @@
             })
             d.appendChild(ul);
         }
-
         function filterStudents() {
             let d = document.getElementById("list");
             d.removeChild(d.lastElementChild)
@@ -60,7 +51,5 @@
         }
         displayStudents(list);
     </script>
-
 </body>
-
 </html>
