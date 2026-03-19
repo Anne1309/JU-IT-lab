@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Character Limit Checker</title>
     <style>
@@ -9,7 +8,6 @@
             margin: 50px;
             max-width: 500px;
         }
-        
         textarea {
             width: 100%;
             height: 120px;
@@ -18,41 +16,31 @@
             box-sizing: border-box;
             resize: vertical;
         }
-        
         .remaining {
             margin-top: 5px;
             font-weight: bold;
         }
     </style>
 </head>
-
 <body>
-
     <h2>Real-Time Character Limit Checker</h2>
-
     <textarea id="textInput" placeholder="Type here... (max 200 characters)"></textarea>
     <div class="remaining" id="remainingCount">200 characters remaining</div>
-
     <script>
         const textarea = document.getElementById("textInput");
         const remaining = document.getElementById("remainingCount");
         const maxChars = 200;
-
         textarea.addEventListener("input", () => {
             let text = textarea.value;
-
             // If length exceeds max, trim the extra characters
             if (text.length > maxChars) {
                 textarea.value = text.substring(0, maxChars);
                 text = textarea.value;
             }
-
             // Update remaining characters
             const charsLeft = maxChars - text.length;
             remaining.textContent = `${charsLeft} character${charsLeft !== 1 ? 's' : ''} remaining`;
         });
     </script>
-
 </body>
-
 </html>
