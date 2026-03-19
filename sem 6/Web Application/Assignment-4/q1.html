@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Student List Manager</title>
     <style>
@@ -8,17 +7,14 @@
             font-family: Arial, sans-serif;
             padding: 20px;
         }
-        
         input {
             margin: 5px;
             padding: 5px;
         }
-        
         button {
             padding: 5px 10px;
             margin: 5px;
         }
-        
         .student-item {
             margin: 8px 0;
             padding: 8px;
@@ -27,11 +23,8 @@
         }
     </style>
 </head>
-
 <body>
-
     <h2>Student List Manager</h2>
-
     <input type="text" id="name" placeholder="Enter Name">
     <input type="number" id="age" placeholder="Enter Age">
     <input type="text" id="grade" placeholder="Enter Grade">
@@ -45,14 +38,12 @@
         </div>
     </div>
     <div id="studentList"></div>
-
     <script>
         let count = 0;
 
         function showTotal() {
             document.getElementById("count").textContent = "Count of total students: " + count;
         }
-
         function addStudent() {
             count++;
             let name = document.getElementById("name").value;
@@ -87,7 +78,5 @@
             document.getElementById("grade").value = "";
         }
     </script>
-
 </body>
-
 </html>
