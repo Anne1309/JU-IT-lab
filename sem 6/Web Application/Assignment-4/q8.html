@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Image Slider</title>
     <style>
@@ -9,14 +8,12 @@
             font-family: Arial, sans-serif;
             margin-top: 50px;
         }
-        
         img {
             width: 400px;
             height: 250px;
             object-fit: cover;
             border-radius: 10px;
         }
-        
         button {
             padding: 8px 15px;
             margin: 10px;
@@ -25,17 +22,12 @@
         }
     </style>
 </head>
-
 <body>
-
     <h2>Image Slider</h2>
-
     <img id="slider" src="" alt="Slider Image">
     <br>
-
     <button onclick="prevImage()">Previous</button>
     <button onclick="nextImage()">Next</button>
-
     <script>
         // Array of images
         const images = [
@@ -44,31 +36,23 @@
             "https://picsum.photos/id/1018/600/400",
             "https://picsum.photos/id/1020/600/400"
         ];
-
         let currentIndex = 0;
         const slider = document.getElementById("slider");
-
         // Display first image
         slider.src = images[currentIndex];
-
         function showImage(index) {
             slider.src = images[index]; // DOM src update
         }
-
         function nextImage() {
             currentIndex = (currentIndex + 1) % images.length;
             showImage(currentIndex);
         }
-
         function prevImage() {
             currentIndex = (currentIndex - 1 + images.length) % images.length;
             showImage(currentIndex);
         }
-
         // Auto-slide every 3 seconds
         setInterval(nextImage, 3000);
     </script>
-
 </body>
-
 </html>
