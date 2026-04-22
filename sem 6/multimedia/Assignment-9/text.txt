@@ -1,0 +1,1 @@
+Shannon Fano coding is a lossless data compression algorithm.
