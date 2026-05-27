@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCC Complete Study Guide – Score 90+</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Syne:wght@400;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #13161f;
+    --surface2: #1a1e2a;
+    --border: #252a38;
+    --accent: #e8b84b;
+    --accent2: #4b8fe8;
+    --accent3: #e84b7a;
+    --accent4: #4be8b8;
+    --text: #e2e5ef;
+    --text-dim: #8891a8;
+    --text-bright: #ffffff;
+    --co1: #e84b7a;
+    --co2: #4b8fe8;
+    --co3: #e8b84b;
+    --co4: #4be8b8;
+    --co5: #b84be8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #0d0f14 0%, #13161f 50%, #0d1420 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,184,75,0.08) 0%, transparent 70%);
+  }
+  .hero-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--text-bright);
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    max-width: 580px;
+    margin: 0 auto 1.5rem;
+  }
+  .co-badges {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .co-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .co-badge.co1 { background: rgba(232,75,122,0.15); color: var(--co1); border: 1px solid rgba(232,75,122,0.3); }
+  .co-badge.co2 { background: rgba(75,143,232,0.15); color: var(--co2); border: 1px solid rgba(75,143,232,0.3); }
+  .co-badge.co3 { background: rgba(232,184,75,0.15); color: var(--co3); border: 1px solid rgba(232,184,75,0.3); }
+  .co-badge.co4 { background: rgba(75,232,184,0.15); color: var(--co4); border: 1px solid rgba(75,232,184,0.3); }
+  .co-badge.co5 { background: rgba(184,75,232,0.15); color: var(--co5); border: 1px solid rgba(184,75,232,0.3); }
+
+  /* LAYOUT */
+  .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+  /* NAV */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .toc h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.4rem;
+  }
+  .toc a {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.15s;
+  }
+  .toc a:hover { color: var(--text); background: var(--surface2); }
+  .toc a .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+  /* UNIT SECTIONS */
+  .unit {
+    margin-bottom: 3rem;
+  }
+  .unit-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border);
+  }
+  .unit-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0.65rem;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .unit-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-bright);
+  }
+
+  /* TOPIC CARDS */
+  .topic {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+  }
+  .topic-head {
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+  .topic-head:hover { background: var(--surface2); }
+  .topic-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .topic-head h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-bright);
+    flex: 1;
+  }
+  .exam-flag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.45rem;
+    border-radius: 3px;
+    background: rgba(232,75,122,0.15);
+    color: var(--co1);
+    border: 1px solid rgba(232,75,122,0.3);
+    white-space: nowrap;
+  }
+  .exam-flag.num { background: rgba(75,143,232,0.15); color: var(--co2); border-color: rgba(75,143,232,0.3); }
+  .toggle-arrow {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .topic-body {
+    padding: 1.25rem 1.5rem;
+    display: none;
+  }
+  .topic-body.open { display: block; }
+  .toggle-arrow.open { transform: rotate(90deg); }
+
+  /* CONTENT STYLES */
+  .concept-box {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    padding: 0.85rem 1rem;
+    border-radius: 0 5px 5px 0;
+    margin-bottom: 1rem;
+  }
+  .concept-box strong {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+
+  .why-box {
+    background: rgba(75,143,232,0.06);
+    border-left: 3px solid var(--accent2);
+    padding: 0.85rem 1rem;
+    border-radius: 0 5px 5px 0;
+    margin-bottom: 1rem;
+  }
+  .why-box strong {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+
+  .exam-box {
+    background: rgba(232,75,122,0.06);
+    border-left: 3px solid var(--co1);
+    padding: 0.85rem 1rem;
+    border-radius: 0 5px 5px 0;
+    margin-bottom: 1rem;
+  }
+  .exam-box strong {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--co1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+
+  .num-box {
+    background: rgba(75,232,184,0.05);
+    border: 1px solid rgba(75,232,184,0.2);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 1rem;
+  }
+  .num-box strong {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85em;
+    background: rgba(255,255,255,0.06);
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+    color: var(--accent4);
+  }
+
+  pre {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82em;
+    background: #0a0c12;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    color: var(--accent4);
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin-bottom: 1rem;
+  }
+  th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-dim);
+    background: var(--surface2);
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+  td {
+    padding: 0.55rem 0.8rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  ul, ol {
+    padding-left: 1.4rem;
+    margin-bottom: 0.75rem;
+  }
+  li { margin-bottom: 0.3rem; }
+  li strong { color: var(--text-bright); }
+
+  p { margin-bottom: 0.75rem; }
+  p:last-child { margin-bottom: 0; }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.4rem;
+    margin-top: 1rem;
+  }
+  .section-label:first-child { margin-top: 0; }
+
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .compare-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.85rem;
+  }
+  .compare-card h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+  }
+  .compare-card.alt h4 { color: var(--accent2); }
+
+  .formula {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    background: #0a0c12;
+    border: 1px solid var(--accent3);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0 1rem;
+    color: var(--accent3);
+    text-align: center;
+  }
+
+  hr { border: none; border-top: 1px solid var(--border); margin: 1.25rem 0; }
+
+  /* UNIT COLOR CODING */
+  .u1 .unit-num { background: rgba(232,75,122,0.15); color: var(--co1); border: 1px solid rgba(232,75,122,0.3); }
+  .u1 .unit-header { border-color: var(--co1); }
+  .u2 .unit-num { background: rgba(75,143,232,0.15); color: var(--co2); border: 1px solid rgba(75,143,232,0.3); }
+  .u2 .unit-header { border-color: var(--co2); }
+  .u3 .unit-num { background: rgba(232,184,75,0.15); color: var(--co3); border: 1px solid rgba(232,184,75,0.3); }
+  .u3 .unit-header { border-color: var(--co3); }
+  .u4 .unit-num { background: rgba(75,232,184,0.15); color: var(--co4); border: 1px solid rgba(75,232,184,0.3); }
+  .u4 .unit-header { border-color: var(--co4); }
+  .u5 .unit-num { background: rgba(184,75,232,0.15); color: var(--co5); border: 1px solid rgba(184,75,232,0.3); }
+  .u5 .unit-header { border-color: var(--co5); }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 1.9rem; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .toc-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">B.E. Information Technology · 3rd Year 2nd Semester</div>
+  <h1>Multimedia Coding &<br><span>Communications</span></h1>
+  <p>Complete unit-by-unit study guide — built from your course materials and past papers. Every topic, every formula, every exam trick.</p>
+  <div class="co-badges">
+    <span class="co-badge co1">CO1 · Multimedia Basics</span>
+    <span class="co-badge co2">CO2 · Lossless Compression</span>
+    <span class="co-badge co3">CO3 · Lossy Compression</span>
+    <span class="co-badge co4">CO4 · Image/Video/Audio Standards</span>
+    <span class="co-badge co5">CO5 · Networks & Architecture</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h2>Quick Navigation</h2>
+    <div class="toc-grid">
+      <a href="#u1-intro"><span class="dot" style="background:var(--co1)"></span>Multimedia Introduction</a>
+      <a href="#u1-authoring"><span class="dot" style="background:var(--co1)"></span>Authoring Metaphors</a>
+      <a href="#u1-images"><span class="dot" style="background:var(--co1)"></span>Images & Graphics</a>
+      <a href="#u1-audio"><span class="dot" style="background:var(--co1)"></span>Audio & MIDI</a>
+      <a href="#u1-video"><span class="dot" style="background:var(--co1)"></span>Video & Animation</a>
+      <a href="#u2-rlc"><span class="dot" style="background:var(--co2)"></span>Run-Length Coding</a>
+      <a href="#u2-huffman"><span class="dot" style="background:var(--co2)"></span>Shannon-Fano & Huffman</a>
+      <a href="#u2-lzw"><span class="dot" style="background:var(--co2)"></span>LZW Compression</a>
+      <a href="#u2-arithmetic"><span class="dot" style="background:var(--co2)"></span>Arithmetic Coding</a>
+      <a href="#u3-lossy"><span class="dot" style="background:var(--co3)"></span>Lossy Intro & Distortion</a>
+      <a href="#u3-quantization"><span class="dot" style="background:var(--co3)"></span>Quantization</a>
+      <a href="#u3-dct"><span class="dot" style="background:var(--co3)"></span>DCT & Transform Coding</a>
+      <a href="#u3-wavelet"><span class="dot" style="background:var(--co3)"></span>Wavelet Coding</a>
+      <a href="#u4-jpeg"><span class="dot" style="background:var(--co4)"></span>JPEG Standard</a>
+      <a href="#u4-jpeg2000"><span class="dot" style="background:var(--co4)"></span>JPEG-2000 & JPEG-LS</a>
+      <a href="#u4-mpeg"><span class="dot" style="background:var(--co4)"></span>MPEG Video Standards</a>
+      <a href="#u4-audio-std"><span class="dot" style="background:var(--co4)"></span>Audio Standards (MP3)</a>
+      <a href="#u5-networks"><span class="dot" style="background:var(--co5)"></span>Networks & Multiplexing</a>
+      <a href="#u5-ip"><span class="dot" style="background:var(--co5)"></span>Multimedia over IP</a>
+      <a href="#u5-atm"><span class="dot" style="background:var(--co5)"></span>ATM & Architecture</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--  UNIT 1: MULTIMEDIA BASICS                          -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="unit u1" id="unit1">
+    <div class="unit-header">
+      <span class="unit-num">CO1 · Unit 1</span>
+      <h2>Multimedia Basics & Components</h2>
+    </div>
+
+    <!-- Topic: Introduction -->
+    <div class="topic" id="u1-intro">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">📺</span>
+        <h3>Introduction to Multimedia</h3>
+        <span class="exam-flag">CT + Sem</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>Core Concept</strong>
+          Multimedia = computer-controlled integration of <strong>text, graphics, images, video, animation, and audio</strong> where every type of information can be represented, stored, transmitted, and processed <em>digitally</em>.
+        </div>
+        <div class="why-box">
+          <strong>Why it matters</strong>
+          This definition is the foundation of every exam question on "components of multimedia." The professor always asks for examples of applications — memorise 5–6 diverse ones.
+        </div>
+
+        <div class="section-label">Key Distinction: Multimedia vs Hypermedia</div>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>Multimedia</h4>
+            <ul>
+              <li>Combines text, audio, video, animation, graphics</li>
+              <li><strong>Linear/sequential</strong> navigation</li>
+              <li>Users <strong>passively consume</strong> content</li>
+              <li>Limited interactivity</li>
+              <li>Examples: slideshows, videos, MP4, MP3</li>
+            </ul>
+          </div>
+          <div class="compare-card alt">
+            <h4>Hypermedia</h4>
+            <ul>
+              <li>Extension of multimedia <strong>with hyperlinks</strong></li>
+              <li><strong>Non-linear</strong> navigation via links</li>
+              <li>Users <strong>actively navigate</strong> content</li>
+              <li>Highly interactive</li>
+              <li>Examples: WWW, HTML, JavaScript, e-learning</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-label">Applications of Multimedia (memorise these)</div>
+        <ul>
+          <li>Video teleconferencing &amp; online education</li>
+          <li>Tele-medicine &amp; healthcare monitoring</li>
+          <li>Augmented reality (placing computer graphics into real scenes)</li>
+          <li>Interactive entertainment &amp; games</li>
+          <li>Co-operative work environments</li>
+          <li>Searching large video/image databases</li>
+          <li>Voice-recognition interactive environments</li>
+        </ul>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          "What are the key components of multimedia? Name two examples of multimedia applications." — appears in EVERY semester exam. Answer = list all 6 components (text, image/graphics, audio, video, animation, interactive elements) + 2 application examples with brief explanations.
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic: Authoring -->
+    <div class="topic" id="u1-authoring">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">🎬</span>
+        <h3>Multimedia Authoring Metaphors</h3>
+        <span class="exam-flag">CT + Sem</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>Core Concept</strong>
+          An authoring metaphor is the methodology/paradigm by which an authoring system accomplishes its task. It's a faster, higher-level way to create interactive multimedia — taking about 1/8th the development time of programming.
+        </div>
+        <div class="section-label">7 Types of Authoring Metaphors — Know ALL of them</div>
+        <table>
+          <thead><tr><th>Metaphor</th><th>How it works</th><th>Key Examples</th><th>Distinguishing feature</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Scripting Language</strong></td><td>Object-oriented scripting language is the centrepiece; closest to traditional programming</td><td>Macromedia Director (Lingo), HyperCard (HyperTalk), ToolBook (OpenScript)</td><td>Most powerful interactivity; longest dev time</td></tr>
+            <tr><td><strong>Iconic/Flow-Control</strong></td><td>Graphical icons arranged in a flowchart on a flow line</td><td>Authorware, IconAuthor</td><td>Fastest development time; slowest runtime</td></tr>
+            <tr><td><strong>Frames</strong></td><td>Like Iconic but links between icons are more conceptual, not actual program flow</td><td>Quest (C scripting), Apple Media Kit</td><td>More abstract than iconic</td></tr>
+            <tr><td><strong>Card/Scripting</strong></td><td>Simple index-card structure; great for hypertext/hypermedia apps</td><td>HyperCard</td><td>Easy to learn; widely used in schools</td></tr>
+            <tr><td><strong>Cast/Score/Scripting</strong></td><td>Uses a music score metaphor — timeline of parallel events; elements drawn from a "cast"</td><td>Macromedia Director</td><td>Synchronous events shown in vertical columns</td></tr>
+            <tr><td><strong>Slide Show</strong></td><td>Linear by default; jumps possible</td><td>PowerPoint, Keynote</td><td>Simplest; linear flow</td></tr>
+            <tr><td><strong>Hierarchical</strong></td><td>User-controllable elements in a tree structure</td><td>Menu-driven apps</td><td>Best for menu-driven apps</td></tr>
+          </tbody>
+        </table>
+
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>Multimedia Programming</h4>
+            <ul>
+              <li>Low-level assembly in <strong>real languages</strong> (C, Java)</li>
+              <li>Full control, complex</li>
+              <li>Examples: QuickTime in Java, Java Media Framework</li>
+            </ul>
+          </div>
+          <div class="compare-card alt">
+            <h4>Multimedia Authoring</h4>
+            <ul>
+              <li>High-level GUI + some scripting</li>
+              <li>Faster, easier, less control</li>
+              <li>Examples: Flash, Director, Authorware</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          CT 2023: "Write the differences between Frame Metaphor and Flow Control Metaphor" and "Externalization vs Linearization, Channel Message vs System Message." The professor loves COMPARE questions on these metaphors. Know at least 3 differences between any two metaphors.
+        </div>
+
+        <div class="concept-box">
+          <strong>Externalization vs Linearization</strong>
+          <strong>Linearization</strong> = traditional communication (sequential, like a book — you can only share ideas one path at a time). <strong>Externalization</strong> = using hyperlinks to partially mimic the author's thought process, allowing non-linear exploration of ideas — the way a brain actually thinks.
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic: Multimedia Presentation -->
+    <div class="topic" id="u1-presentation">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">🎭</span>
+        <h3>Multimedia Presentation: Sprite Animation & Video Transitions</h3>
+        <span class="exam-flag">CT + Sem</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>Sprite Animation</strong>
+          A <em>sprite</em> is a small 2D image/animation overlaid onto a background. The process: (1) Create a 1-bit mask M of the sprite (black on white). (2) AND the background B with mask M → blanks out where sprite goes. (3) OR result with sprite S → places sprite on background.
+          <br><br>
+          <code>Result = (B AND M) OR S</code>
+        </div>
+
+        <div class="section-label">Video Transitions — Know All 4 Types</div>
+        <table>
+          <thead><tr><th>Transition</th><th>What Happens</th><th>Formula / Key Detail</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Cut</strong></td><td>Abrupt change — two frames butted together</td><td>Simplest and most common</td></tr>
+            <tr><td><strong>Fade In/Out</strong></td><td>Scene gradually appears/disappears (usually to black/white)</td><td>Special case of Cross Dissolve where one video is black/white</td></tr>
+            <tr><td><strong>Wipe</strong></td><td>Pixels in a region replaced by another video following a geometric pattern</td><td>Special form of Dither Dissolve</td></tr>
+            <tr><td><strong>Dissolve</strong></td><td>Every pixel mixed over time between two videos</td><td>Two types: (1) Cross dissolve (2) Dither dissolve</td></tr>
+          </tbody>
+        </table>
+
+        <div class="num-box">
+          <strong>Cross Dissolve Formula (Numerical)</strong>
+          <code>D = (1 − α(t)) · A + α(t) · B</code><br>
+          Where A and B are colour 3-vectors for video A and B, and α(t) is a linear transition function α(t) = k·t (with k·t_max = 1).
+          <br><br>
+          <strong>Slide Transition:</strong> For VideoL sliding in from left, pushing out VideoR, the transition boundary moves: <code>x_T = (t/t_max) · x_max</code>. Pixel position in VideoL: <code>x_L = x + (x_max − x_T)</code>.
+        </div>
+
+        <div class="section-label">Technical Design Issues</div>
+        <ul>
+          <li><strong>NTSC, PAL, SECAM</strong> video formats are <em>not compatible</em> — conversion required</li>
+          <li>Memory: at least 128 MB RAM, 20 GB hard disk for multimedia programs</li>
+          <li>Cross-platform software relies on run-time modules which may not work everywhere</li>
+        </ul>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          "Differentiate between sprite animation and video transition" appears regularly. Also "Write a short note on digitization of sound." Video transitions are high-value 5-mark questions in CT.
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic: Images -->
+    <div class="topic" id="u1-images">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">🖼️</span>
+        <h3>Images, Graphics & Color Models</h3>
+        <span class="exam-flag">Sem recurring</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+
+        <div class="section-label">Image Types</div>
+        <table>
+          <thead><tr><th>Type</th><th>Bits/Pixel</th><th>Colors</th><th>Storage (640×480)</th><th>Key Feature</th></tr></thead>
+          <tbody>
+            <tr><td>Binary/1-bit</td><td>1</td><td>2 (B&W)</td><td>~38 KB</td><td>Monochrome only</td></tr>
+            <tr><td>8-bit Grayscale</td><td>8</td><td>256 shades</td><td>300 KB</td><td>Each pixel = one byte, value 0–255</td></tr>
+            <tr><td>8-bit Color</td><td>8</td><td>256 colors via LUT</td><td>300 KB</td><td>Uses Color Look-Up Table (LUT); palette animation possible</td></tr>
+            <tr><td>24-bit Color (RGB)</td><td>24</td><td>16.7 million</td><td>921.6 KB</td><td>3 bytes/pixel (R, G, B); most common for quality photos</td></tr>
+            <tr><td>32-bit Color</td><td>32</td><td>16.7M + transparency</td><td>1.2 MB</td><td>Extra byte = Alpha channel for transparency effects</td></tr>
+          </tbody>
+        </table>
+
+        <div class="section-label">Vector vs Raster Images — KEY COMPARISON (appears every year)</div>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>Raster (Bitmap)</h4>
+            <ul>
+              <li>Grid of x,y pixels — each pixel has a color value</li>
+              <li>Digital photos: always pixel-based</li>
+              <li>Efficient color blending (each pixel colored individually)</li>
+              <li>Loses quality when scaled up (pixelation)</li>
+              <li>Formats: JPEG, GIF, PNG, BMP, TIFF</li>
+            </ul>
+          </div>
+          <div class="compare-card alt">
+            <h4>Vector</h4>
+            <ul>
+              <li>Mathematical equations defining edges and shapes</li>
+              <li>Fonts and logos: always vector-based</li>
+              <li>Can be scaled to <strong>any size without quality loss</strong></li>
+              <li>Efficient color changes</li>
+              <li>Formats: SVG, PostScript (PS), PDF, AI</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-label">GIF87 File Format — Detailed (appears in EVERY semester paper)</div>
+        <p>GIF = Graphics Interchange Format. Limited to <strong>8-bit (256) color</strong> images. Best for drawings with few distinctive colors.</p>
+        <table>
+          <thead><tr><th>Block</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>GIF Signature</td><td>"GIF87a" — 6 characters identifying valid GIF + version number</td></tr>
+            <tr><td>Screen Descriptor</td><td>Overall image dimensions, color map info, background color, color depth (stored as 8-bit bytes)</td></tr>
+            <tr><td>Global Color Map</td><td>Optional but recommended; defines up to 256 colors (RGB triples)</td></tr>
+            <tr><td>Image Descriptor</td><td>Per-image attributes — position, size, interlace flag</td></tr>
+            <tr><td>Raster Area</td><td>Actual pixel color index values, left-to-right, top-to-bottom (or interlaced)</td></tr>
+            <tr><td>GIF Terminator</td><td>Character 0x3B (";") — signals end of file</td></tr>
+          </tbody>
+        </table>
+
+        <div class="concept-box">
+          <strong>GIF Interlacing — 4-Pass Process</strong>
+          Pass 1: every 8th row, starting row 0. Pass 2: every 8th row, starting row 4. Pass 3: every 4th row, starting row 2. Pass 4: every 2nd row, starting row 1. This makes images appear to "come into focus" as they load — progressive rendering.
+        </div>
+
+        <div class="section-label">Interlaced vs Progressive Scanning</div>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>Interlaced (i)</h4>
+            <ul>
+              <li>Odd-numbered lines scanned first (Field 1), then even (Field 2)</li>
+              <li>Two fields = one frame</li>
+              <li>Reduces flicker with fewer "flashes" per frame</li>
+              <li>Can cause blurring with fast motion (lines from different times)</li>
+              <li>NTSC: 525 lines, 29.97fps → 59.94 fields/sec</li>
+            </ul>
+          </div>
+          <div class="compare-card alt">
+            <h4>Progressive (p)</h4>
+            <ul>
+              <li>Complete frame scanned top-to-bottom in one pass</li>
+              <li>No flickering; sharper image for moving objects</li>
+              <li>Higher bandwidth needed for same frame rate</li>
+              <li>Used in computer monitors and HDTV</li>
+              <li>Example: 1080p, 720p</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-label">Color Models — RGB and CMYK</div>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>RGB (Additive)</h4>
+            <ul>
+              <li>Used in <strong>screens, monitors, TVs</strong></li>
+              <li>Adding all colors = White</li>
+              <li>No color = Black</li>
+              <li>24-bit: 8 bits per channel</li>
+            </ul>
+          </div>
+          <div class="compare-card alt">
+            <h4>CMYK (Subtractive)</h4>
+            <ul>
+              <li>Used in <strong>printing</strong></li>
+              <li>Cyan, Magenta, Yellow, Key (Black)</li>
+              <li>Adding all colors = Black</li>
+              <li>No color = White (paper)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-label">Other Image Formats</div>
+        <ul>
+          <li><strong>JPEG</strong>: lossy compression with quality factor (Q); Q=10% gives 1.5% of original size</li>
+          <li><strong>PNG</strong>: supersedes GIF; up to 48-bit color; supports alpha channel; 7-pass 2D progressive display</li>
+          <li><strong>TIFF</strong>: Tagged Image File Format; flexible tags; originally lossless</li>
+          <li><strong>EXIF</strong>: digital camera format; stores camera metadata (flash, exposure, white balance)</li>
+          <li><strong>PDF</strong>: LZW compression; text + figures; 2:1 to 3:1 compression ratio</li>
+        </ul>
+
+        <div class="concept-box">
+          <strong>Dithering</strong>
+          Process of juxtaposing pixels of two colors to create the illusion of a third color — used to reduce 24-bit photos to 8-bit (256 colors) for GIF. Also used in printing: replaces each pixel with a pattern of dots (e.g. 2×2 or 4×4) to simulate gray levels on 1-bit printers. Connection to halftone printing (analog process using ink circle sizes).
+        </div>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          "Explain GIF 87a file format with suitable diagrams" = 9-10 marks question every year (both 2023 and 2024). Also "Describe 8-bit gray level images." Draw the GIF structure diagram and label ALL blocks for full marks. For 8-bit gray: explain bitmap, frame buffer, bit-planes.
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic: Audio -->
+    <div class="topic" id="u1-audio">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">🎵</span>
+        <h3>Audio: Digitization, Quantization & MIDI</h3>
+        <span class="exam-flag">CT + Sem</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+
+        <div class="concept-box">
+          <strong>Digitization of Sound</strong>
+          Sound = pressure wave (longitudinal). To use digitally, we must convert it to numbers. Two steps:
+          1. <strong>Sampling</strong> — measuring amplitude at evenly spaced time intervals. Rate = sampling frequency.
+          2. <strong>Quantization</strong> — sampling in the amplitude/voltage dimension. Maps continuous values to discrete levels.
+        </div>
+
+        <div class="section-label">Nyquist Theorem — Critical for Exam</div>
+        <div class="concept-box">
+          <strong>Nyquist Theorem (Sampling Theorem)</strong>
+          "An analog signal can be converted to digital and reconstructed without error if the <strong>sampling rate ≥ 2 × the highest frequency component</strong> in the signal."
+        </div>
+
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>Nyquist Rate</h4>
+            <ul>
+              <li><strong>Minimum sampling rate to avoid aliasing</strong></li>
+              <li>Formula: <code>Fs = 2 × F_max</code></li>
+              <li>Example: CD audio (20 kHz max) → 44.1 kHz sampling rate</li>
+            </ul>
+          </div>
+          <div class="compare-card alt">
+            <h4>Nyquist Frequency</h4>
+            <ul>
+              <li><strong>Maximum frequency that won't alias</strong> for a given sampling rate</li>
+              <li>Formula: <code>F_nyquist = Fs / 2</code></li>
+              <li>Also called Folding Frequency or Cutoff Frequency</li>
+              <li>Nyquist Interval: [-Fs/2, Fs/2]</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="num-box">
+          <strong>Aliasing Formula</strong>
+          When <code>F_true &lt; F_sampling &lt; 2 × F_true</code>:
+          <div class="formula">F_alias = F_sampling − F_true</div>
+          Example: If true freq = 1000 Hz and sampling rate = 1500 Hz → alias = 500 Hz (wrong, lower frequency detected).
+        </div>
+
+        <div class="section-label">SNR (Signal to Noise Ratio)</div>
+        <div class="formula">SNR (dB) = 20 × log₁₀(V_signal / V_noise)</div>
+        <p>SNR in decibels. 1 dB = 1/10 of a Bel. If signal voltage = 10× noise → SNR = 20 dB. Higher SNR = better quality signal.</p>
+
+        <div class="section-label">Audio Quality vs Data Rate</div>
+        <table>
+          <thead><tr><th>Quality</th><th>Sample Rate (kHz)</th><th>Bits/Sample</th><th>Mono/Stereo</th><th>Data Rate</th></tr></thead>
+          <tbody>
+            <tr><td>Telephone</td><td>8</td><td>8</td><td>Mono</td><td>8 kB/s</td></tr>
+            <tr><td>AM Radio</td><td>11.025</td><td>8</td><td>Mono</td><td>11 kB/s</td></tr>
+            <tr><td>FM Radio</td><td>22.05</td><td>16</td><td>Stereo</td><td>88.2 kB/s</td></tr>
+            <tr><td>CD Quality</td><td>44.1</td><td>16</td><td>Stereo</td><td>176.4 kB/s</td></tr>
+            <tr><td>DAT</td><td>48</td><td>16</td><td>Stereo</td><td>192 kB/s</td></tr>
+          </tbody>
+        </table>
+
+        <div class="section-label">PCM, DPCM, Delta Modulation, ADPCM</div>
+        <table>
+          <thead><tr><th>Method</th><th>What it does</th><th>Key feature</th></tr></thead>
+          <tbody>
+            <tr><td><strong>PCM</strong> (Pulse Code Modulation)</td><td>Basic sampling + quantization → digital stream</td><td>Foundation of all digital audio</td></tr>
+            <tr><td><strong>DPCM</strong> (Differential PCM)</td><td>Transmits differences between samples rather than samples themselves</td><td>Exploits temporal redundancy; reduces bit-rate</td></tr>
+            <tr><td><strong>Delta Modulation (DM)</strong></td><td>Simplified DPCM — only 1-bit output: +step or −step</td><td>1-bit coder; staircase approximation</td></tr>
+            <tr><td><strong>ADPCM</strong> (Adaptive DPCM)</td><td>Adapts both quantizer step size AND predictor to input signal</td><td>Best compression; adapts to changing signal statistics</td></tr>
+          </tbody>
+        </table>
+
+        <div class="section-label">MIDI (Musical Instrument Digital Interface)</div>
+        <div class="concept-box">
+          <strong>MIDI Overview</strong>
+          MIDI is a <em>scripting language</em> — it codes "events" (pitch, duration, volume) rather than actual sounds. Standard adopted by electronic music industry. Transmission: 31.25 kbps serial; 3125 bytes/second maximum. 16 channels per device.
+        </div>
+
+        <div class="section-label">MIDI Message Structure</div>
+        <table>
+          <thead><tr><th>Message Type</th><th>Status Byte</th><th>Data</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Note On</td><td><code>1001 CCCC</code></td><td>Pitch (0–127), Velocity (0–127)</td><td>Key pressed</td></tr>
+            <tr><td>Note Off</td><td><code>1000 CCCC</code></td><td>Pitch (0–127), Velocity (0–127)</td><td>Key released</td></tr>
+            <tr><td>Control Change</td><td><code>1011 CCCC</code></td><td>Controller #, Value</td><td>Pedals, levers</td></tr>
+            <tr><td>Program Change</td><td><code>1100 CCCC</code></td><td>Program # (0–127)</td><td>Change instrument/patch</td></tr>
+            <tr><td>Pitch Bend</td><td><code>1110 CCCC</code></td><td>14-bit value (center = 0x2000)</td><td>Pitch wheel</td></tr>
+          </tbody>
+        </table>
+
+        <div class="concept-box">
+          <strong>Channel vs System Messages</strong>
+          <strong>Channel messages</strong>: specific to one of the 16 MIDI channels; include Voice messages (Note On/Off, Pressure, Control, Program, Pitch Bend) and Mode messages (All Notes Off, Omni On/Off, Poly/Mono).
+          <strong>System messages</strong>: no channel number; opcodes start with &HF. Divided into: (1) Common messages (timing/positioning), (2) Real-time messages (synchronization), (3) Exclusive messages (manufacturer extensions).
+        </div>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          "Write short note on MIDI Messages" = 5-mark question appearing in BOTH 2023 and 2024 semester papers. The CT 2023 also asked about "Channel Message vs System Message" and "Nyquist Rate vs Nyquist Frequency." Structure your answer: Overview → Channel Messages (types) → System Messages (3 types) → General MIDI.
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic: Video -->
+    <div class="topic" id="u1-video">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">📹</span>
+        <h3>Video Signals: NTSC, PAL, SECAM & Digital Video</h3>
+        <span class="exam-flag">CT + Sem</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="section-label">Types of Video Signals</div>
+        <table>
+          <thead><tr><th>Type</th><th>Signals Used</th><th>Quality</th><th>Key Detail</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Component Video</strong></td><td>3 separate wires: R, G, B</td><td>Best</td><td>No crosstalk; most computer systems use this</td></tr>
+            <tr><td><strong>S-Video</strong></td><td>2 wires: Luminance (Y) + Chrominance (C)</td><td>Good</td><td>Less crosstalk than composite; separates brightness from color</td></tr>
+            <tr><td><strong>Composite Video</strong></td><td>1 wire: Y+C mixed together</td><td>Lowest</td><td>Yellow RCA connector; some crosstalk inevitable</td></tr>
+          </tbody>
+        </table>
+
+        <div class="section-label">Analog TV Standards Comparison — Must Memorise</div>
+        <table>
+          <thead><tr><th>Standard</th><th>Frames/sec</th><th>Scan Lines</th><th>Channel Width</th><th>Region</th><th>Color Model</th></tr></thead>
+          <tbody>
+            <tr><td><strong>NTSC</strong></td><td>29.97 fps</td><td>525</td><td>6 MHz</td><td>USA, Japan</td><td>YIQ; 4:3 aspect</td></tr>
+            <tr><td><strong>PAL</strong></td><td>25 fps</td><td>625</td><td>8 MHz</td><td>W.Europe, India, China</td><td>YUV; 4:3 aspect; Phase Alternating Line</td></tr>
+            <tr><td><strong>SECAM</strong></td><td>25 fps</td><td>625</td><td>8 MHz</td><td>France, Russia</td><td>U and V on alternate lines; 4.25 & 4.41 MHz subcarriers</td></tr>
+          </tbody>
+        </table>
+
+        <div class="concept-box">
+          <strong>Chroma Subsampling</strong>
+          Humans see color with lower spatial resolution than brightness (luminance). So we can transmit less color info without perceived quality loss.
+          <ul style="margin-top:0.5rem">
+            <li><strong>4:4:4</strong> — no subsampling; full Y, Cb, Cr for every pixel</li>
+            <li><strong>4:2:2</strong> — half horizontal chroma samples; used in CCIR601</li>
+            <li><strong>4:2:0</strong> — half horizontal AND half vertical chroma; used in JPEG, MPEG-1, DVD</li>
+            <li><strong>4:1:1</strong> — quarter horizontal chroma samples</li>
+          </ul>
+        </div>
+
+        <div class="section-label">HDTV Key Facts</div>
+        <ul>
+          <li>Aspect ratio: <strong>16:9</strong> (vs 4:3 for standard TV)</li>
+          <li>Moves toward <strong>progressive scan</strong> (less serrated edges, less flicker)</li>
+          <li>Video codec: <strong>MPEG-2</strong></li>
+          <li>Audio: <strong>AC-3 (Dolby 5.1 surround)</strong></li>
+          <li>Max resolution supported: <strong>1920 × 1080</strong></li>
+          <li>Managed by ATSC (Advanced Television Systems Committee), formed 1982</li>
+        </ul>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          "Differentiate between NTSC, PAL, and SECAM" is a classic 5-mark question. CT 2023 specifically asked about "Interlaced vs Progressive" — draw a diagram showing odd/even field scanning for full marks.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /unit1 -->
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--  UNIT 2: LOSSLESS COMPRESSION                       -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="unit u2" id="unit2">
+    <div class="unit-header">
+      <span class="unit-num">CO2 · Unit 2</span>
+      <h2>Lossless Compression Techniques</h2>
+    </div>
+
+    <div class="topic" id="u2-intro">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">📊</span>
+        <h3>Introduction to Compression & Information Theory</h3>
+        <span class="exam-flag">Core Theory</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>Compression Ratio</strong>
+          <div class="formula">Compression Ratio = B₀ / B₁</div>
+          B₀ = bits before compression, B₁ = bits after. A ratio of 2 means the file is halved. Lossless = perfect reconstruction. Lossy = approximate reconstruction (higher ratios possible).
+        </div>
+
+        <div class="concept-box">
+          <strong>Entropy (Shannon's Information Theory)</strong>
+          <div class="formula">η = H(S) = −Σ pᵢ · log₂(pᵢ)</div>
+          Where pᵢ = probability of symbol sᵢ. Entropy = <em>average minimum bits needed per symbol</em>.
+          <br><br>
+          <strong>Rule:</strong> The average code length l̄ ≥ η (you can never do better than entropy).
+          <ul style="margin-top:0.5rem">
+            <li>High entropy → uniform (boring) distribution → hard to compress</li>
+            <li>Low entropy → peaked distribution → good compression possible</li>
+          </ul>
+        </div>
+
+        <div class="num-box">
+          <strong>Entropy Calculation Example</strong>
+          Symbols: a1=0.1, a2=0.5, a3=0.25, a4=0.15
+          <div class="formula">η = −(0.1·log₂0.1 + 0.5·log₂0.5 + 0.25·log₂0.25 + 0.15·log₂0.15)</div>
+          = −(0.1×(−3.32) + 0.5×(−1) + 0.25×(−2) + 0.15×(−2.74))<br>
+          = 0.332 + 0.5 + 0.5 + 0.411 = <strong>1.743 bits</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Run-Length Coding -->
+    <div class="topic" id="u2-rlc">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">🔁</span>
+        <h3>Run-Length Coding (RLC)</h3>
+        <span class="exam-flag">Foundational</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>Core Concept</strong>
+          Instead of storing repeated values, store (value, count) pairs. Works when symbols form continuous runs (groups).
+          <br><br>
+          Example: <code>AAAAABBBCC</code> → <code>(A,5)(B,3)(C,2)</code> — 10 chars → 6 values.
+        </div>
+        <div class="num-box">
+          <strong>How to calculate RLC compressed size:</strong>
+          For each distinct run: store the pixel value + the run length. If pixel = 1 byte and count = 1 byte, each pair = 2 bytes. Compare to original (1 byte per pixel × total pixels).
+        </div>
+        <div class="why-box">
+          <strong>When RLC is most useful</strong>
+          Images with large uniform areas (like scanned text, fax images, binary images). Used as a step inside JPEG (for AC coefficients after DCT and quantization).
+        </div>
+      </div>
+    </div>
+
+    <!-- Shannon-Fano & Huffman -->
+    <div class="topic" id="u2-huffman">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">🌳</span>
+        <h3>Shannon-Fano & Huffman Coding</h3>
+        <span class="exam-flag">🔥 High Priority — Every Year</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+
+        <div class="section-label">Shannon-Fano Algorithm (Top-Down)</div>
+        <div class="concept-box">
+          <strong>Algorithm Steps:</strong>
+          <ol>
+            <li>Sort symbols by frequency (highest to lowest)</li>
+            <li>Recursively divide into two groups with approximately equal total counts</li>
+            <li>Assign 0 to upper half, 1 to lower half</li>
+            <li>Repeat until each group has one symbol</li>
+          </ol>
+        </div>
+
+        <div class="num-box">
+          <strong>Example: "HELLO" — Shannon-Fano</strong>
+          Symbols sorted: L(2), H(1), E(1), O(1) — total=5
+          <pre>Split 1: [L,H,E,O] → [L(2)] vs [H,E,O(3)]  (split at ≈2.5)
+Split 2: [H,E,O] → [H(1)] vs [E,O(2)]
+Split 3: [E,O] → [E(1)] vs [O(1)]
+
+Result: L=0 (1 bit), H=10 (2 bits), E=110 (3 bits), O=111 (3 bits)
+Total bits = 2×1 + 1×2 + 1×3 + 1×3 = 2+2+3+3 = 10 bits</pre>
+          Entropy = −(2/5·log₂(2/5) + 3×1/5·log₂(1/5)) = 1.922 bits/symbol → 5×1.922 ≈ 9.6 bits (optimal)
+        </div>
+
+        <div class="section-label">Huffman Coding Algorithm (Bottom-Up) — THE KEY ALGORITHM</div>
+        <div class="concept-box">
+          <strong>Algorithm Steps:</strong>
+          <ol>
+            <li><strong>Initialization:</strong> Put all symbols on a list sorted by frequency</li>
+            <li><strong>Repeat until one symbol left:</strong>
+              <ul>
+                <li>Pick 2 symbols with LOWEST frequency</li>
+                <li>Make them children of a new parent node</li>
+                <li>Parent's frequency = sum of children's</li>
+                <li>Insert parent back into sorted list, delete children</li>
+              </ul>
+            </li>
+            <li><strong>Assign codes:</strong> Trace paths from root — left=0, right=1 (or higher=0, lower=1 per professor's convention)</li>
+          </ol>
+        </div>
+
+        <div class="num-box">
+          <strong>Full Huffman Example: "HELLO" (5 symbols: L=2, H=1, E=1, O=1)</strong>
+          <pre>Step 1 (sorted): L(2)  H(1)  E(1)  O(1)
+Step 2a: Combine H(1)+E(1) → P1(2)
+         List: L(2)  P1(2)  O(1)
+Step 2b: Combine P1(2)+O(1) → P2(3)
+         List: L(2)  P2(3)
+Step 2c: Combine L(2)+P2(3) → P3(5) = ROOT
+
+Tree:       P3(5)
+           /     \
+        L(2)    P2(3)
+               /    \
+           P1(2)   O(1)
+           /    \
+         H(1)  E(1)
+
+Codes: L=0, H=100, E=101, O=11  (using higher prob=0 convention)
+OR:    L=0, H=110, E=111, O=10  (alternately)
+
+Average code length = (2×1 + 1×3 + 1×3 + 1×2)/5 = 9/5 = 1.8 bits/symbol
+Total bits for HELLO = 1+3+1+1+2 = 8 bits (or similar)</pre>
+        </div>
+
+        <div class="num-box">
+          <strong>Calculating Entropy, Average Code Length, Coding Efficiency</strong>
+          For symbols with occurrences: a1=3003, a2=996, a3=2017, a4=1487, a5=2497 (total=10000)
+          <pre>Probabilities: p1=0.3003, p2=0.0996, p3=0.2017, p4=0.1487, p5=0.2497
+
+Entropy η = −Σ pᵢ·log₂(pᵢ)
+= −(0.3003×log₂0.3003 + 0.0996×log₂0.0996 + ...)
+≈ 2.236 bits/symbol (calculate each term)
+
+Coding Efficiency = η / l̄ × 100%
+where l̄ = average Huffman code length = Σ pᵢ × (code length for sᵢ)</pre>
+        </div>
+
+        <div class="section-label">Properties of Huffman Coding</div>
+        <ul>
+          <li><strong>Unique Prefix Property</strong>: No code is a prefix of another → unambiguous decoding</li>
+          <li><strong>Optimality</strong>: Minimum redundancy for a given probability distribution</li>
+          <li>Two least frequent symbols have the same code length (differ only at last bit)</li>
+          <li>More frequent symbols → shorter codes</li>
+          <li>Average code length: <code>η ≤ l̄ < η + 1</code></li>
+        </ul>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          This is the MOST numerically tested topic. The APPLE example (A=0.2, P=0.4, L=0.2, E=0.2) appears in BOTH 2023 and 2024 papers. The 5-symbol frequency table (a1=3003, a2=996...) also appears in both years. You MUST be able to: (a) build the Huffman tree, (b) calculate entropy, (c) calculate average code length, (d) calculate coding efficiency, (e) compare Shannon-Fano vs Huffman efficiency.
+        </div>
+      </div>
+    </div>
+
+    <!-- LZW -->
+    <div class="topic" id="u2-lzw">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">📚</span>
+        <h3>LZW Compression (Dictionary-Based Coding)</h3>
+        <span class="exam-flag">🔥 Must-Know Numerical</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>Core Concept</strong>
+          LZW uses fixed-length codewords to represent variable-length strings that commonly occur together. Both encoder and decoder build the same dictionary dynamically from the data — no need to transmit the dictionary!
+        </div>
+
+        <div class="section-label">LZW Compression Algorithm</div>
+        <pre>BEGIN
+  s = next input character
+  while not EOF {
+    c = next input character
+    if s+c exists in dictionary → s = s+c (extend string)
+    else {
+      output the code for s
+      add string s+c to dictionary with new code
+      s = c
+    }
+  }
+  output the code for s
+END</pre>
+
+        <div class="num-box">
+          <strong>Classic Example: "MISSISSIPPI" (Initial table: M=1, S=2, I=3, P=4)</strong>
+          <pre>Step | s  | c  | s+c in dict? | Output | Add to dict
+  1  | M  | I  | MI? No       | 1(M)   | MI=5
+  2  | I  | S  | IS? No       | 3(I)   | IS=6
+  3  | S  | S  | SS? No       | 2(S)   | SS=7
+  4  | S  | I  | SI? No       | 2(S)   | SI=8
+  5  | I  | S  | IS? YES      | —      | s=IS
+  6  | IS | S  | ISS? No      | 6(IS)  | ISS=9
+  7  | S  | I  | SI? YES      | —      | s=SI
+  8  | SI | P  | SIP? No      | 8(SI)  | SIP=10
+  9  | P  | P  | PP? No       | 4(P)   | PP=11
+ 10  | P  | I  | PI? No       | 4(P)   | PI=12
+ 11  | I  | —  | EOF          | 3(I)   | 
+
+Output codes: 1 3 2 2 6 8 4 4 3
+Original: 11 characters → 9 codes
+Compression ratio = 11/9 ≈ 1.22</pre>
+        </div>
+
+        <div class="section-label">LZW Decompression Algorithm</div>
+        <pre>BEGIN
+  s = NIL
+  while not EOF {
+    k = next input code
+    entry = dictionary[k]
+    output entry
+    if s != NIL → add string s+entry[0] to dictionary with new code
+    s = entry
+  }
+END</pre>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          "Execute LZW compression and decompression on the string MISSISSIPPI where string table is M=1, S=2, I=3, P=4" appears in BOTH 2023 and 2024 semester papers (8 marks). You must show the FULL step-by-step table for both compression and decompression. Practice until you can do this from memory.
+        </div>
+      </div>
+    </div>
+
+    <!-- Arithmetic Coding -->
+    <div class="topic" id="u2-arithmetic">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">🔢</span>
+        <h3>Arithmetic Coding</h3>
+        <span class="exam-flag">🔥 15-mark Numerical</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>Core Concept</strong>
+          Represents the entire message as a single number in [0,1). Unlike Huffman (which assigns integer-bit codewords), arithmetic coding can achieve exactly entropy. A message is represented by a half-open interval [low, high) that narrows as more symbols are encoded.
+        </div>
+
+        <div class="section-label">Arithmetic Coding Encoder</div>
+        <pre>low = 0.0;  high = 1.0;  range = 1.0
+for each symbol:
+  low  = low + range × Range_low(symbol)
+  high = low + range × Range_high(symbol)  ← NOTE: use NEW low
+  range = high - low
+Output: any value in [low, high), typically (low+high)/2 as tag</pre>
+
+        <div class="num-box">
+          <strong>Classic Encoding Example: "DEAFS"</strong>
+          Symbol table: A=[0,0.2), B=[0.2,0.3), C=[0.3,0.5), D=[0.5,0.55), E=[0.55,0.85), F=[0.85,0.9), $=[0.9,1.0)
+          <pre>Symbol | low        | high       | range
+Start  | 0          | 1.0        | 1.0
+D      | 0+1×0.5=0.5| 0.5+1×0.05=0.55 | 0.05
+E      | 0.5+0.05×0.55=0.5275 | 0.5+0.05×0.85=0.5425 | 0.015
+A      | 0.5275+0.015×0=0.5275 | 0.5275+0.015×0.2=0.530 | 0.003
+F      | 0.5275+0.003×0.85=0.530 | 0.5275+0.003×0.9=0.5302 | 0.00015
+$      | 0.530+0.00015×0.9=... | ... | ...
+
+Tag = (low + high) / 2 → convert to binary for transmission</pre>
+        </div>
+
+        <div class="section-label">Arithmetic Decoding</div>
+        <pre>Convert received binary code to decimal tag value
+Loop:
+  Find symbol s such that Range_low(s) ≤ tag &lt; Range_high(s)
+  Output s
+  low = Range_low(s);  high = Range_high(s)
+  range = high - low
+  tag = (tag - low) / range   ← rescale tag
+Until terminator symbol found</pre>
+
+        <div class="num-box">
+          <strong>Decoding Example: String "EAOU" (from 2023 paper)</strong>
+          Symbol table: A=0.12, E=0.42, I=0.09, O=0.3, U=0.07
+          <pre>Ranges: A=[0, 0.12), E=[0.12, 0.54), I=[0.54, 0.63), O=[0.63, 0.93), U=[0.93, 1.0)
+
+Encoding "EAOU":
+  E: low=0.12, high=0.54, range=0.42
+  A: low=0.12+0.42×0=0.12, high=0.12+0.42×0.12=0.1704, range=0.0504
+  O: low=0.12+0.0504×0.63=0.1518, high=0.12+0.0504×0.93=0.1687, range=0.0169
+  U: low=0.1518+0.0169×0.93=0.1675, high=0.1518+0.0169×1.0=0.1687
+
+Tag = (0.1675+0.1687)/2 = 0.1681 → convert to binary</pre>
+        </div>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          Arithmetic coding encoding AND decoding on "EAOU" appears in 2023 (Q5, 10 marks). In 2024 it's "DEAFS" (Q9, 12 marks) with a different symbol table. This is a guaranteed numerical question worth 10–15 marks. Practice the encode-decode cycle fully. The tag value = (low+high)/2.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /unit2 -->
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--  UNIT 3: LOSSY COMPRESSION                          -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="unit u3" id="unit3">
+    <div class="unit-header">
+      <span class="unit-num">CO3 · Unit 3</span>
+      <h2>Lossy Compression Techniques</h2>
+    </div>
+
+    <div class="topic" id="u3-lossy">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">📉</span>
+        <h3>Distortion Measures: MSE, SNR, PSNR</h3>
+        <span class="exam-flag">Numerical</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>Why Lossy?</strong>
+          Lossless compression ratios are too low for multimedia (typically 2:1 to 3:1). Lossy compression achieves much higher ratios (10:1 to 50:1+) by allowing controlled data loss — humans can't perceive small quality reductions.
+        </div>
+
+        <div class="num-box">
+          <strong>Distortion Measures (for image quality assessment)</strong>
+          <div class="formula">MSE = (1/N) × Σ(xₙ − yₙ)²</div>
+          <div class="formula">SNR = 10 × log₁₀(σ²ₓ / σ²d)</div>
+          <div class="formula">PSNR = 10 × log₁₀(MAX² / MSE)</div>
+          Where: xₙ = original data, yₙ = reconstructed data, N = length, MAX = maximum pixel value (255 for 8-bit).
+          Higher PSNR = better quality reconstruction.
+        </div>
+
+        <div class="num-box">
+          <strong>Example Calculation (from 2023 paper Q7)</strong>
+          For a 4×4 original vs reconstructed image array:
+          <pre>1. Compute difference matrix: s[i,j] = original[i,j] − reconstructed[i,j]
+2. MSE = Σ(s[i,j])² / (4×4) = sum of all squared differences / 16
+3. SNR = 10·log₁₀(mean of original² / MSE)
+4. PSNR = 10·log₁₀(255² / MSE) = 20·log₁₀(255) − 10·log₁₀(MSE)</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="topic" id="u3-quantization">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">🎚️</span>
+        <h3>Quantization</h3>
+        <span class="exam-flag">Core Concept</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>Quantization</strong>
+          The main source of "loss" in lossy compression. Reduces the number of distinct output values to a much smaller set. Maps continuous or high-precision input values to fewer discrete output levels.
+        </div>
+        <table>
+          <thead><tr><th>Type</th><th>Description</th><th>Used In</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Uniform (Midrise)</strong></td><td>Equal step sizes; reconstruction level at middle of interval</td><td>PCM, basic digital audio</td></tr>
+            <tr><td><strong>Uniform (Midtread)</strong></td><td>Equal step sizes; reconstruction level at the tread (includes zero)</td><td>Similar to midrise</td></tr>
+            <tr><td><strong>Nonuniform (Companded)</strong></td><td>Nonuniform steps; finer resolution for small values; uses μ-law or A-law</td><td>Telephone/speech (64 kbps)</td></tr>
+            <tr><td><strong>Vector Quantization</strong></td><td>Groups multiple samples into vectors; maps vector to nearest codebook entry</td><td>Image/video compression</td></tr>
+            <tr><td><strong>Lloyd-Max Quantizer</strong></td><td>Analytically optimal nonuniform quantizer using least-squares minimization</td><td>DPCM for speech/audio</td></tr>
+          </tbody>
+        </table>
+        <div class="why-box">
+          <strong>Rate-Distortion Theory</strong>
+          Provides the analytical framework for lossy compression: Rate (bits/sample) vs Distortion (error). As rate decreases, distortion increases. The R(D) function shows the theoretical minimum achievable distortion for a given bit-rate — no compression can do better.
+        </div>
+      </div>
+    </div>
+
+    <div class="topic" id="u3-dct">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">⚡</span>
+        <h3>DCT (Discrete Cosine Transform) & Transform Coding</h3>
+        <span class="exam-flag">Foundation of JPEG/MPEG</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>Why Transform Coding?</strong>
+          If we transform input X to Y using a linear transform T such that Y's components are less correlated, then Y can be coded more efficiently. Most information concentrates in a few transform coefficients — the rest can be coarsely quantized or zeroed out with minimal quality loss.
+        </div>
+
+        <div class="concept-box">
+          <strong>DCT Key Properties</strong>
+          <ul>
+            <li><strong>Spatial frequency</strong>: how many times pixel values change across an image block</li>
+            <li>DC component (F(0,0)) = average of the block</li>
+            <li>AC components = spatial frequency details</li>
+            <li>DCT is a <strong>linear transform</strong> — uses only cosine basis functions (real part of DFT)</li>
+            <li>Energy compaction: most energy concentrates in low-frequency (top-left) coefficients</li>
+          </ul>
+        </div>
+
+        <div class="num-box">
+          <strong>2D DCT Formula (8×8 block)</strong>
+          <div class="formula">F(u,v) = (C(u)C(v)/4) × Σᵢ Σⱼ cos((2i+1)uπ/16) · cos((2j+1)vπ/16) · f(i,j)</div>
+          where C(0)=1/√2, C(u)=1 for u≠0. Inverse DCT (IDCT) reconstructs f(i,j) from F(u,v).
+          The 2D DCT can be separated into two 1D DCTs (separability) — reduces computation from 64 to 16 operations per coefficient.
+        </div>
+
+        <div class="concept-box">
+          <strong>KLT (Karhunen-Loève Transform)</strong>
+          Optimal transform that uses eigenvectors of the autocorrelation matrix. Perfectly decorrelates input components. Disadvantage: signal-dependent (must compute eigenvectors for each dataset) → computationally expensive. DCT is a good fixed approximation to KLT for natural images.
+        </div>
+      </div>
+    </div>
+
+    <div class="topic" id="u3-wavelet">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">🌊</span>
+        <h3>Wavelet-Based Coding</h3>
+        <span class="exam-flag">CO3 + JPEG-2000</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>Key Idea</strong>
+          Wavelet transform decomposes a signal into components localized in <em>both time (space) and frequency</em> — unlike DCT which only gives frequency information. The basis functions (wavelets) are scaled and translated versions of a "mother wavelet" ψ.
+        </div>
+        <div class="section-label">Types</div>
+        <ul>
+          <li><strong>CWT</strong> (Continuous Wavelet Transform): continuous scale and shift — theoretical framework</li>
+          <li><strong>DWT</strong> (Discrete Wavelet Transform): discrete steps — practical implementation using filter banks</li>
+          <li><strong>Haar Wavelet</strong>: simplest wavelet — pairwise averaging and differencing</li>
+        </ul>
+        <div class="concept-box">
+          <strong>2D DWT Subbands</strong>
+          After one level of 2D DWT, the image is divided into 4 subbands: LL (low-low = approximation), HL (high-low), LH (low-high), HH (high-high). The LL subband can be recursively decomposed for multi-level analysis.
+        </div>
+        <div class="num-box">
+          <strong>Haar Transform Example</strong>
+          Given sequence {10, 13, 25, 26}: <br>
+          Averages: x̄₁=(10+13)/2=11.5, x̄₂=(25+26)/2=25.5<br>
+          Differences: d₁=(10-13)/2=-1.5, d₂=(25-26)/2=-0.5<br>
+          Transformed: {11.5, 25.5, -1.5, -0.5} — same number of elements, reversible!
+        </div>
+        <div class="why-box">
+          <strong>Why wavelets beat DCT</strong>
+          DCT operates on fixed 8×8 blocks → "blocky" artifacts at high compression. Wavelets operate globally → smooth compression with no block boundaries. This is why JPEG-2000 uses wavelets instead of DCT.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /unit3 -->
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--  UNIT 4: STANDARDS                                  -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="unit u4" id="unit4">
+    <div class="unit-header">
+      <span class="unit-num">CO4 · Unit 4</span>
+      <h2>Image, Video & Audio Coding Standards</h2>
+    </div>
+
+    <div class="topic" id="u4-jpeg">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">🖼️</span>
+        <h3>JPEG Standard — Complete Walkthrough</h3>
+        <span class="exam-flag">🔥 Every Semester</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>What is JPEG?</strong>
+          Joint Photographic Experts Group. Accepted as international standard in 1992. <em>Lossy</em> image compression using DCT. Uses psychophysical observations about human vision to achieve compression.
+        </div>
+
+        <div class="section-label">3 Key Observations Behind JPEG</div>
+        <ol>
+          <li><strong>Spatial Redundancy</strong>: Useful image content changes slowly across the image — intensity rarely varies widely within an 8×8 block → can discard high spatial frequencies</li>
+          <li><strong>Psychophysics</strong>: Humans are much less likely to notice loss of high spatial frequency components than low frequencies → aggressively quantize high frequencies</li>
+          <li><strong>Chroma Sensitivity</strong>: Visual acuity for gray is much greater than for color → use 4:2:0 chroma subsampling</li>
+        </ol>
+
+        <div class="section-label">JPEG Compression Steps (All 5 must be known)</div>
+        <table>
+          <thead><tr><th>Step</th><th>What Happens</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>1. Color Space Convert</td><td>RGB → YIQ or YUV; subsample chroma (4:2:0)</td><td>Humans less sensitive to color detail</td></tr>
+            <tr><td>2. DCT on 8×8 blocks</td><td>Each 8×8 block → 64 DCT coefficients F(u,v)</td><td>Converts spatial info to frequency domain; energy compaction</td></tr>
+            <tr><td>3. Quantization</td><td>F̂(u,v) = round(F(u,v) / Q(u,v))</td><td><strong>MAIN SOURCE OF LOSS</strong>; larger Q values for high frequencies</td></tr>
+            <tr><td>4. Zig-Zag + RLC on AC</td><td>8×8 matrix → 64-vector via zig-zag scan; encode as {skip-zeros, value} pairs</td><td>Zig-zag groups near-zero high-freq coefficients at end for long zero runs</td></tr>
+            <tr><td>5. DPCM on DC + Entropy</td><td>DC coefficients: DPCM. All coefficients: Huffman coding</td><td>DC changes slowly between blocks; Huffman compresses variable-length codes</td></tr>
+          </tbody>
+        </table>
+
+        <div class="concept-box">
+          <strong>Quantization Detail</strong>
+          The quantization matrix Q(u,v) has larger values in bottom-right (high frequencies) → more loss at high frequencies. For DC (0,0): Q=16, For high AC: Q up to 99. Larger Q entry = coarser quantization = more loss = higher compression = lower quality.
+        </div>
+
+        <div class="section-label">4 JPEG Modes</div>
+        <table>
+          <thead><tr><th>Mode</th><th>How it works</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Sequential (Baseline)</strong></td><td>Default; single left-to-right, top-to-bottom scan; whole image encoded once</td></tr>
+            <tr><td><strong>Progressive</strong></td><td>Multiple scans — spectral selection (DC first, then ACs in bands) OR successive approximation (MSBs first). Image improves in quality with each scan.</td></tr>
+            <tr><td><strong>Hierarchical</strong></td><td>Multiple resolutions — encode at lowest resolution first, then add detail differences. Similar to progressive but spatially.</td></tr>
+            <tr><td><strong>Lossless</strong></td><td>Truly lossless mode; now replaced by JPEG-LS</td></tr>
+          </tbody>
+        </table>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          "Write the main steps of JPEG image compression" — 10 marks (2024 Q10). "Mention observations on JPEG image compression" — 3 marks. "What are 4 commonly used JPEG modes" — 3 marks. Draw the JPEG encoder block diagram for full marks: RGB→YUV→DCT→Quantization→Zig-Zag+RLC→DC DPCM→Huffman Coding.
+        </div>
+      </div>
+    </div>
+
+    <div class="topic" id="u4-jpeg2000">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">🚀</span>
+        <h3>JPEG-2000, JPEG-LS & JBIG Standards</h3>
+        <span class="exam-flag">Short Note Questions</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="section-label">JPEG vs JPEG-2000 Comparison (frequent exam question)</div>
+        <table>
+          <thead><tr><th>Feature</th><th>JPEG</th><th>JPEG-2000</th></tr></thead>
+          <tbody>
+            <tr><td>Transform</td><td>DCT (8×8 blocks)</td><td>DWT (wavelet, global)</td></tr>
+            <tr><td>Artifacts</td><td>Blocking artifacts at high compression</td><td>Smooth degradation, no blocking</td></tr>
+            <tr><td>Lossless + Lossy</td><td>Separate modes, not unified</td><td>Single bitstream supports both</td></tr>
+            <tr><td>Low bit-rate</td><td>Poor quality below 0.25 bpp</td><td>Better quality at very low bit-rates</td></tr>
+            <tr><td>Region of Interest</td><td>Not supported</td><td>Supported (MAXSHIFT method)</td></tr>
+            <tr><td>Max image size</td><td>Limited</td><td>Up to 2³² − 1 pixels</td></tr>
+            <tr><td>Scalability</td><td>Limited</td><td>Resolution AND quality scalable from single stream</td></tr>
+          </tbody>
+        </table>
+
+        <div class="concept-box">
+          <strong>JPEG-LS</strong>
+          Current ISO/ITU standard for lossless or "near lossless" compression of continuous tone images. Uses LOCO-I (LOw COmplexity LOssless COmpression for Images) algorithm by Hewlett-Packard. Main advantage: <strong>LOW COMPLEXITY</strong>. Uses context modelling (looks at neighbouring pixels a, b, c, d to predict x).
+        </div>
+
+        <div class="concept-box">
+          <strong>JBIG and JBIG-2</strong>
+          Bi-level Image Compression standards. Goal: electronic documents (scanned text, handwriting, fax).
+          <ul>
+            <li><strong>JBIG</strong>: lossless; progressive encoding/decoding; produces progressively higher resolution bitstreams</li>
+            <li><strong>JBIG-2</strong>: adds model-based coding; supports <em>lossy</em> compression; better for text/halftone images</li>
+          </ul>
+        </div>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          "Differentiate JPEG-LS vs JPEG-2000" = 4 marks (Q9e, 2023). "Write short note on JPEG-2000" = 3 marks (2024 Q10c). "What is JBIG and JBIG-2" = 3 marks (2024 Q10d). For differentiation questions: use a comparison table with at least 4 points.
+        </div>
+      </div>
+    </div>
+
+    <div class="topic" id="u4-mpeg">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">📺</span>
+        <h3>MPEG Video Coding Standards</h3>
+        <span class="exam-flag">CO4 Theory</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>MPEG Overview</strong>
+          Moving Pictures Experts Group, established 1988. MPEG defines only the compressed bitstream and decoder — encoders are left to manufacturers. Three frame types used for temporal compression.
+        </div>
+
+        <div class="section-label">Frame Types in MPEG — Critical</div>
+        <table>
+          <thead><tr><th>Type</th><th>Name</th><th>Prediction</th><th>Size</th><th>Compression</th></tr></thead>
+          <tbody>
+            <tr><td><strong>I-frame</strong></td><td>Intra-coded</td><td>None — coded independently like JPEG</td><td>~18 kB</td><td>7:1</td></tr>
+            <tr><td><strong>P-frame</strong></td><td>Predicted</td><td>Forward from previous I or P frame</td><td>~6 kB</td><td>20:1</td></tr>
+            <tr><td><strong>B-frame</strong></td><td>Bidirectional</td><td>Forward AND backward from reference frames; average if both succeed</td><td>~2.5 kB</td><td>50:1</td></tr>
+          </tbody>
+        </table>
+
+        <div class="concept-box">
+          <strong>Motion Estimation (ME) & Motion Compensation (MC)</strong>
+          ME: Find the best matching macroblock (16×16) in a reference frame for each macroblock in the target frame. Only the difference (prediction error) + motion vector (MV) is transmitted. MC: Use the motion vector to predict the frame content. B-frames can have up to 2 MVs (forward + backward).
+        </div>
+
+        <div class="section-label">MPEG-1 vs MPEG-2 Key Differences</div>
+        <table>
+          <thead><tr><th>Feature</th><th>MPEG-1</th><th>MPEG-2</th></tr></thead>
+          <tbody>
+            <tr><td>Bit-rate</td><td>~1.5 Mbps</td><td>4–80 Mbps</td></tr>
+            <tr><td>Resolution</td><td>352×240 (NTSC) / 352×288 (PAL)</td><td>Up to 1920×1152 (High level)</td></tr>
+            <tr><td>Interlaced</td><td>No (progressive only)</td><td>Yes (supports interlaced)</td></tr>
+            <tr><td>Chroma</td><td>4:2:0</td><td>4:2:0, 4:2:2, 4:4:4</td></tr>
+            <tr><td>Profiles</td><td>One (constrained parameters)</td><td>7 profiles × 4 levels</td></tr>
+            <tr><td>Scalability</td><td>No</td><td>Yes (SNR, Spatial, Temporal, Hybrid)</td></tr>
+            <tr><td>Applications</td><td>VCD, CD-ROM video</td><td>DVD, HDTV, digital broadcast</td></tr>
+          </tbody>
+        </table>
+
+        <div class="concept-box">
+          <strong>MPEG-2 Scalabilities (4 types)</strong>
+          <ul>
+            <li><strong>SNR Scalability</strong>: enhancement layer improves signal-to-noise ratio (higher quality)</li>
+            <li><strong>Spatial Scalability</strong>: enhancement layer adds higher spatial resolution</li>
+            <li><strong>Temporal Scalability</strong>: enhancement layer adds more frames per second</li>
+            <li><strong>Hybrid Scalability</strong>: combination of any two above</li>
+            <li><strong>Data Partitioning</strong>: low-freq DCT coefficients in base, high-freq in enhancement</li>
+          </ul>
+        </div>
+
+        <div class="section-label">MPEG-4 Transport (DMIF)</div>
+        <p>DMIF (Delivery Multimedia Integration Framework) = interface between multimedia applications and their transport. Supports remote interactive access (IP, ATM, PSTN), broadcast (cable/satellite), and local media. MPEG-4 over IP uses RTP, RTSP, HTTP.</p>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          "What are different video transition schemes? Explain any 4" (CO1 — note this is under CO1 not CO4). For MPEG: "Transport of MPEG-4" (short note, 2.5 marks, both years). "MPEG-4 vs MPEG-7" differentiation (2023 Q9e). "MP3 vs MPEG" differentiation (2023 Q9b).
+        </div>
+      </div>
+    </div>
+
+    <div class="topic" id="u4-audio-std">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">🎧</span>
+        <h3>Audio Compression: MP3 & Psychoacoustics</h3>
+        <span class="exam-flag">Short Notes</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>Psychoacoustics</strong>
+          The study of how humans perceive sound. Key effects exploited in audio compression:
+          <ul>
+            <li><strong>Masking</strong>: A loud sound "masks" nearby quieter sounds we can't hear</li>
+            <li><strong>Frequency Masking</strong>: Louder tone at one frequency masks softer tones at nearby frequencies (same time)</li>
+            <li><strong>Temporal Masking</strong>: Loud sound masks softer sounds just before (pre-masking) and just after (post-masking) it in time</li>
+          </ul>
+        </div>
+
+        <div class="concept-box">
+          <strong>MP3 (MPEG-1 Layer 3)</strong>
+          Uses psychoacoustic model to identify and discard inaudible frequencies. Process:
+          1. Filter bank: divide audio into 32 frequency subbands
+          2. Psychoacoustic model: compute masking thresholds per subband
+          3. Quantize each subband — use fewer bits for masked (inaudible) subbands
+          4. Huffman encode the quantized values
+          Typical: CD audio (1411 kbps) → MP3 128 kbps (11:1 ratio) with acceptable quality.
+        </div>
+
+        <div class="concept-box">
+          <strong>ADPCM</strong>
+          G.722 uses ADPCM for wideband speech at 64 kbps. The ITU G.711 standard uses μ-law (USA/Japan) or A-law (Europe) companding for telephone quality audio at 64 kbps.
+        </div>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          "Differentiate MP3 vs MPEG" = 4 marks (2023 Q9b). Key distinction: MP3 is only audio compression (part of MPEG-1 Layer 3); MPEG includes both video and audio compression at various quality levels. MPEG-4 audio supports speech at 2–24 kbps and high quality audio at 16–64 kbps per channel.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /unit4 -->
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--  UNIT 5: NETWORKS & ARCHITECTURE                    -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="unit u5" id="unit5">
+    <div class="unit-header">
+      <span class="unit-num">CO5 · Unit 5</span>
+      <h2>Multimedia Communication, Networks & Architecture</h2>
+    </div>
+
+    <div class="topic" id="u5-networks">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">🌐</span>
+        <h3>Networks, Multiplexing & LAN/WAN</h3>
+        <span class="exam-flag">Short Notes</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="section-label">Multiplexing Technologies</div>
+        <table>
+          <thead><tr><th>Type</th><th>How it works</th><th>Key Details</th></tr></thead>
+          <tbody>
+            <tr><td><strong>FDM</strong> (Frequency Division)</td><td>Multiple channels at different frequencies on same medium</td><td>Used in radio/cable TV; modulation: AM, FM, PM, QAM</td></tr>
+            <tr><td><strong>WDM</strong> (Wavelength Division)</td><td>Variation of FDM for optical fiber; different wavelengths</td><td>Huge capacity; DWDM = densely packed channels (&gt;32)</td></tr>
+            <tr><td><strong>TDM</strong> (Time Division)</td><td>Multiple channels share time slots on same medium</td><td>Synchronous TDM (wastes idle slots) vs Asynchronous TDM (assigns only active channels)</td></tr>
+          </tbody>
+        </table>
+
+        <div class="concept-box">
+          <strong>T1/E1 Carriers (TDM Standards)</strong>
+          T1: 24 voice channels, 1.544 Mbps. T2: 96 channels, 6.312 Mbps. T3: 672 channels, 44.736 Mbps.
+          E1 (European): 32 channels, 2.048 Mbps.
+        </div>
+
+        <div class="section-label">LAN vs WAN</div>
+        <ul>
+          <li><strong>LAN</strong>: Local Area Network — small geographical area; uses Ethernet (CSMA/CD), Token Ring, or FDDI</li>
+          <li><strong>WAN</strong>: Wide Area Network — cities/countries; uses circuit switching, packet switching (X.25), frame relay, or ATM</li>
+        </ul>
+
+        <div class="section-label">ATM (Asynchronous Transfer Mode) — Key for Exam</div>
+        <div class="concept-box">
+          <strong>ATM Basics</strong>
+          Fixed-length 53-byte cells (5-byte header + 48-byte payload). Small fixed cells reduce latency (serialization delay) — critical for real-time multimedia. Connection-oriented virtual circuits.
+          <br><br>
+          <strong>ATM UNI Cell Header fields:</strong> GFC (General Flow Control), VPI (Virtual Path Identifier), VCI (Virtual Channel Identifier), PT (Payload Type), CLP (Cell Loss Priority), HEC (Header Error Check).
+        </div>
+
+        <div class="section-label">AAL (ATM Adaptation Layer) Types</div>
+        <table>
+          <thead><tr><th>Type</th><th>Supports</th></tr></thead>
+          <tbody>
+            <tr><td>AAL 1</td><td>Real-time, CBR, connection-oriented (voice, video)</td></tr>
+            <tr><td>AAL 2</td><td>VBR compressed audio/video (inactive)</td></tr>
+            <tr><td>AAL 3/4</td><td>VBR connectionless general data (combined)</td></tr>
+            <tr><td>AAL 5</td><td>All classes; best for multimedia; lowest overhead (0 bytes SAR overhead)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="topic" id="u5-ip">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">📡</span>
+        <h3>Multimedia over IP: RTP, RTCP, RSVP, RTSP</h3>
+        <span class="exam-flag">🔥 Both Papers</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="section-label">Quality of Service (QoS) Parameters</div>
+        <ul>
+          <li><strong>Data rate</strong>: transmission speed</li>
+          <li><strong>Latency</strong>: maximum frame/packet delay</li>
+          <li><strong>Packet loss</strong>: % of packets dropped</li>
+          <li><strong>Jitter</strong>: variance in packet delays → affects smooth playback</li>
+          <li><strong>Sync skew</strong>: audio-video synchronization measure</li>
+        </ul>
+
+        <div class="section-label">Key Protocols for Multimedia over IP</div>
+        <table>
+          <thead><tr><th>Protocol</th><th>Full Name</th><th>Purpose</th><th>Runs Over</th></tr></thead>
+          <tbody>
+            <tr><td><strong>RTP</strong></td><td>Real-time Transport Protocol</td><td>Transport real-time audio/video; provides timestamping and sequencing</td><td>UDP (usually)</td></tr>
+            <tr><td><strong>RTCP</strong></td><td>Real Time Control Protocol</td><td>Companion to RTP; monitors QoS; provides feedback; synchronizes A/V streams. 5 packet types: SR, RR, SDES, Bye, APP</td><td>UDP (separate port)</td></tr>
+            <tr><td><strong>RSVP</strong></td><td>Resource ReSerVation Protocol</td><td>Reserves network resources for multimedia streams (guarantees QoS)</td><td>IP</td></tr>
+            <tr><td><strong>RTSP</strong></td><td>Real Time Streaming Protocol</td><td>Controls stored media servers (play, pause, stop); like a "remote control" for streaming</td><td>TCP/UDP</td></tr>
+          </tbody>
+        </table>
+
+        <div class="concept-box">
+          <strong>RTP Header Key Fields</strong>
+          Payload Type (media type + encoding), Timestamp (when first octet sampled → for ordering), Sequence Number (increments per packet → for ordering), SSRC ID (synchronization source identifier), CSRC IDs (contributing sources).
+        </div>
+
+        <div class="concept-box">
+          <strong>RSVP Operation</strong>
+          Sender sends <strong>Path message</strong> → travels through network. Receiver sends <strong>Resv message</strong> back along the path to reserve resources. Supports multicast: one sender, multiple receivers each requesting different QoS. Key challenge: heterogeneous receivers, dynamic joins/leaves.
+        </div>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          "Write short notes on Multimedia over IP" = 2.5 marks (both 2023 and 2024). In your answer cover: RTP, RTCP, RSVP, RTSP briefly. Also "Multimedia over ATM network" = 2.5 marks — cover: AAL types, QoS parameters, CBR/VBR/ABR/UBR bit rates.
+        </div>
+      </div>
+    </div>
+
+    <div class="topic" id="u5-atm">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">🏗️</span>
+        <h3>Multimedia Architecture & Media on Demand</h3>
+        <span class="exam-flag">Short Notes</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="concept-box">
+          <strong>Multimedia Data Characteristics</strong>
+          <ul>
+            <li><strong>Voluminous</strong>: requires high data rates (dozens to hundreds of Mbps)</li>
+            <li><strong>Real-time and interactive</strong>: low delay + audio-video synchronization ("lip sync")</li>
+            <li><strong>Sometimes bursty</strong>: VBR data — quiet for long periods, then sudden bursts</li>
+          </ul>
+        </div>
+
+        <div class="section-label">Multimedia Service Classes</div>
+        <ul>
+          <li><strong>Real-Time/Conversational</strong>: voice/video telephony — low latency, low jitter</li>
+          <li><strong>Priority Data</strong>: e-commerce — low loss, low latency, prioritized</li>
+          <li><strong>Silver/Interactive</strong>: streaming video, web — moderate latency, strict ordering</li>
+          <li><strong>Best Effort/Background</strong>: file downloads — no real-time requirement</li>
+        </ul>
+
+        <div class="section-label">Video-on-Demand Broadcasting Schemes</div>
+        <table>
+          <thead><tr><th>Scheme</th><th>How it works</th><th>Key Formula</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Staggered Broadcasting</strong></td><td>Same movie broadcast on K channels with staggered start times</td><td>Max wait: δ = M·L/B (M=movies, L=length, B=bandwidth)</td></tr>
+            <tr><td><strong>Pyramid Broadcasting</strong></td><td>Movie split into geometrically growing segments; each segment on its own channel</td><td>α ≤ B/(M·K); access time drops exponentially with bandwidth</td></tr>
+            <tr><td><strong>Harmonic Broadcasting</strong></td><td>Fixed-size segments; channel i has bandwidth b/i</td><td>Total bandwidth B = HK·b (HK = harmonic number)</td></tr>
+            <tr><td><strong>Skyscraper Broadcasting</strong></td><td>Segment sizes: {1,2,2,5,5,12,12,25,...}; reduces client buffer requirement</td><td>At most 2 streams received simultaneously</td></tr>
+          </tbody>
+        </table>
+
+        <div class="concept-box">
+          <strong>Distributed Multimedia Applications</strong>
+          Interactive TV (ITV) and Set-top Box (STB) — supports: basic/subscription TV, VOD, news/weather, interactive entertainment, e-commerce, digital libraries. STB components: Network interface, CPU/memory, Audio/Video decoder (MPEG-2/4, DSP), Graphics unit (3D), Peripheral controllers.
+        </div>
+
+        <div class="concept-box">
+          <strong>Buffer Management for Streaming</strong>
+          Prefetch buffer at client: stores upcoming frames ahead of playback. Buffer overflow = too much data arriving → drop packets. Buffer underflow (starvation) = too little data → playback pauses. Optimal work-ahead smoothing: server plans transmission schedule to minimize peak rate while preventing both overflow and underflow.
+        </div>
+
+        <div class="exam-box">
+          <strong>Professor's Pattern</strong>
+          "Write short notes on Multimedia Data" (2.5 marks), "Media on Demand" (2.5 marks), "Distributed Multimedia Application" (2.5 marks), "Multimedia Playback System" — these appear in Q10/Q11 of both papers. Each answer should be 5–6 sentences covering definition, key characteristics, and 2–3 specific details from the notes.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /unit5 -->
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!--  QUICK REVISION CHEATSHEET                          -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <div class="unit" style="margin-top:2.5rem;">
+    <div class="unit-header" style="border-color:var(--accent)">
+      <span class="unit-num" style="background:rgba(232,184,75,0.15);color:var(--accent);border:1px solid rgba(232,184,75,0.3)">⚡ Revision</span>
+      <h2 style="color:var(--accent)">Quick Formulas & Must-Know Facts</h2>
+    </div>
+
+    <div class="topic">
+      <div class="topic-head" onclick="toggle(this)">
+        <span class="topic-icon">📝</span>
+        <h3>All Key Formulas in One Place</h3>
+        <span class="exam-flag num">Numerical Reference</span>
+        <span class="toggle-arrow">▶</span>
+      </div>
+      <div class="topic-body">
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>Compression & Coding</h4>
+            <ul>
+              <li>Compression ratio = B₀/B₁</li>
+              <li>Entropy = −Σ pᵢ·log₂(pᵢ)</li>
+              <li>Coding efficiency = η/l̄ × 100%</li>
+              <li>Huffman: η ≤ l̄ &lt; η+1</li>
+            </ul>
+          </div>
+          <div class="compare-card alt">
+            <h4>Audio</h4>
+            <ul>
+              <li>Nyquist rate: Fs = 2·Fmax</li>
+              <li>Nyquist freq: Fn = Fs/2</li>
+              <li>Alias freq = Fs − Ftrue (if Ftrue &lt; Fs &lt; 2Ftrue)</li>
+              <li>SNR = 20·log₁₀(Vsig/Vnoise) dB</li>
+            </ul>
+          </div>
+          <div class="compare-card">
+            <h4>Image Quality</h4>
+            <ul>
+              <li>MSE = Σ(xₙ−yₙ)²/N</li>
+              <li>SNR = 10·log₁₀(σ²x/σ²d)</li>
+              <li>PSNR = 10·log₁₀(255²/MSE)</li>
+              <li>CD: 640×480 × 3bytes = 921.6 kB</li>
+            </ul>
+          </div>
+          <div class="compare-card alt">
+            <h4>Video</h4>
+            <ul>
+              <li>Arithmetic: low=low+range×Rlow, high=low+range×Rhigh</li>
+              <li>Tag = (low+high)/2</li>
+              <li>Cross dissolve: D=(1−α)·A + α·B</li>
+              <li>Slide: xT = (t/tmax)·xmax</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-label" style="margin-top:1rem">NTSC vs PAL vs SECAM — 3-row Summary Table</div>
+        <table>
+          <thead><tr><th>System</th><th>fps</th><th>Lines</th><th>Bandwidth</th><th>Y-BW</th><th>I/U-BW</th><th>Q/V-BW</th></tr></thead>
+          <tbody>
+            <tr><td>NTSC</td><td>29.97</td><td>525</td><td>6 MHz</td><td>4.2 MHz</td><td>1.6 MHz</td><td>0.6 MHz</td></tr>
+            <tr><td>PAL</td><td>25</td><td>625</td><td>8 MHz</td><td>5.5 MHz</td><td>1.8 MHz</td><td>1.8 MHz</td></tr>
+            <tr><td>SECAM</td><td>25</td><td>625</td><td>8 MHz</td><td>6.0 MHz</td><td>2.0 MHz</td><td>2.0 MHz</td></tr>
+          </tbody>
+        </table>
+
+        <div class="section-label">Professor's Most-Repeated Questions (predicted 90%+ chance)</div>
+        <ol>
+          <li><strong>LZW on MISSISSIPPI</strong> — full encode + decode table (10–12 marks)</li>
+          <li><strong>Huffman tree + entropy + coding efficiency</strong> on any 4–5 symbol table (10–15 marks)</li>
+          <li><strong>Arithmetic coding</strong> encode + decode on EAOU or DEAFS (10–12 marks)</li>
+          <li><strong>Shannon-Fano tree</strong> — compare codeword length with Huffman for APPLE (12 marks)</li>
+          <li><strong>GIF87 file format</strong> with diagram (9–10 marks)</li>
+          <li><strong>JPEG steps</strong> with block diagram (10 marks)</li>
+          <li><strong>MIDI messages</strong> — channel vs system (5 marks)</li>
+          <li><strong>Nyquist rate vs Nyquist frequency</strong> (5 marks)</li>
+          <li><strong>Multimedia components</strong> + applications (6 marks)</li>
+          <li><strong>Video transition schemes</strong> — all 4 types (9 marks)</li>
+        </ol>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /container -->
+
+<script>
+function toggle(head) {
+  const body = head.nextElementSibling;
+  const arrow = head.querySelector('.toggle-arrow');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+
+// Open first topic in each unit by default
+document.querySelectorAll('.topic').forEach((t, i) => {
+  if (i === 0 || i === 6 || i === 11 || i === 15 || i === 19) {
+    const body = t.querySelector('.topic-body');
+    const arrow = t.querySelector('.toggle-arrow');
+    body.classList.add('open');
+    arrow.classList.add('open');
+  }
+});
+</script>
+
+</body>
+</html>

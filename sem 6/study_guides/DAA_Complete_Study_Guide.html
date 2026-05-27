@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAA Complete Study Guide — B.E. IT Sem 6</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #141720;
+    --surface2: #1c2030;
+    --border: #2a2f3d;
+    --accent: #4ade80;
+    --accent2: #60a5fa;
+    --accent3: #f59e0b;
+    --accent4: #f87171;
+    --text: #e2e8f0;
+    --text-muted: #8892a4;
+    --heading: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── SIDEBAR NAV ── */
+  .sidebar {
+    position: fixed; top: 0; left: 0;
+    width: 260px; height: 100vh;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    overflow-y: auto; z-index: 100;
+    padding: 0 0 40px 0;
+  }
+  .sidebar-header {
+    padding: 20px 18px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+  }
+  .sidebar-header h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; font-weight: 600;
+    color: var(--accent); letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .sidebar-header p { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  .nav-unit { padding: 6px 0; }
+  .nav-unit-label {
+    display: block; padding: 8px 18px 4px;
+    font-size: 10px; font-weight: 700;
+    color: var(--accent3); letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .nav-unit a {
+    display: block; padding: 5px 18px 5px 28px;
+    color: var(--text-muted); text-decoration: none;
+    font-size: 12.5px; border-left: 2px solid transparent;
+    transition: all 0.15s;
+  }
+  .nav-unit a:hover { color: var(--text); border-left-color: var(--accent2); background: rgba(96,165,250,0.06); }
+  .nav-unit a.active { color: var(--accent2); border-left-color: var(--accent2); background: rgba(96,165,250,0.08); }
+
+  /* ── MAIN CONTENT ── */
+  .main { margin-left: 260px; padding: 0 48px 80px; max-width: calc(100% - 260px); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 60px 0 48px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 56px;
+  }
+  .hero-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; color: var(--accent);
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-size: 42px; font-weight: 700;
+    color: var(--heading); line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--accent2); }
+  .hero-meta {
+    display: flex; gap: 24px; flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .hero-badge {
+    padding: 5px 14px; border-radius: 4px;
+    font-size: 12px; font-weight: 600;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .badge-green { background: rgba(74,222,128,0.12); color: var(--accent); border: 1px solid rgba(74,222,128,0.25); }
+  .badge-blue { background: rgba(96,165,250,0.12); color: var(--accent2); border: 1px solid rgba(96,165,250,0.25); }
+  .badge-amber { background: rgba(245,158,11,0.12); color: var(--accent3); border: 1px solid rgba(245,158,11,0.25); }
+  .badge-red { background: rgba(248,113,113,0.12); color: var(--accent4); border: 1px solid rgba(248,113,113,0.25); }
+
+  /* ── UNIT SECTIONS ── */
+  .unit-section { margin-bottom: 72px; }
+  .unit-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 28px; border-radius: 8px;
+    margin-bottom: 36px;
+    background: linear-gradient(135deg, var(--surface2) 0%, var(--surface) 100%);
+    border: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .unit-header::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 4px; background: var(--accent2);
+  }
+  .unit-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 28px; font-weight: 600;
+    color: var(--accent2); opacity: 0.5;
+  }
+  .unit-title-block h2 {
+    font-size: 22px; font-weight: 700; color: var(--heading);
+  }
+  .unit-title-block p { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
+
+  /* ── TOPIC CARDS ── */
+  .topic-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .topic-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+  .topic-header h3 {
+    font-size: 16px; font-weight: 600; color: var(--heading);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .topic-icon {
+    width: 28px; height: 28px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    font-family: 'IBM Plex Mono', monospace;
+    background: rgba(96,165,250,0.12); color: var(--accent2);
+    border: 1px solid rgba(96,165,250,0.2);
+    flex-shrink: 0;
+  }
+  .exam-freq {
+    font-size: 11px; font-family: 'IBM Plex Mono', monospace;
+    padding: 3px 10px; border-radius: 3px;
+  }
+  .freq-high { background: rgba(248,113,113,0.15); color: var(--accent4); border: 1px solid rgba(248,113,113,0.3); }
+  .freq-med { background: rgba(245,158,11,0.12); color: var(--accent3); border: 1px solid rgba(245,158,11,0.25); }
+  .freq-low { background: rgba(74,222,128,0.10); color: var(--accent); border: 1px solid rgba(74,222,128,0.2); }
+
+  .topic-body { padding: 24px; }
+
+  /* ── CONTENT SECTIONS WITHIN TOPIC ── */
+  .content-section { margin-bottom: 20px; }
+  .content-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .label-concept { color: var(--accent2); }
+  .label-why { color: var(--accent); }
+  .label-exam { color: var(--accent4); }
+  .label-numerical { color: var(--accent3); }
+
+  p { margin-bottom: 10px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── CODE / ALGO BLOCKS ── */
+  .code-block {
+    background: #0a0c10;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    overflow-x: auto;
+    margin: 12px 0;
+    white-space: pre;
+  }
+  .code-block .kw { color: #c792ea; }
+  .code-block .fn { color: #82aaff; }
+  .code-block .cm { color: #546e7a; }
+  .code-block .nm { color: #f78c6c; }
+  .code-block .st { color: #c3e88d; }
+
+  /* ── EXAM TIP BOXES ── */
+  .exam-tip {
+    background: rgba(248,113,113,0.07);
+    border: 1px solid rgba(248,113,113,0.25);
+    border-left: 3px solid var(--accent4);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 13.5px;
+  }
+  .exam-tip strong { color: var(--accent4); }
+
+  .insight-box {
+    background: rgba(96,165,250,0.06);
+    border: 1px solid rgba(96,165,250,0.2);
+    border-left: 3px solid var(--accent2);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 13.5px;
+  }
+  .insight-box strong { color: var(--accent2); }
+
+  .formula-box {
+    background: rgba(245,158,11,0.07);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+  }
+  .formula-box .formula-title { font-size: 10px; letter-spacing: 2px; color: var(--accent3); text-transform: uppercase; margin-bottom: 8px; }
+
+  /* ── TABLES ── */
+  table {
+    width: 100%; border-collapse: collapse;
+    margin: 14px 0; font-size: 13.5px;
+  }
+  th {
+    background: var(--surface2);
+    color: var(--accent2);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+  td {
+    padding: 9px 14px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+  /* ── STEP LISTS ── */
+  .step-list { list-style: none; margin: 10px 0; }
+  .step-list li {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    min-width: 24px; height: 24px;
+    background: rgba(96,165,250,0.15); color: var(--accent2);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; font-family: 'IBM Plex Mono', monospace;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  ul { padding-left: 22px; }
+  ul li { margin-bottom: 5px; }
+
+  /* ── DIVIDER ── */
+  .section-divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+  /* ── SCROLL BEHAVIOR ── */
+  html { scroll-behavior: smooth; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 20px 16px 60px; max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ SIDEBAR ════════════════ -->
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <h2>DAA Study Guide</h2>
+    <p>B.E. IT · 3rd Year Sem 2 · 100 Marks</p>
+  </div>
+  <div class="nav-unit">
+    <span class="nav-unit-label">Unit 1 — CO1</span>
+    <a href="#u1-complexity">Time & Space Complexity</a>
+    <a href="#u1-asymptotic">Asymptotic Notations</a>
+    <a href="#u1-recurrence">Recurrence Relations</a>
+    <a href="#u1-heaps">Heaps & Heap Operations</a>
+    <a href="#u1-amortized">Amortized Analysis</a>
+  </div>
+  <div class="nav-unit">
+    <span class="nav-unit-label">Unit 2 — CO2</span>
+    <a href="#u2-bestworst">Best vs Worst Case</a>
+    <a href="#u2-amortized">Amortized Analysis (Deep)</a>
+    <a href="#u2-disjoint">Disjoint Sets / Union-Find</a>
+  </div>
+  <div class="nav-unit">
+    <span class="nav-unit-label">Unit 3 — CO3</span>
+    <a href="#u3-dc">Divide & Conquer</a>
+    <a href="#u3-selection">Selection / kth Element</a>
+    <a href="#u3-dp">Dynamic Programming</a>
+    <a href="#u3-string">String Matching (KMP/Naive)</a>
+    <a href="#u3-greedy">Greedy Algorithms</a>
+    <a href="#u3-huffman">Huffman Coding</a>
+    <a href="#u3-knapsack">Knapsack Problem</a>
+    <a href="#u3-backtrack">Backtracking / N-Queens</a>
+  </div>
+  <div class="nav-unit">
+    <span class="nav-unit-label">Unit 4 — CO4</span>
+    <a href="#u4-sorting">Sorting Algorithms</a>
+    <a href="#u4-binarysearch">Binary Search</a>
+    <a href="#u4-merging">Merging Sorted Lists</a>
+  </div>
+  <div class="nav-unit">
+    <span class="nav-unit-label">Unit 5 — CO5</span>
+    <a href="#u5-graphs">Graph Algorithms</a>
+    <a href="#u5-dijkstra">Dijkstra's Algorithm</a>
+    <a href="#u5-mst">MST: Kruskal's & Prim's</a>
+    <a href="#u5-negative">Negative Cycles</a>
+  </div>
+  <div class="nav-unit">
+    <span class="nav-unit-label">Unit 6 — CO6</span>
+    <a href="#u6-pnp">P, NP, NP-Complete, NP-Hard</a>
+    <a href="#u6-3sat">3-SAT Proof</a>
+    <a href="#u6-coloring">Graph Coloring</a>
+  </div>
+</nav>
+
+<!-- ════════════════ MAIN ════════════════ -->
+<main class="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">► Exam Preparation Guide</div>
+    <h1>Design & Analysis of<br><span>Algorithms</span></h1>
+    <p style="color:var(--text-muted); max-width:600px;">Complete unit-wise study guide built from your textbook (Alsuwaiyel), previous year papers (2023, 2024, 2025) and professor's pattern. Every topic explained for deep understanding + exam application.</p>
+    <div class="hero-meta">
+      <span class="hero-badge badge-green">100 Marks</span>
+      <span class="hero-badge badge-blue">3 Hours</span>
+      <span class="hero-badge badge-amber">6 COs</span>
+      <span class="hero-badge badge-red">3 Years PYQs Analysed</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       UNIT 1 — CO1: Analysis Foundations
+  ══════════════════════════════════════════ -->
+  <section class="unit-section" id="unit1">
+    <div class="unit-header">
+      <div class="unit-number">01</div>
+      <div class="unit-title-block">
+        <h2>Foundations of Algorithm Analysis</h2>
+        <p>CO1 · Asymptotic Notations · Recurrence Relations · Heaps · Time & Space Complexity</p>
+      </div>
+    </div>
+
+    <!-- TIME & SPACE COMPLEXITY -->
+    <div class="topic-card" id="u1-complexity">
+      <div class="topic-header">
+        <h3><span class="topic-icon">T</span> Time & Space Complexity</h3>
+        <span class="exam-freq freq-high">HIGH FREQ</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p><strong>Time complexity</strong> measures how many basic operations an algorithm performs as input size n grows. <strong>Space complexity</strong> measures how much memory it uses. We care about the <em>rate of growth</em>, not exact counts — because a constant doesn't matter for large n.</p>
+          <p>When we say an algorithm is O(n²), we mean: double the input → roughly 4× more work. This is the key insight.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">How to Count Operations</div>
+          <p>The professor frequently gives code snippets and asks for running time. Three methods:</p>
+          <ul>
+            <li><strong>Count iterations:</strong> Count how many times the loop body executes</li>
+            <li><strong>Count basic operations:</strong> Pick one key operation (comparison, assignment) and count it</li>
+            <li><strong>Use recurrence:</strong> For recursive algorithms, write T(n) = ... and solve</li>
+          </ul>
+          <div class="code-block"><span class="cm">// Example from 2024 paper — Function A</span>
+<span class="kw">void</span> <span class="fn">Function</span>(int n) {
+  int i = 1, s = 1;
+  <span class="kw">while</span>(s &lt; n) {  <span class="cm">// s grows as: 1,1+1=2,2+2=4,4+3=7...</span>
+    i++;            <span class="cm">// s = 1+2+3+...+i = i(i+1)/2</span>
+    s = s + i;      <span class="cm">// s &lt; n means i(i+1)/2 &lt; n</span>
+    print("*");     <span class="cm">// So i ~ √(2n), runs O(√n) times</span>
+  }
+}
+
+<span class="cm">// Function B from 2024 paper</span>
+<span class="kw">for</span>(i = n/2; i &lt;= n; i++)          <span class="cm">// runs n/2 times → O(n)</span>
+  <span class="kw">for</span>(j = 1; j + n/2 &lt;= n; j++)    <span class="cm">// runs n/2 times → O(n)</span>
+    <span class="kw">for</span>(k = 1; k &lt;= n; k = k*2)    <span class="cm">// k doubles → O(log n)</span>
+      count++;
+<span class="cm">// Total: O(n × n × log n) = O(n² log n)</span></div>
+        </div>
+        <div class="exam-tip">
+          <strong>📌 Professor's Pattern:</strong> He consistently gives 2-3 code snippets and asks "What is the running time?" Write the dominant term only (no constants). Show your reasoning step by step — loops × loops × etc.
+        </div>
+      </div>
+    </div>
+
+    <!-- ASYMPTOTIC NOTATIONS -->
+    <div class="topic-card" id="u1-asymptotic">
+      <div class="topic-header">
+        <h3><span class="topic-icon">Ω</span> Asymptotic Notations: O, Ω, Θ, o</h3>
+        <span class="exam-freq freq-high">HIGH FREQ</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>These are formal tools to describe growth rates without getting bogged down in machine-specific constants.</p>
+        </div>
+        <table>
+          <tr>
+            <th>Notation</th><th>Meaning</th><th>Think of it as</th><th>Definition</th>
+          </tr>
+          <tr>
+            <td><strong>O(g(n))</strong></td>
+            <td>Upper bound</td>
+            <td>"At most" / worst-case ceiling</td>
+            <td>∃ c, n₀ such that f(n) ≤ c·g(n) for all n ≥ n₀</td>
+          </tr>
+          <tr>
+            <td><strong>Ω(g(n))</strong></td>
+            <td>Lower bound</td>
+            <td>"At least" / best-case floor</td>
+            <td>∃ c, n₀ such that f(n) ≥ c·g(n) for all n ≥ n₀</td>
+          </tr>
+          <tr>
+            <td><strong>Θ(g(n))</strong></td>
+            <td>Tight bound</td>
+            <td>"Exactly" — sandwiched</td>
+            <td>Both O and Ω: c₁·g(n) ≤ f(n) ≤ c₂·g(n)</td>
+          </tr>
+          <tr>
+            <td><strong>o(g(n))</strong></td>
+            <td>Strict upper bound</td>
+            <td>Strictly smaller, not equal</td>
+            <td>lim(n→∞) f(n)/g(n) = 0</td>
+          </tr>
+        </table>
+        <div class="insight-box">
+          <strong>Key Insight:</strong> O gives us a guarantee that the algorithm won't be <em>worse</em> than this. Θ is the strongest statement — it says the algorithm is <em>exactly</em> this tight. When asked for "tight bound," always give Θ if possible.
+        </div>
+        <div class="formula-box">
+          <div class="formula-title">Common Growth Rates (slowest to fastest)</div>
+          O(1) &lt; O(log n) &lt; O(√n) &lt; O(n) &lt; O(n log n) &lt; O(n²) &lt; O(n³) &lt; O(2ⁿ) &lt; O(n!)
+        </div>
+        <div class="exam-tip">
+          <strong>📌 Exam Trick:</strong> For f(n) = 3n² + 5n + 2, the tight bound is Θ(n²). Drop all lower order terms and constants for asymptotic notation.
+        </div>
+      </div>
+    </div>
+
+    <!-- RECURRENCE RELATIONS -->
+    <div class="topic-card" id="u1-recurrence">
+      <div class="topic-header">
+        <h3><span class="topic-icon">R</span> Recurrence Relations & Master Theorem</h3>
+        <span class="exam-freq freq-high">HIGH FREQ — Every Paper</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>When an algorithm calls itself recursively, we express its runtime as T(n) = aT(n/b) + f(n). Solving this tells us the total runtime.</p>
+          <p>The <strong>Master Theorem</strong> is the fastest way to solve divide-and-conquer recurrences of the form T(n) = aT(n/b) + n^k:</p>
+        </div>
+        <div class="formula-box">
+          <div class="formula-title">Master Theorem — T(n) = aT(n/b) + nᵏ</div>
+          Case 1: a > bᵏ  →  T(n) = Θ(n^(log_b a))
+          Case 2: a = bᵏ  →  T(n) = Θ(nᵏ log n)
+          Case 3: a &lt; bᵏ  →  T(n) = Θ(nᵏ)
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">Solving the 2025 Paper Questions Step by Step</div>
+
+          <p><strong>Q: T(n) = 3T(n/2) + n²</strong></p>
+          <div class="code-block">a = 3, b = 2, f(n) = n² → k = 2
+Compare: a vs bᵏ → 3 vs 2² = 4
+Since a(3) &lt; bᵏ(4) → Case 3
+∴ T(n) = Θ(n²)</div>
+
+          <p><strong>Q: T(n) = 8T(n/2) + n log n</strong></p>
+          <div class="code-block">a = 8, b = 2, f(n) = n log n → k ≈ 1 (dominant term is n¹)
+Compare: a vs bᵏ → 8 vs 2¹ = 2
+Since a(8) > bᵏ(2) → Case 1
+log_b(a) = log₂(8) = 3
+∴ T(n) = Θ(n³)</div>
+
+          <p><strong>Q: T(n) = 2T(n/2) + √n</strong></p>
+          <div class="code-block">a = 2, b = 2, f(n) = n^(1/2) → k = 1/2
+Compare: a vs bᵏ → 2 vs 2^(0.5) ≈ 1.41
+Since a(2) > bᵏ(1.41) → Case 1
+log₂(2) = 1
+∴ T(n) = Θ(n)</div>
+
+          <p><strong>Q: T(n) = 3T(n/2) + n</strong></p>
+          <div class="code-block">a = 3, b = 2, k = 1
+bᵏ = 2¹ = 2
+a(3) > bᵏ(2) → Case 1
+log₂(3) ≈ 1.585
+∴ T(n) = Θ(n^1.585)</div>
+
+          <p><strong>Q: T(n) = √2 · T(n/2) + log n</strong></p>
+          <div class="code-block">a = √2 = 2^(0.5), b = 2, f(n) = log n → k = 0 (n⁰ = 1, log n grows slower)
+bᵏ = 2⁰ = 1
+a(√2 ≈ 1.41) > bᵏ(1) → Case 1
+log₂(√2) = log₂(2^0.5) = 0.5
+∴ T(n) = Θ(n^0.5) = Θ(√n)</div>
+        </div>
+        <div class="exam-tip">
+          <strong>📌 Professor's Style:</strong> He gives 2–3 recurrences every single year (CO1b). Always show: write a, b, k → compute bᵏ → compare with a → state which case → write the answer. Never skip steps.
+        </div>
+      </div>
+    </div>
+
+    <!-- HEAPS -->
+    <div class="topic-card" id="u1-heaps">
+      <div class="topic-header">
+        <h3><span class="topic-icon">H</span> Heaps — Min/Max Heap, Leaf Nodes, kth Element</h3>
+        <span class="exam-freq freq-high">HIGH FREQ — CO1a every year</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>A <strong>heap</strong> is a complete binary tree stored as an array, satisfying the heap property:</p>
+          <ul>
+            <li><strong>Min-Heap:</strong> Every parent ≤ its children. Root = minimum element.</li>
+            <li><strong>Max-Heap:</strong> Every parent ≥ its children. Root = maximum element.</li>
+          </ul>
+          <p>For an array of n elements: index 1 is the root. Left child of i = 2i. Right child of i = 2i+1. Parent of i = ⌊i/2⌋.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">Leaf Nodes in a Heap of n Elements</div>
+          <p>In a complete binary tree with n nodes:</p>
+          <div class="formula-box">
+            <div class="formula-title">Leaf Node Formula</div>
+            Leaf nodes occupy indices from ⌊n/2⌋ + 1  to  n
+            Number of leaf nodes = n - ⌊n/2⌋ = ⌈n/2⌉
+
+            Example: n = 7 → leaves at indices 4,5,6,7 → 4 leaves
+            Example: n = 10 → leaves at indices 6,7,8,9,10 → 5 leaves
+          </div>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">Algorithm: Count Leaf Nodes in Min-Heap</div>
+          <div class="code-block"><span class="fn">CountLeaves</span>(Heap A, int n):
+  <span class="kw">return</span> n - floor(n/2)
+  <span class="cm">// Time complexity: O(1)</span>
+  <span class="cm">// No traversal needed — it's a mathematical property!</span></div>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">Algorithm: Find kth Minimum from Min-Heap</div>
+          <p>The professor asked: 4th minimum (2024) and 16th largest from 60 numbers (2025 — which means 45th smallest from 60).</p>
+          <p><strong>Method:</strong> Use an auxiliary min-heap. Extract-min k times.</p>
+          <div class="code-block"><span class="fn">FindKthMinimum</span>(MinHeap H, int k):
+  Create auxiliary min-heap AH
+  Insert (H[1], index=1) into AH   <span class="cm">// root = minimum</span>
+  
+  <span class="kw">for</span> i = 1 to k-1:
+    (val, idx) = ExtractMin(AH)    <span class="cm">// remove current min</span>
+    <span class="kw">if</span> 2*idx ≤ n:                  <span class="cm">// has left child</span>
+      Insert(AH, H[2*idx], 2*idx)
+    <span class="kw">if</span> 2*idx+1 ≤ n:               <span class="cm">// has right child</span>
+      Insert(AH, H[2*idx+1], 2*idx+1)
+  
+  <span class="kw">return</span> ExtractMin(AH).val      <span class="cm">// kth minimum</span>
+
+<span class="cm">// Time Complexity: O(k log k)</span>
+<span class="cm">// Space Complexity: O(k)</span></div>
+          <div class="insight-box">
+            <strong>Why this works:</strong> The kth minimum can only be found among the k-1 smallest elements. Each time we remove the current minimum, its children become candidates. The auxiliary heap tracks these candidates. Size of auxiliary heap never exceeds 2k, so each operation is O(log k).
+          </div>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">2025: Find 16th Largest from 60 Numbers</div>
+          <p>16th largest = 45th smallest (from a set of 60). But building a max-heap and extracting 16 times is more direct:</p>
+          <div class="code-block"><span class="fn">Find16thLargest</span>(array A[1..60]):
+  BuildMaxHeap(A)         <span class="cm">// O(n) = O(60) = O(1) constant</span>
+  <span class="kw">for</span> i = 1 to 15:
+    ExtractMax(A)         <span class="cm">// each O(log n)</span>
+  <span class="kw">return</span> A[1]             <span class="cm">// now root = 16th largest</span>
+
+<span class="cm">// Total: O(n + k log n) where n=60, k=16</span>
+<span class="cm">// Since n is fixed: O(60 + 16·log 60) = O(constant) ≈ O(1)</span>
+<span class="cm">// General: O(n + k log n)</span></div>
+        </div>
+        <div class="exam-tip">
+          <strong>📌 Professor asks every year:</strong> Give the algorithm + prove it + compute time AND space complexity. Never give just code without proving correctness.
+        </div>
+      </div>
+    </div>
+
+    <!-- AMORTIZED ANALYSIS -->
+    <div class="topic-card" id="u1-amortized">
+      <div class="topic-header">
+        <h3><span class="topic-icon">A</span> Amortized Analysis</h3>
+        <span class="exam-freq freq-med">MED FREQ — CO2b 2025</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>Amortized analysis gives the <em>average cost per operation over a sequence</em> of operations, even if some individual operations are expensive. The key point: occasional expensive operations are "paid for" by many cheap ones.</p>
+          <p>Think of it like a phone bill: some months are expensive (you buy a new phone), but amortized over 24 months, the monthly cost is reasonable.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">Classic Example: Dynamic Array (ArrayList)</div>
+          <p>Start with array of size 1. When full, double the size (copying all elements). Cost of doubling: O(n). But this happens rarely.</p>
+          <div class="formula-box">
+            <div class="formula-title">Amortized Cost Analysis</div>
+            Insertions: 1, 1, 1, 2, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 8, ...
+            (Doubling costs: 1, 2, 4, 8, 16, ... — happens at powers of 2)
+            
+            Total cost for n insertions = n + (1+2+4+...+n) = n + 2n - 1 ≈ 3n
+            Amortized cost per insertion = 3n/n = O(1)
+          </div>
+          <p>So even though some insertions cost O(n), the <strong>amortized cost per insertion is O(1)</strong>.</p>
+        </div>
+        <div class="exam-tip">
+          <strong>📌 How to answer:</strong> Define amortized analysis → give the dynamic array example → calculate total cost → divide by n → show amortized = O(1). 5 marks = about 10-12 sentences.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       UNIT 2 — CO2
+  ══════════════════════════════════════════ -->
+  <section class="unit-section" id="unit2">
+    <div class="unit-header">
+      <div class="unit-number">02</div>
+      <div class="unit-title-block">
+        <h2>Algorithm Analysis Techniques</h2>
+        <p>CO2 · Best/Worst Case · Amortized Analysis · Disjoint Sets / Union-Find</p>
+      </div>
+    </div>
+
+    <!-- BEST vs WORST CASE -->
+    <div class="topic-card" id="u2-bestworst">
+      <div class="topic-header">
+        <h3><span class="topic-icon">≈</span> Best Case vs Worst Case — When They're Same</h3>
+        <span class="exam-freq freq-high">CO2a — 2025 Paper</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p><strong>Best case:</strong> Input arrangement that causes fewest operations. <strong>Worst case:</strong> Input that causes most operations. When they're equal, the algorithm is Θ (tight bound).</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">When Best = Worst Case (with examples)</div>
+          <p><strong>1. Linear Search for all elements:</strong> If you search every element to build a list, you always do n comparisons regardless of order → Θ(n).</p>
+          <p><strong>2. Merge Sort:</strong> Always divides and merges the same way — no early exit. Best = Worst = Θ(n log n) regardless of input.</p>
+          <p><strong>3. Matrix Multiplication:</strong> Always does n³ multiplications regardless of values.</p>
+          <p><strong>4. Heap Sort:</strong> Even on a sorted array, heapsort still takes Θ(n log n) — the process doesn't short-circuit.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">Comparison with Algorithms Where They Differ</div>
+          <table>
+            <tr><th>Algorithm</th><th>Best Case</th><th>Worst Case</th><th>Same?</th></tr>
+            <tr><td>Linear Search</td><td>O(1) — found at start</td><td>O(n) — not found</td><td>No</td></tr>
+            <tr><td>Binary Search</td><td>O(1) — found at mid</td><td>O(log n)</td><td>No</td></tr>
+            <tr><td>Insertion Sort</td><td>O(n) — already sorted</td><td>O(n²) — reverse sorted</td><td>No</td></tr>
+            <tr><td>Merge Sort</td><td>Θ(n log n)</td><td>Θ(n log n)</td><td><strong>YES</strong></td></tr>
+            <tr><td>Heap Sort</td><td>Θ(n log n)</td><td>Θ(n log n)</td><td><strong>YES</strong></td></tr>
+          </table>
+        </div>
+        <div class="exam-tip">
+          <strong>📌 For 5-mark answer:</strong> Define best case and worst case → give a clear example where they're the same (Merge Sort) → explain WHY (algorithm always performs same operations regardless of input) → give counter-example to contrast.
+        </div>
+      </div>
+    </div>
+
+    <!-- DISJOINT SETS -->
+    <div class="topic-card" id="u2-disjoint">
+      <div class="topic-header">
+        <h3><span class="topic-icon">∪</span> Disjoint Sets / Union-Find with Path Compression</h3>
+        <span class="exam-freq freq-high">CO3d — 2025 Paper OR option</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>Disjoint Sets (Union-Find) is a data structure that maintains a collection of disjoint sets, supporting two operations: <strong>Find</strong> (which set does element x belong to?) and <strong>Union</strong> (merge two sets).</p>
+          <p>Used in: Kruskal's MST, cycle detection, network connectivity problems.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">Path Compression — The Key Optimization</div>
+          <p>Naively, Find(x) walks up the parent chain to the root: O(n) in worst case (chain-like tree). <strong>Path compression</strong> flattens this: after finding the root, make every node on the path point directly to the root.</p>
+          <div class="code-block"><span class="fn">Find</span>(x):                       <span class="fn">Union</span>(x, y):
+  <span class="kw">if</span> parent[x] ≠ x:              rx = Find(x)
+    parent[x] = <span class="fn">Find</span>(parent[x]) ry = Find(y)
+    <span class="cm">// path compression here!</span>  <span class="kw">if</span> rx ≠ ry:
+  <span class="kw">return</span> parent[x]                <span class="kw">if</span> rank[rx] &lt; rank[ry]:
+                                    parent[rx] = ry  <span class="cm">// union by rank</span>
+                                  <span class="kw">else if</span> rank[rx] > rank[ry]:
+                                    parent[ry] = rx
+                                  <span class="kw">else</span>:
+                                    parent[ry] = rx
+                                    rank[rx]++</div>
+          <div class="insight-box">
+            <strong>Why Path Compression Matters:</strong> Before compression, Find could be O(n). After compression, the tree becomes flat. With union by rank + path compression, amortized cost per operation is nearly O(1) — technically O(α(n)) where α is the inverse Ackermann function (grows so slowly it's practically constant for all practical inputs).
+          </div>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">Example with Path Compression</div>
+          <p>Suppose we have a chain: 1←2←3←4←5 (5 is root). Find(1) normally walks: 1→2→3→4→5. With path compression, after Find(1) returns 5, all nodes 1,2,3,4 now point directly to 5. Next call to Find(1) or Find(2) costs O(1).</p>
+        </div>
+        <div class="exam-tip">
+          <strong>📌 For 8-mark answer:</strong> Explain the problem → show naive find (chain, O(n)) → show path compression with code → draw before/after tree diagram → state amortized complexity O(α(n)) ≈ O(1).
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       UNIT 3 — CO3
+  ══════════════════════════════════════════ -->
+  <section class="unit-section" id="unit3">
+    <div class="unit-header">
+      <div class="unit-number">03</div>
+      <div class="unit-title-block">
+        <h2>Algorithm Design Paradigms</h2>
+        <p>CO3 · Divide & Conquer · Dynamic Programming · Greedy · Backtracking · String Matching</p>
+      </div>
+    </div>
+
+    <!-- DIVIDE AND CONQUER -->
+    <div class="topic-card" id="u3-dc">
+      <div class="topic-header">
+        <h3><span class="topic-icon">÷</span> Divide and Conquer Paradigm</h3>
+        <span class="exam-freq freq-high">HIGH FREQ</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>Three steps: <strong>Divide</strong> the problem into subproblems → <strong>Conquer</strong> each recursively → <strong>Combine</strong> solutions. Works best when subproblems are independent and of equal size.</p>
+          <p>The power of D&C: splitting n into n/2 and n/2 gives log n levels → O(n log n) is often achievable.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">Min & Max in a Set — D&C Approach (2024 paper)</div>
+          <div class="code-block"><span class="fn">MinMax</span>(A, low, high):
+  <span class="kw">if</span> low == high:                      <span class="cm">// 1 element</span>
+    <span class="kw">return</span> (A[low], A[low])
+  <span class="kw">if</span> high == low + 1:                  <span class="cm">// 2 elements</span>
+    <span class="kw">return</span> (min(A[low],A[high]), max(A[low],A[high]))
+  
+  mid = (low + high) / 2
+  (lmin, lmax) = <span class="fn">MinMax</span>(A, low, mid)
+  (rmin, rmax) = <span class="fn">MinMax</span>(A, mid+1, high)
+  
+  <span class="kw">return</span> (min(lmin, rmin), max(lmax, rmax))
+
+<span class="cm">// Recurrence: T(n) = 2T(n/2) + 2</span>
+<span class="cm">// Comparisons: (3n/2 - 2) — better than naïve 2n-2</span>
+<span class="cm">// Time: O(n), Space: O(log n) recursion stack</span></div>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">D&C vs Dynamic Programming vs Greedy</div>
+          <table>
+            <tr><th>Paradigm</th><th>Subproblems</th><th>Overlap?</th><th>Local optimal = Global?</th><th>Examples</th></tr>
+            <tr><td>Divide & Conquer</td><td>Independent</td><td>No</td><td>N/A</td><td>Mergesort, Binary Search, Quicksort</td></tr>
+            <tr><td>Dynamic Programming</td><td>Overlapping</td><td>Yes — memoized</td><td>No</td><td>LCS, Fibonacci, Knapsack 0/1</td></tr>
+            <tr><td>Greedy</td><td>One at a time</td><td>No</td><td>Yes (proven)</td><td>Fractional Knapsack, Huffman, Kruskal</td></tr>
+          </table>
+        </div>
+        <div class="exam-tip">
+          <strong>📌 Prof's Question:</strong> "Is greedy always optimal? Justify with example." Answer: NO. Counterexample: 0/1 Knapsack — greedy by ratio fails. But YES for fractional knapsack and Huffman. The key is whether the "greedy choice property" and "optimal substructure" both hold.
+        </div>
+      </div>
+    </div>
+
+    <!-- DYNAMIC PROGRAMMING -->
+    <div class="topic-card" id="u3-dp">
+      <div class="topic-header">
+        <h3><span class="topic-icon">DP</span> Dynamic Programming</h3>
+        <span class="exam-freq freq-high">HIGH FREQ — Fibonacci, LCS, Edit Distance</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>DP solves problems by breaking them into overlapping subproblems and storing results (memoization/tabulation) to avoid recomputation. Two properties needed: <strong>Optimal Substructure</strong> (optimal solution contains optimal solutions of subproblems) and <strong>Overlapping Subproblems</strong> (same subproblems solved multiple times).</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">Fibonacci via DP (2025 paper OR option)</div>
+          <div class="code-block"><span class="cm">// Naïve recursion: T(n) = T(n-1) + T(n-2) + 1 → O(2ⁿ) ← exponential!</span>
+
+<span class="fn">FibDP</span>(n):
+  F[0] = 0, F[1] = 1
+  <span class="kw">for</span> i = 2 to n:
+    F[i] = F[i-1] + F[i-2]  <span class="cm">// reuse stored values</span>
+  <span class="kw">return</span> F[n]
+
+<span class="cm">// Time: O(n), Space: O(n) — or O(1) if you only keep last 2</span>
+<span class="cm">// DP advantage: eliminates redundant recomputation</span></div>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">LCS (Longest Common Subsequence) — 2023 Paper</div>
+          <p>Given strings A = "xzyzzyx" and B = "zxyyzxz", find LCS.</p>
+          <div class="code-block"><span class="fn">LCS</span>(A[1..m], B[1..n]):
+  <span class="cm">// L[i][j] = LCS length of A[1..i] and B[1..j]</span>
+  <span class="kw">for</span> i = 0 to m: L[i][0] = 0
+  <span class="kw">for</span> j = 0 to n: L[0][j] = 0
+  
+  <span class="kw">for</span> i = 1 to m:
+    <span class="kw">for</span> j = 1 to n:
+      <span class="kw">if</span> A[i] == B[j]:
+        L[i][j] = L[i-1][j-1] + 1
+      <span class="kw">else</span>:
+        L[i][j] = max(L[i-1][j], L[i][j-1])
+  
+  <span class="kw">return</span> L[m][n]
+<span class="cm">// Time: O(mn), Space: O(mn)</span></div>
+          <p>For A="xzyzzyx", B="zxyyzxz": fill the table row by row. LCS length = 4 (one answer: "zyzy" or "zyzx").</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">String Edit Distance — 2024 Paper (JADAVPUR vs JALPAIGURI)</div>
+          <div class="code-block"><span class="fn">EditDistance</span>(X, Y):
+  <span class="cm">// D[i][j] = edit distance of X[1..i] and Y[1..j]</span>
+  D[i][0] = i  (i deletions)
+  D[0][j] = j  (j insertions)
+  
+  <span class="kw">for</span> i = 1 to |X|:
+    <span class="kw">for</span> j = 1 to |Y|:
+      <span class="kw">if</span> X[i] == Y[j]: cost = 0
+      <span class="kw">else</span>: cost = 1
+      D[i][j] = min(D[i-1][j] + 1,     <span class="cm">// deletion</span>
+                    D[i][j-1] + 1,      <span class="cm">// insertion</span>
+                    D[i-1][j-1] + cost) <span class="cm">// substitution</span></div>
+        </div>
+        <div class="exam-tip">
+          <strong>📌 Professor expects:</strong> Write the recurrence → fill the DP table (show all values) → trace back to get the actual sequence → state time/space complexity.
+        </div>
+      </div>
+    </div>
+
+    <!-- STRING MATCHING -->
+    <div class="topic-card" id="u3-string">
+      <div class="topic-header">
+        <h3><span class="topic-icon">S</span> String Matching (Naïve / KMP)</h3>
+        <span class="exam-freq freq-high">CO3b — 2025 Paper</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>Given text L and pattern P, find all occurrences of P in L. The 2025 paper gives L = "aabbaabbababa" and asks to find pattern "baba".</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">Naïve String Matching</div>
+          <div class="code-block"><span class="fn">NaiveSearch</span>(L, P):
+  n = len(L), m = len(P)
+  <span class="kw">for</span> i = 0 to n-m:
+    match = true
+    <span class="kw">for</span> j = 0 to m-1:
+      <span class="kw">if</span> L[i+j] ≠ P[j]:
+        match = false; break
+    <span class="kw">if</span> match: print "Found at", i
+
+<span class="cm">// Time: O((n-m+1)·m) ≈ O(nm) worst case</span></div>
+          <p><strong>For L="aabbaabbababa", P="baba" (m=4, n=13):</strong></p>
+          <p>Check starting positions 0 through 9. At i=7: L[7..10]="baba" → MATCH. At i=9: L[9..12]="baba" → MATCH. Found at positions 7 and 9.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">KMP — Efficient String Matching</div>
+          <p>KMP avoids redundant comparisons by precomputing a failure function (prefix function). When a mismatch occurs, instead of restarting from scratch, we jump using the failure function.</p>
+          <div class="formula-box">
+            <div class="formula-title">Complexity Comparison</div>
+            Naïve:  O(nm) — can be slow for large texts
+            KMP:    O(n + m) — linear time!
+            Preprocessing: O(m) to build failure function
+          </div>
+        </div>
+        <div class="exam-tip">
+          <strong>📌 For the 2025 question (8+2):</strong> Show the naïve matching trace on "aabbaabbababa" with pattern "baba" → count comparisons → state O(nm) complexity. 8 marks for the matching + 2 marks for complexity.
+        </div>
+      </div>
+    </div>
+
+    <!-- GREEDY -->
+    <div class="topic-card" id="u3-greedy">
+      <div class="topic-header">
+        <h3><span class="topic-icon">G</span> Greedy Algorithms</h3>
+        <span class="exam-freq freq-high">Every Paper</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>A greedy algorithm makes the locally optimal choice at each step, hoping to reach a globally optimal solution. It works when: (1) <strong>Greedy Choice Property</strong> holds (local optimal → global optimal) AND (2) <strong>Optimal Substructure</strong> holds.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">Fractional Knapsack — 2023/2024 Paper</div>
+          <p>m=16, n=6, P=(2,6,8,1,3,5), W=(10,6,5,3,1,3)</p>
+          <div class="code-block"><span class="cm">// Step 1: Compute profit/weight ratio for each item</span>
+Item:  1    2    3    4    5    6
+P:     2    6    8    1    3    5
+W:    10    6    5    3    1    3
+P/W: 0.2  1.0  1.6  0.33  3.0  1.67
+
+<span class="cm">// Step 2: Sort by ratio descending</span>
+Order: 5(3.0), 6(1.67), 3(1.6), 2(1.0), 4(0.33), 1(0.2)
+
+<span class="cm">// Step 3: Fill knapsack greedily</span>
+Item 5: W=1 &lt;= 16, take all → profit=3,  remaining=15
+Item 6: W=3 &lt;= 15, take all → profit=5,  remaining=12
+Item 3: W=5 &lt;= 12, take all → profit=8,  remaining=7
+Item 2: W=6 &lt;= 7,  take all → profit=6,  remaining=1
+Item 4: W=3 > 1, take 1/3   → profit=1/3, remaining=0
+
+Total profit = 3+5+8+6+1/3 = 22.33</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUFFMAN -->
+    <div class="topic-card" id="u3-huffman">
+      <div class="topic-header">
+        <h3><span class="topic-icon">Hf</span> Huffman Coding</h3>
+        <span class="exam-freq freq-high">CO3e — 2025 Paper, 2024 Paper</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>Huffman coding builds an <em>optimal prefix-free binary code</em> — frequent characters get shorter codes. It's a greedy algorithm: always merge the two nodes with the smallest frequencies first.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">Algorithm</div>
+          <ul class="step-list">
+            <li><span class="step-num">1</span>Create a leaf node for each character with its frequency. Insert all in a min-priority queue.</li>
+            <li><span class="step-num">2</span>While queue has more than one node: extract the two minimum-frequency nodes (x and y). Create a new internal node with frequency = freq(x) + freq(y). Make x left child, y right child. Insert back into queue.</li>
+            <li><span class="step-num">3</span>The remaining node is the root. Assign 0 to left edges, 1 to right edges. Read codes from root to each leaf.</li>
+          </ul>
+          <div class="formula-box">
+            <div class="formula-title">Time Complexity</div>
+            Building initial heap: O(n)
+            n-1 merge operations, each O(log n)
+            Total: O(n log n)
+          </div>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">2025 Paper: Characters A,B,C,D,E with probabilities 0.5, 0.35, 0.5, 0.1, 0.4 (and 0.2 for '-')</div>
+          <p>Note: The second row in the 2025 paper shows a different set of probabilities (0.5, 0.04, 0.02, 0.02, 0.4, 0.01). Let me solve the second row (more typical Huffman exam values):</p>
+          <div class="code-block">Characters: A=0.5, B=0.04, C=0.02, D=0.02, E=0.4, -=0.01
+
+<span class="cm">Step 1: Min-heap (sorted): - (0.01), C(0.02), D(0.02), B(0.04), E(0.4), A(0.5)</span>
+
+<span class="cm">Merge 1: -(0.01) + C(0.02) = node1(0.03)</span>
+Queue: D(0.02), node1(0.03), B(0.04), E(0.4), A(0.5)
+
+<span class="cm">Merge 2: D(0.02) + node1(0.03) = node2(0.05)</span>
+Queue: B(0.04), node2(0.05), E(0.4), A(0.5)
+
+<span class="cm">Merge 3: B(0.04) + node2(0.05) = node3(0.09)</span>
+Queue: node3(0.09), E(0.4), A(0.5)
+
+<span class="cm">Merge 4: node3(0.09) + E(0.4) = node4(0.49)</span>
+Queue: A(0.5), node4(0.49)
+
+<span class="cm">Merge 5: A(0.5) + node4(0.49) = ROOT(0.99)</span>
+
+Codes: A=0, E=10, B=110, D=1110, C=11110, -=11111</div>
+          <p><strong>Verify optimality:</strong> Total bits = 0.5×1 + 0.4×2 + 0.04×3 + 0.02×4 + 0.02×5 + 0.01×5 = 0.5+0.8+0.12+0.08+0.1+0.05 = 1.65 bits/character</p>
+        </div>
+        <div class="exam-tip">
+          <strong>📌 Professor wants (3+5+2):</strong> 3 marks for algorithm description, 5 marks for drawing the tree step by step, 2 marks for the final code table. Draw each merge step clearly.
+        </div>
+      </div>
+    </div>
+
+    <!-- KNAPSACK -->
+    <div class="topic-card" id="u3-knapsack">
+      <div class="topic-header">
+        <h3><span class="topic-icon">K</span> 0/1 Knapsack (DP) — 2025 Paper</h3>
+        <span class="exam-freq freq-high">CO3e — 2025 Paper</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>Given items with weights and profits, and capacity W, maximize profit. In 0/1 knapsack, each item is either taken (1) or not (0) — no fractions. Greedy fails here; DP is needed.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">2025 Paper: W=60, Items A(p=281,w=40), B(p=101,w=10), C(p=121,w=20), D(p=121,w=24)</div>
+          <div class="code-block"><span class="cm">// dp[i][w] = max profit using items 1..i with capacity w</span>
+dp[0][w] = 0 for all w
+dp[i][w] = dp[i-1][w]                       if w[i] > w
+dp[i][w] = max(dp[i-1][w],                  if w[i] ≤ w
+               dp[i-1][w-w[i]] + p[i])
+
+<span class="cm">Items: A(281,40), B(101,10), C(121,20), D(121,24)</span>
+
+<span class="cm">Key evaluations at W=60:</span>
+Take A+B: 281+101=382, weight=50 ≤ 60 ✓
+Take A+C: 281+121=402, weight=60 ≤ 60 ✓
+Take A+D: 281+121=402, weight=64 > 60 ✗
+Take B+C+D: 101+121+121=343, weight=54 ≤ 60 ✓
+Take A+B+... : 281+101=382, remaining=10, nothing fits
+
+Best: A+C = 402 profit, weight = 60 (exactly fits!)
+
+<span class="cm">// Time: O(nW) = O(4×60) = O(240)</span>
+<span class="cm">// Space: O(nW) — can reduce to O(W)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACKTRACKING / N-QUEENS -->
+    <div class="topic-card" id="u3-backtrack">
+      <div class="topic-header">
+        <h3><span class="topic-icon">♛</span> Backtracking — N-Queens Problem</h3>
+        <span class="exam-freq freq-high">CO3d — 2025 (5-queen), 2023/2024 (4-queen)</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>Backtracking builds a solution step by step, abandoning a path ("backtracking") as soon as it determines the path cannot lead to a valid solution. It's smarter than brute force.</p>
+          <p><strong>N-Queens:</strong> Place N queens on an N×N board so no two queens attack each other (no same row, column, or diagonal).</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">4-Queens — All Solutions</div>
+          <div class="code-block"><span class="cm">Place queens row by row. For each row, try columns 1-4.</span>
+<span class="cm">Check: no conflict in same column, or diagonals |row-i| = |col-col[i]|</span>
+
+Solution 1: Q at (1,2), (2,4), (3,1), (4,3)
+Board:
+  . Q . .
+  . . . Q
+  Q . . .
+  . . Q .
+
+Solution 2: Q at (1,3), (2,1), (3,4), (4,2)
+Board:
+  . . Q .
+  Q . . .
+  . . . Q
+  . Q . .</div>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">5-Queens — Key Solutions</div>
+          <p>5-Queens has 10 fundamental solutions. Some valid placements:</p>
+          <div class="code-block">Solution 1: (1,1), (2,3), (3,5), (4,2), (5,4)
+Solution 2: (1,1), (2,4), (3,2), (4,5), (5,3)
+Solution 3: (1,2), (2,4), (3,1), (4,3), (5,5)</div>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">Backtracking Algorithm</div>
+          <div class="code-block"><span class="fn">NQueens</span>(row, n, col[]):
+  <span class="kw">if</span> row > n: print solution; return
+  <span class="kw">for</span> c = 1 to n:
+    <span class="kw">if</span> <span class="fn">isSafe</span>(row, c, col):
+      col[row] = c
+      <span class="fn">NQueens</span>(row+1, n, col)
+      col[row] = 0   <span class="cm">// backtrack</span>
+
+<span class="fn">isSafe</span>(row, c, col):
+  <span class="kw">for</span> i = 1 to row-1:
+    <span class="kw">if</span> col[i]==c or |col[i]-c|==|i-row|: return false
+  <span class="kw">return</span> true</div>
+          <div class="formula-box">
+            <div class="formula-title">Complexity</div>
+            Worst case: O(n!) — try all permutations
+            With pruning: much better in practice
+            4-Queens: 2 solutions out of 4! = 24 attempts
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAX DIFFERENCE -->
+    <div class="topic-card" id="u3-maxdiff">
+      <div class="topic-header">
+        <h3><span class="topic-icon">Δ</span> Maximum Difference Between Any Two Elements in O(n)</h3>
+        <span class="exam-freq freq-high">CO3b OR — 2025, 2024 Papers</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Problem Statement</div>
+          <p>Given an array of n numbers (not necessarily distinct), find the maximum difference between any two elements in O(n) time.</p>
+          <p>Note: The maximum difference is simply max_element − min_element.</p>
+        </div>
+        <div class="code-block"><span class="fn">MaxDifference</span>(A[1..n]):
+  min_val = A[1]
+  max_val = A[1]
+  <span class="kw">for</span> i = 2 to n:
+    <span class="kw">if</span> A[i] &lt; min_val: min_val = A[i]
+    <span class="kw">if</span> A[i] > max_val: max_val = A[i]
+  <span class="kw">return</span> max_val - min_val
+
+<span class="cm">// Time: O(n) — single pass</span>
+<span class="cm">// Space: O(1)</span>
+<span class="cm">// Comparisons: exactly 2(n-1)</span></div>
+        <div class="insight-box">
+          <strong>Why O(n) is optimal:</strong> We must look at every element at least once (otherwise we might miss the max or min), so Ω(n) is a lower bound. Our algorithm achieves this, making it optimal.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       UNIT 4 — CO4
+  ══════════════════════════════════════════ -->
+  <section class="unit-section" id="unit4">
+    <div class="unit-header">
+      <div class="unit-number">04</div>
+      <div class="unit-title-block">
+        <h2>Sorting, Searching & Merging</h2>
+        <p>CO4 · Insertion Sort · Stable Sort · Binary Search · Merging Multiple Lists</p>
+      </div>
+    </div>
+
+    <!-- SORTING -->
+    <div class="topic-card" id="u4-sorting">
+      <div class="topic-header">
+        <h3><span class="topic-icon">↕</span> Sorting Algorithms — Stable Sort, Insertion Sort</h3>
+        <span class="exam-freq freq-high">CO4a — Every Paper</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Stable Sort</div>
+          <p>A sort is <strong>stable</strong> if elements with equal keys appear in the same relative order in the output as in the input. Insertion Sort, Merge Sort are stable. Heap Sort and Quicksort are NOT stable.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">Insertion Sort on {45, 33, 24, 45*, 12, 12*, 24*, 12**}</div>
+          <p>(Using * to distinguish duplicate values for stability tracking)</p>
+          <div class="code-block">Initial: [45, 33, 24, 45*, 12, 12*, 24*, 12**]
+
+Pass 1 (i=2): 33 < 45 → shift 45 right
+  [33, 45, 24, 45*, 12, 12*, 24*, 12**]  (1 comparison, 1 shift)
+
+Pass 2 (i=3): 24 < 45 → shift; 24 < 33 → shift
+  [24, 33, 45, 45*, 12, 12*, 24*, 12**]  (2 comp, 2 shifts)
+
+Pass 3 (i=4): 45* ≥ 45 → no move
+  [24, 33, 45, 45*, 12, 12*, 24*, 12**]  (1 comp)
+
+Pass 4 (i=5): 12 shifts past 45*,45,33,24
+  [12, 24, 33, 45, 45*, 12*, 24*, 12**]  (4 comp, 4 shifts)
+
+Pass 5 (i=6): 12* shifts past 45*,45,33,24; stops at 12
+  [12, 12*, 24, 33, 45, 45*, 24*, 12**]  (4 comp, 4 shifts)
+
+Pass 6 (i=7): 24* stops after 24 (stable — same value stays after)
+  [12, 12*, 24, 24*, 33, 45, 45*, 12**]  (3 comp, 3 shifts)
+
+Pass 7 (i=8): 12** shifts past 45*,45,33,24*,24,12*; stops at 12
+  [12, 12*, 12**, 24, 24*, 33, 45, 45*]  (6 comp, 6 shifts)
+
+Total comparisons = 1+2+1+4+4+3+6 = 21</div>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">Comparison of Sorting Algorithms</div>
+          <table>
+            <tr><th>Algorithm</th><th>Best</th><th>Average</th><th>Worst</th><th>Stable?</th><th>Space</th></tr>
+            <tr><td>Insertion Sort</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>Yes</td><td>O(1)</td></tr>
+            <tr><td>Merge Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>Yes</td><td>O(n)</td></tr>
+            <tr><td>Heap Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>No</td><td>O(1)</td></tr>
+            <tr><td>Quick Sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n²)</td><td>No</td><td>O(log n)</td></tr>
+            <tr><td>Selection Sort</td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td><td>No</td><td>O(1)</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- BINARY SEARCH -->
+    <div class="topic-card" id="u4-binarysearch">
+      <div class="topic-header">
+        <h3><span class="topic-icon">⌖</span> Binary Search & Comparison Count</h3>
+        <span class="exam-freq freq-high">CO4b — Every Paper</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>Binary search works on sorted arrays. Each comparison eliminates half the remaining elements. After k comparisons, at most 2^k elements remain. To search n elements: need at most ⌈log₂(n+1)⌉ comparisons.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">A[1..60] = 11, 12, ..., 70 — How many comparisons?</div>
+          <p>Array has 60 elements: A[i] = 10 + i. So A[1]=11, A[2]=12, ..., A[60]=70.</p>
+          <div class="code-block">Max comparisons = ⌈log₂(60+1)⌉ = ⌈log₂(61)⌉ = ⌈5.93⌉ = 6
+
+Searching for x=33:
+  A[33-10] = A[23] = 33. So target is at index 23.
+  low=1, high=60 → mid=30 → A[30]=40 > 33 → go left   (1 comp)
+  low=1, high=29 → mid=15 → A[15]=25 &lt; 33 → go right   (2 comp)
+  low=16, high=29 → mid=22 → A[22]=32 &lt; 33 → go right  (3 comp)
+  low=23, high=29 → mid=26 → A[26]=36 > 33 → go left   (4 comp)
+  low=23, high=25 → mid=24 → A[24]=34 > 33 → go left   (5 comp)
+  low=23, high=23 → mid=23 → A[23]=33 = 33 → FOUND!    (6 comp)
+  Answer: 6 comparisons
+
+Searching for x=71 (not in array):
+  Similar trace, all 6 comparisons before declaring not found
+  Answer: 6 comparisons (worst case)</div>
+        </div>
+        <div class="exam-tip">
+          <strong>📌 For binary search questions:</strong> Show each step — low, high, mid, A[mid], comparison result. Count each "A[mid] compared to x" as one comparison. The answer is always ≤ ⌈log₂(n+1)⌉.
+        </div>
+      </div>
+    </div>
+
+    <!-- MERGING LISTS -->
+    <div class="topic-card" id="u4-merging">
+      <div class="topic-header">
+        <h3><span class="topic-icon">⊕</span> Merging Multiple Sorted Lists</h3>
+        <span class="exam-freq freq-med">CO4c — 2025 Paper</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Problem: Lists L1(asc), L2(desc), L3(asc), L4(desc) → All Descending</div>
+          <p>Given four lists of sizes k1, k2, k3, k4 in alternating orders, produce a single descending list.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">Algorithm</div>
+          <ul class="step-list">
+            <li><span class="step-num">1</span>Reverse L1 and L3 (they're ascending → make descending). Cost: O(k1) + O(k3)</li>
+            <li><span class="step-num">2</span>Now all 4 lists are in descending order.</li>
+            <li><span class="step-num">3</span>Use a min-heap of size 4. Insert the first element from each list with its list index.</li>
+            <li><span class="step-num">4</span>Extract-max repeatedly (use max-heap): extract, add to result, insert next element from same list.</li>
+            <li><span class="step-num">5</span>Repeat until all lists exhausted.</li>
+          </ul>
+          <div class="formula-box">
+            <div class="formula-title">Complexity</div>
+            n = k1+k2+k3+k4 (total elements)
+            Reversals: O(k1+k3) = O(n)
+            Heap operations: n extractions × O(log 4) = O(n)
+            Total: O(n log k) where k=4 → O(n)
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       UNIT 5 — CO5
+  ══════════════════════════════════════════ -->
+  <section class="unit-section" id="unit5">
+    <div class="unit-header">
+      <div class="unit-number">05</div>
+      <div class="unit-title-block">
+        <h2>Graph Algorithms</h2>
+        <p>CO5 · Dijkstra · Bellman-Ford · MST (Kruskal's & Prim's) · Negative Cycles</p>
+      </div>
+    </div>
+
+    <!-- DIJKSTRA -->
+    <div class="topic-card" id="u5-dijkstra">
+      <div class="topic-header">
+        <h3><span class="topic-icon">D</span> Dijkstra's Algorithm & Negative Weights</h3>
+        <span class="exam-freq freq-high">CO5a — 2025 Paper (Can you apply it? Justify)</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>Dijkstra's finds shortest paths from a source to all vertices in a weighted graph. It's a greedy algorithm: always processes the unvisited vertex with the current shortest distance.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">2025 Paper: "Can you apply Dijkstra's to this graph? Justify."</div>
+          <p>The 2025 graph has a negative edge weight (−3 and −4). The answer is: <strong>NO, you cannot reliably apply Dijkstra's to this graph.</strong></p>
+          <div class="exam-tip">
+            <strong>📌 Why Dijkstra fails with negative edges:</strong> Dijkstra's greedy assumption is "once a node is finalized, its distance is correct." With negative edges, a path going through a later node with a negative edge might give a shorter path to an already-finalized node. This invalidates the greedy choice. Use <strong>Bellman-Ford</strong> instead for graphs with negative weights (but no negative cycles).
+          </div>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">Dijkstra's Algorithm</div>
+          <div class="code-block"><span class="fn">Dijkstra</span>(G, source s):
+  dist[s] = 0; dist[v] = ∞ for all v ≠ s
+  PQ = min-priority queue with all vertices, keyed by dist
+  
+  <span class="kw">while</span> PQ not empty:
+    u = ExtractMin(PQ)        <span class="cm">// closest unvisited vertex</span>
+    <span class="kw">for</span> each neighbor v of u:
+      <span class="kw">if</span> dist[u] + w(u,v) &lt; dist[v]:
+        dist[v] = dist[u] + w(u,v)
+        DecreaseKey(PQ, v)    <span class="cm">// update priority</span>
+
+<span class="cm">// Time: O((V+E) log V) with binary heap</span>
+<span class="cm">// Works ONLY for non-negative edge weights</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEGATIVE CYCLES -->
+    <div class="topic-card" id="u5-negative">
+      <div class="topic-header">
+        <h3><span class="topic-icon">−</span> Detecting Negative Cycles — Bellman-Ford</h3>
+        <span class="exam-freq freq-high">CO5b — 2025 Paper</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">How to Detect a Negative Cycle</div>
+          <p>Run <strong>Bellman-Ford</strong>. It relaxes all edges V-1 times. After V-1 iterations, do ONE MORE iteration — if any distance can still be reduced, there is a negative cycle.</p>
+          <div class="code-block"><span class="fn">BellmanFord</span>(G, s):
+  dist[s]=0; dist[v]=∞ for v≠s
+  
+  <span class="kw">for</span> i = 1 to V-1:
+    <span class="kw">for</span> each edge (u,v,w):
+      <span class="kw">if</span> dist[u]+w &lt; dist[v]:
+        dist[v] = dist[u]+w
+  
+  <span class="cm">// Negative cycle detection:</span>
+  <span class="kw">for</span> each edge (u,v,w):
+    <span class="kw">if</span> dist[u]+w &lt; dist[v]:
+      print "Negative cycle exists!"
+      <span class="kw">return</span> false
+
+<span class="cm">// Time: O(VE) — slower than Dijkstra but handles neg. weights</span></div>
+          <div class="insight-box">
+            <strong>Why V-1 iterations?</strong> The shortest path (without negative cycles) can have at most V-1 edges. So V-1 relaxations suffice for true shortest paths. If the V-th iteration still improves a distance, that improvement is only possible through a cycle that keeps getting shorter — a negative cycle.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MST -->
+    <div class="topic-card" id="u5-mst">
+      <div class="topic-header">
+        <h3><span class="topic-icon">🌲</span> Minimum Spanning Tree — Kruskal's & Prim's</h3>
+        <span class="exam-freq freq-high">CO5 OR — 2025, 2024, 2023 Papers</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Core Concept</div>
+          <p>A <strong>Minimum Spanning Tree</strong> of a connected weighted graph is a subset of edges that connects all vertices with minimum total weight, using exactly V-1 edges.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">Kruskal's Algorithm (Edge-based, Greedy)</div>
+          <ul class="step-list">
+            <li><span class="step-num">1</span>Sort all edges by weight in ascending order.</li>
+            <li><span class="step-num">2</span>Use Union-Find to track components.</li>
+            <li><span class="step-num">3</span>For each edge (u,v) in sorted order: if Find(u) ≠ Find(v) (no cycle), add edge to MST and Union(u,v).</li>
+            <li><span class="step-num">4</span>Stop when MST has V-1 edges.</li>
+          </ul>
+          <div class="formula-box">
+            <div class="formula-title">Kruskal's Complexity</div>
+            Sorting edges: O(E log E) = O(E log V)
+            Union-Find operations: O(E α(V)) ≈ O(E)
+            Total: O(E log V)
+          </div>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-numerical">2025 Graph MST (Nodes 1-7 with given edges)</div>
+          <p>From the 2025 paper graph (nodes 1,2,3,4,5,6,7 with edges and weights including 28, 14, 16, 18, 10, 22, 24, 25, 12):</p>
+          <div class="code-block">Sorted edges: 10(6-1), 12(4-3), 14(7-2), 16(3-2), 18(4-7), 22(5-4), 24(6-7), 25(6-5), 28(1-2)
+
+Kruskal step by step:
+1. Edge 10 (6-1): no cycle → ADD. MST = {6-1}
+2. Edge 12 (4-3): no cycle → ADD. MST = {6-1, 4-3}
+3. Edge 14 (7-2): no cycle → ADD. MST = {6-1, 4-3, 7-2}
+4. Edge 16 (3-2): connects components → ADD. MST = {6-1, 4-3, 7-2, 3-2}
+5. Edge 18 (4-7): would create cycle (3-4-7-2-3) → SKIP
+6. Edge 22 (5-4): connects 5 → ADD. MST = {..., 5-4}
+7. Edge 24 (6-7): connects two big components → ADD (V-1=6 edges done)
+
+MST Total Weight = 10+12+14+16+22+24 = 98</div>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">Prim's Algorithm (Vertex-based, Greedy)</div>
+          <ul class="step-list">
+            <li><span class="step-num">1</span>Start with any vertex. Mark it as in MST.</li>
+            <li><span class="step-num">2</span>Of all edges connecting MST to non-MST vertices, pick the minimum weight edge.</li>
+            <li><span class="step-num">3</span>Add that vertex and edge to MST.</li>
+            <li><span class="step-num">4</span>Repeat until all V vertices are in MST.</li>
+          </ul>
+          <div class="formula-box">
+            <div class="formula-title">Prim's Complexity</div>
+            With binary heap: O(E log V)
+            With Fibonacci heap: O(E + V log V)
+            Better than Kruskal for dense graphs (E ≈ V²)
+          </div>
+        </div>
+        <div class="exam-tip">
+          <strong>📌 Professor asks both Kruskal AND Prim for 5+5 marks.</strong> Show every step of both. Kruskal: show sorted edge list → greedy selection → Union-Find decisions. Prim: show which vertex is added at each step + running edge table.
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       UNIT 6 — CO6
+  ══════════════════════════════════════════ -->
+  <section class="unit-section" id="unit6">
+    <div class="unit-header">
+      <div class="unit-number">06</div>
+      <div class="unit-title-block">
+        <h2>Computational Complexity — NP-Completeness</h2>
+        <p>CO6 · P vs NP · NP-Complete · 3-SAT · Graph Coloring · Reductions</p>
+      </div>
+    </div>
+
+    <!-- P vs NP -->
+    <div class="topic-card" id="u6-pnp">
+      <div class="topic-header">
+        <h3><span class="topic-icon">P</span> P, NP, NP-Complete, NP-Hard</h3>
+        <span class="exam-freq freq-high">CO6 — Every Paper</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">The Four Classes</div>
+          <table>
+            <tr><th>Class</th><th>Definition</th><th>Examples</th></tr>
+            <tr>
+              <td><strong>P</strong></td>
+              <td>Problems solvable in polynomial time O(nᵏ) by a deterministic algorithm</td>
+              <td>Sorting, Binary Search, MST, Shortest Path</td>
+            </tr>
+            <tr>
+              <td><strong>NP</strong></td>
+              <td>Problems where a given solution can be <em>verified</em> in polynomial time. (May not be solvable in poly time)</td>
+              <td>Satisfiability, Hamiltonian Path, Graph Coloring</td>
+            </tr>
+            <tr>
+              <td><strong>NP-Complete</strong></td>
+              <td>Problems that are in NP AND every NP problem reduces to it in polynomial time. "Hardest in NP."</td>
+              <td>SAT, 3-SAT, Graph Coloring, 0/1 Knapsack, Clique</td>
+            </tr>
+            <tr>
+              <td><strong>NP-Hard</strong></td>
+              <td>At least as hard as NP-Complete, but may not be in NP (no poly verifier). Could be harder than NP.</td>
+              <td>Halting Problem, Optimization versions of NP-C</td>
+            </tr>
+          </table>
+          <div class="insight-box">
+            <strong>The P vs NP Question:</strong> Is P = NP? Nobody knows — it's the greatest open problem in computer science. If P = NP, all NP problems would be efficiently solvable. Most believe P ≠ NP.
+          </div>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">How to Prove NP-Completeness</div>
+          <p>To prove problem X is NP-Complete:</p>
+          <ul class="step-list">
+            <li><span class="step-num">1</span><strong>Show X ∈ NP:</strong> Given a solution, can you verify it in polynomial time? Yes → X is in NP.</li>
+            <li><span class="step-num">2</span><strong>Show X is NP-Hard:</strong> Take a known NP-Complete problem Y. Show Y ≤ₚ X (Y reduces to X in poly time). If you can solve X, you can solve Y → X is at least as hard as Y.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-SAT -->
+    <div class="topic-card" id="u6-3sat">
+      <div class="topic-header">
+        <h3><span class="topic-icon">∧</span> Prove 3-SAT is NP-Complete</h3>
+        <span class="exam-freq freq-high">CO6 — 2025 Paper (10 marks)</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">What is 3-SAT?</div>
+          <p>A Boolean formula in <strong>Conjunctive Normal Form (CNF)</strong> with exactly 3 literals per clause. Given such a formula, is there an assignment of true/false to variables that satisfies ALL clauses?</p>
+          <p>Example: (x₁ ∨ x₂) ∧ (x̄₁ ∧ x̄₂) ∧ (x₁ ∨ x₃) — this appears in the 2023 paper notes.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">Proof: 3-SAT is NP-Complete</div>
+          <p><strong>Part 1: 3-SAT ∈ NP</strong></p>
+          <p>Given an assignment of variables, we can verify in O(n) time whether all clauses are satisfied. For each clause, check if at least one literal is true. This is polynomial → 3-SAT ∈ NP.</p>
+          <p><strong>Part 2: 3-SAT is NP-Hard (reduce SAT → 3-SAT)</strong></p>
+          <p>We know SAT (general boolean satisfiability) is NP-Complete (by Cook's theorem — first NP-Complete problem). We show SAT ≤ₚ 3-SAT:</p>
+          <ul>
+            <li>Take any clause in SAT with k literals.</li>
+            <li>If k = 1: (l₁) → expand to (l₁ ∨ y₁ ∨ y₂) ∧ (l₁ ∨ y₁ ∨ ȳ₂) ∧ (l₁ ∨ ȳ₁ ∨ y₂) ∧ (l₁ ∨ ȳ₁ ∨ ȳ₂) using fresh variables y₁, y₂.</li>
+            <li>If k = 2: (l₁ ∨ l₂) → (l₁ ∨ l₂ ∨ y) ∧ (l₁ ∨ l₂ ∨ ȳ) using fresh variable y.</li>
+            <li>If k = 3: already in correct form.</li>
+            <li>If k > 3: (l₁ ∨ ... ∨ lₖ) → (l₁ ∨ l₂ ∨ y₁) ∧ (ȳ₁ ∨ l₃ ∨ y₂) ∧ ... ∧ (ȳₖ₋₃ ∨ lₖ₋₁ ∨ lₖ)</li>
+          </ul>
+          <p>This transformation is polynomial (O(n) new clauses and variables). The original SAT formula is satisfiable if and only if the 3-CNF formula is satisfiable. Therefore SAT ≤ₚ 3-SAT, making 3-SAT NP-Hard.</p>
+          <p>Since 3-SAT ∈ NP and 3-SAT is NP-Hard → <strong>3-SAT is NP-Complete</strong>. □</p>
+        </div>
+        <div class="exam-tip">
+          <strong>📌 For 10-mark proof:</strong> Structure = Definition of 3-SAT (2 marks) → 3-SAT ∈ NP (2 marks) → State Cook's theorem (1 mark) → Reduction SAT → 3-SAT with all cases (4 marks) → Conclude (1 mark). Show the clause expansion examples.
+        </div>
+      </div>
+    </div>
+
+    <!-- GRAPH COLORING -->
+    <div class="topic-card" id="u6-coloring">
+      <div class="topic-header">
+        <h3><span class="topic-icon">🎨</span> Graph Coloring is NP-Complete (K=3)</h3>
+        <span class="exam-freq freq-high">CO6 — 2025 Paper (10 marks)</span>
+      </div>
+      <div class="topic-body">
+        <div class="content-section">
+          <div class="content-label label-concept">Problem Statement</div>
+          <p>Given graph G(V,E) and integer K=3, can we color all vertices using at most 3 colors such that no two adjacent vertices have the same color? Prove this is NP-Complete.</p>
+        </div>
+        <div class="content-section">
+          <div class="content-label label-concept">Proof</div>
+          <p><strong>Part 1: 3-Coloring ∈ NP</strong></p>
+          <p>Given a coloring assignment, verify in O(V+E): for each edge (u,v), check color(u) ≠ color(v). This is polynomial → 3-Coloring ∈ NP.</p>
+
+          <p><strong>Part 2: 3-Coloring is NP-Hard (reduce 3-SAT → 3-Coloring)</strong></p>
+          <p>We show 3-SAT ≤ₚ 3-Coloring.</p>
+          <p><strong>Construction:</strong> Given a 3-SAT formula with variables x₁,...,xₙ and clauses C₁,...,Cₘ:</p>
+          <ul>
+            <li>Create 3 special nodes: T (True), F (False), B (Base) — connected to each other (triangle → need 3 colors)</li>
+            <li>For each variable xᵢ: create nodes xᵢ and x̄ᵢ, connect them to each other and to B. So xᵢ and x̄ᵢ get colors T or F (opposite)</li>
+            <li>For each clause (l₁ ∨ l₂ ∨ l₃): add a gadget graph that ensures at least one literal is colored T</li>
+          </ul>
+          <p><strong>Correctness:</strong> The formula is satisfiable iff the constructed graph is 3-colorable. The reduction runs in polynomial time.</p>
+          <p>Therefore 3-SAT ≤ₚ 3-Coloring → 3-Coloring is NP-Hard. Since it's in NP too → <strong>3-Coloring is NP-Complete</strong>. □</p>
+        </div>
+        <div class="exam-tip">
+          <strong>📌 For 10-mark answer:</strong> State the problem clearly → Part 1: NP membership with verifier → Part 2: Reduction from 3-SAT with clear construction → Conclude. Even if you can't remember every detail of the gadget, showing the structure (T/F/B triangle + variable gadget) gets most marks.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       QUICK REFERENCE / CHEAT SHEET
+  ══════════════════════════════════════════ -->
+  <section class="unit-section" id="cheatsheet">
+    <div class="unit-header">
+      <div class="unit-number">✦</div>
+      <div class="unit-title-block">
+        <h2>Quick Reference — Professor's Pattern & High-Value Topics</h2>
+        <p>Based on 3-year PYQ analysis · Focus these for maximum marks</p>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-header">
+        <h3><span class="topic-icon">★</span> Highest-Yield Topics by Marks</h3>
+        <span class="exam-freq freq-high">MUST KNOW</span>
+      </div>
+      <div class="topic-body">
+        <table>
+          <tr><th>Topic</th><th>Marks</th><th>Appeared In</th><th>What to Write</th></tr>
+          <tr><td>Recurrence Relations (Master Theorem)</td><td>6 marks</td><td>2023, 2024, 2025</td><td>Show a,b,k → compare → state case → answer</td></tr>
+          <tr><td>Heap Operations / kth Element</td><td>8-14 marks</td><td>2023, 2024, 2025</td><td>Algorithm + Proof + Time + Space</td></tr>
+          <tr><td>Insertion/Stable Sort on given array</td><td>6-10 marks</td><td>2023, 2024, 2025</td><td>Step-by-step pass trace + count comparisons</td></tr>
+          <tr><td>Binary Search comparison count</td><td>4 marks</td><td>2023, 2024, 2025</td><td>Show each step with low/mid/high</td></tr>
+          <tr><td>Huffman Coding (tree + codes)</td><td>10 marks</td><td>2023, 2024, 2025</td><td>All merge steps drawn + code table</td></tr>
+          <tr><td>MST — Kruskal's + Prim's</td><td>10 marks</td><td>2023, 2024, 2025</td><td>Both algorithms on same graph</td></tr>
+          <tr><td>3-SAT / Graph Coloring NP-Complete</td><td>10 marks</td><td>2023, 2024, 2025</td><td>NP membership + reduction + conclusion</td></tr>
+          <tr><td>Fractional Knapsack</td><td>7-10 marks</td><td>2023, 2024</td><td>Compute ratios → sort → greedy fill</td></tr>
+          <tr><td>N-Queens Backtracking</td><td>8 marks</td><td>2023, 2024, 2025</td><td>All solutions + algorithm + complexity</td></tr>
+          <tr><td>DP: LCS / Edit Distance / Fibonacci</td><td>8-10 marks</td><td>2023, 2024, 2025</td><td>Fill complete DP table</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-header">
+        <h3><span class="topic-icon">!</span> Things This Professor Always Checks</h3>
+        <span class="exam-freq freq-high">STYLE NOTES</span>
+      </div>
+      <div class="topic-body">
+        <ul class="step-list">
+          <li><span class="step-num">①</span><strong>Always compute BOTH time AND space complexity</strong> — he specifically asks "compute time and space complexity" in CO1. Never give just one.</li>
+          <li><span class="step-num">②</span><strong>Prove your algorithms</strong> — "Prove your algorithm" appears in 2024 CO1. Show an invariant or argument for correctness, not just code.</li>
+          <li><span class="step-num">③</span><strong>Show all steps for numerical problems</strong> — Sorting traces, binary search steps, DP tables, Huffman merges — show every intermediate state.</li>
+          <li><span class="step-num">④</span><strong>Draw trees and graphs</strong> — For Huffman, heaps, MST — draw the structure. Visual answers score better.</li>
+          <li><span class="step-num">⑤</span><strong>For NP-Complete proofs — two parts always</strong> — NP membership (verifier) + NP-Hardness (reduction). Never give just one part.</li>
+          <li><span class="step-num">⑥</span><strong>Recurrence — show the case comparison</strong> — Don't just write the answer. Write a vs bᵏ explicitly.</li>
+          <li><span class="step-num">⑦</span><strong>Greedy "always optimal?" — Always FALSE in general, TRUE for specific problems</strong> — Give a counterexample (0/1 knapsack) AND a positive example (fractional knapsack).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Highlight active nav item on scroll
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.nav-unit a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Information Security — Complete Study Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap');
+
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: #1e3a5f;
+    --accent: #00d4ff;
+    --accent2: #ff6b35;
+    --accent3: #7c3aed;
+    --gold: #f59e0b;
+    --green: #10b981;
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --text-bright: #f8fafc;
+    --co1: #3b82f6;
+    --co2: #8b5cf6;
+    --co3: #10b981;
+    --co4: #f59e0b;
+    --co5: #ef4444;
+    --co6: #ec4899;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; width: 260px; height: 100vh;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 20px 0;
+    z-index: 100;
+  }
+  nav .logo {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+  }
+  nav .logo h1 { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; }
+  nav .logo p { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+  nav a {
+    display: block; padding: 8px 20px;
+    text-decoration: none; font-size: 12.5px;
+    color: var(--text-dim);
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  nav a:hover { color: var(--text-bright); background: var(--surface2); }
+  nav .nav-co { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 12px 20px 4px; color: var(--text-dim); }
+
+  /* MAIN */
+  main { margin-left: 260px; padding: 40px 50px; max-width: 1100px; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0a0e1a 0%, #0f1f3d 50%, #0a1628 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 50px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -50%; right: -10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero h1 { font-size: 38px; font-weight: 700; color: var(--text-bright); line-height: 1.2; }
+  .hero h1 span { color: var(--accent); }
+  .hero p { color: var(--text-dim); margin-top: 12px; font-size: 16px; max-width: 600px; }
+  .marks-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 12px; margin-top: 30px;
+  }
+  .mark-badge {
+    background: var(--surface); border-radius: 8px;
+    padding: 12px; text-align: center;
+    border: 1px solid var(--border);
+  }
+  .mark-badge .co { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+  .mark-badge .marks { font-size: 22px; font-weight: 700; margin-top: 4px; font-family: 'IBM Plex Mono', monospace; }
+  .mark-badge .desc { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
+
+  /* SECTIONS */
+  .section { margin-bottom: 60px; }
+  .section-header {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 30px; padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  .co-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; font-weight: 600;
+    padding: 4px 10px; border-radius: 4px;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .section-header h2 { font-size: 26px; font-weight: 700; color: var(--text-bright); }
+  .section-header .marks-note { margin-left: auto; font-size: 12px; color: var(--text-dim); font-family: 'IBM Plex Mono', monospace; }
+
+  /* TOPIC CARDS */
+  .topic {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .topic-header {
+    padding: 16px 20px;
+    background: var(--surface2);
+    display: flex; align-items: center; gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .topic-header:hover { background: #1e2d45; }
+  .topic-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; color: var(--accent);
+    background: rgba(0,212,255,0.1);
+    padding: 2px 8px; border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .topic-header h3 { font-size: 15px; font-weight: 600; color: var(--text-bright); }
+  .topic-body { padding: 20px 24px; display: block; }
+
+  /* CONTENT ELEMENTS */
+  .concept {
+    background: rgba(0,212,255,0.05);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px; border-radius: 0 8px 8px 0;
+    margin: 12px 0;
+  }
+  .concept strong { color: var(--accent); }
+
+  .warning {
+    background: rgba(245,158,11,0.08);
+    border-left: 3px solid var(--gold);
+    padding: 12px 16px; border-radius: 0 8px 8px 0;
+    margin: 12px 0; font-size: 13.5px;
+  }
+  .warning strong { color: var(--gold); }
+
+  .exam-tip {
+    background: rgba(239,68,68,0.08);
+    border-left: 3px solid var(--co5);
+    padding: 12px 16px; border-radius: 0 8px 8px 0;
+    margin: 12px 0; font-size: 13.5px;
+  }
+  .exam-tip strong { color: var(--co5); }
+
+  .numerical {
+    background: rgba(124,58,237,0.08);
+    border: 1px solid rgba(124,58,237,0.3);
+    border-radius: 8px; padding: 16px 20px;
+    margin: 14px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+  }
+  .numerical .num-title { color: var(--accent3); font-weight: 600; margin-bottom: 8px; font-family: 'IBM Plex Sans', sans-serif; }
+
+  .definition { margin: 8px 0; }
+  .definition strong { color: var(--accent2); }
+
+  table {
+    width: 100%; border-collapse: collapse; margin: 14px 0;
+    font-size: 13.5px;
+  }
+  th {
+    background: var(--surface2); color: var(--accent);
+    padding: 10px 14px; text-align: left;
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+    border: 1px solid var(--border);
+  }
+  td {
+    padding: 9px 14px; border: 1px solid var(--border);
+    color: var(--text);
+  }
+  tr:nth-child(even) td { background: rgba(30,58,95,0.2); }
+
+  .formula {
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--surface2); border: 1px solid var(--border);
+    padding: 12px 16px; border-radius: 6px;
+    margin: 10px 0; font-size: 14px;
+    color: var(--accent);
+  }
+
+  ul, ol { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+
+  p { margin: 8px 0; }
+
+  h4 { color: var(--accent2); margin: 16px 0 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px; font-weight: 700;
+    padding: 2px 7px; border-radius: 3px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-right: 4px;
+  }
+  .tag-exam { background: rgba(239,68,68,0.2); color: var(--co5); }
+  .tag-num { background: rgba(124,58,237,0.2); color: var(--accent3); }
+  .tag-imp { background: rgba(245,158,11,0.2); color: var(--gold); }
+
+  /* CO colors */
+  .co1 { background: rgba(59,130,246,0.15); color: var(--co1); border: 1px solid rgba(59,130,246,0.3); }
+  .co2 { background: rgba(139,92,246,0.15); color: var(--co2); border: 1px solid rgba(139,92,246,0.3); }
+  .co3 { background: rgba(16,185,129,0.15); color: var(--co3); border: 1px solid rgba(16,185,129,0.3); }
+  .co4 { background: rgba(245,158,11,0.15); color: var(--co4); border: 1px solid rgba(245,158,11,0.3); }
+  .co5 { background: rgba(239,68,68,0.15); color: var(--co5); border: 1px solid rgba(239,68,68,0.3); }
+  .co6 { background: rgba(236,72,153,0.15); color: var(--co6); border: 1px solid rgba(236,72,153,0.3); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 12px 0; }
+
+  .box {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px 16px;
+  }
+  .box h5 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 8px; }
+
+  @media (max-width: 900px) {
+    nav { display: none; }
+    main { margin-left: 0; padding: 20px; }
+    .marks-grid { grid-template-columns: repeat(3, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <h1>IS Study Guide</h1>
+    <p>IT/PC/B/T/322 — Complete Notes</p>
+  </div>
+  <div class="nav-co">CO1 — Attacks</div>
+  <a href="#co1">Security Attacks & Types</a>
+  <a href="#co1-terms">Cryptography Terminologies</a>
+  <a href="#co1-classical">Classical Ciphers</a>
+  <div class="nav-co">CO2 — Math</div>
+  <a href="#co2-modular">Modular Arithmetic</a>
+  <a href="#co2-groups">Groups, Rings, Fields</a>
+  <a href="#co2-gcd">GCD & Extended Euclid</a>
+  <a href="#co2-theorems">Euler's & Fermat's</a>
+  <a href="#co2-crt">CRT</a>
+  <a href="#co2-primes">Primes & Primitives</a>
+  <div class="nav-co">CO3 — Symmetric</div>
+  <a href="#co3-des">DES</a>
+  <a href="#co3-aes">AES</a>
+  <a href="#co3-rc4">RC4 & Stream Ciphers</a>
+  <a href="#co3-modes">Block Cipher Modes</a>
+  <div class="nav-co">CO4 — Asymmetric</div>
+  <a href="#co4-rsa">RSA</a>
+  <a href="#co4-dh">Diffie-Hellman</a>
+  <a href="#co4-elgamal">ElGamal</a>
+  <a href="#co4-ecc">ECC</a>
+  <div class="nav-co">CO5 — Integrity</div>
+  <a href="#co5-hash">Hash Functions</a>
+  <a href="#co5-mac">MDC & MAC</a>
+  <a href="#co5-sig">Digital Signatures</a>
+  <a href="#co5-auth">Entity Authentication</a>
+  <a href="#co5-key">Key Management</a>
+  <div class="nav-co">CO6 — Image Enc.</div>
+  <a href="#co6-intro">Image Encryption Intro</a>
+  <a href="#co6-confusion">Confusion & Diffusion</a>
+  <a href="#co6-scrambling">Image Scrambling</a>
+  <a href="#co6-lfsr">LFSR Encryption</a>
+  <a href="#co6-chaos">Chaotic Encryption</a>
+  <a href="#co6-iescg">IESCG</a>
+  <a href="#co6-watermark">Watermarking</a>
+  <a href="#co6-measures">Performance Measures</a>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Information Security<br><span>Complete Study Guide</span></h1>
+  <p>Built exclusively from your professor's PPTs and previous year papers. Everything you need to score 90+.</p>
+  <div class="marks-grid">
+    <div class="mark-badge">
+      <div class="co" style="color:var(--co1)">CO1</div>
+      <div class="marks" style="color:var(--co1)">10</div>
+      <div class="desc">Any 2 of 5×2</div>
+    </div>
+    <div class="mark-badge">
+      <div class="co" style="color:var(--co2)">CO2</div>
+      <div class="marks" style="color:var(--co2)">15</div>
+      <div class="desc">Any 3 of 5×3</div>
+    </div>
+    <div class="mark-badge">
+      <div class="co" style="color:var(--co3)">CO3</div>
+      <div class="marks" style="color:var(--co3)">20</div>
+      <div class="desc">Answer All</div>
+    </div>
+    <div class="mark-badge">
+      <div class="co" style="color:var(--co4)">CO4</div>
+      <div class="marks" style="color:var(--co4)">20</div>
+      <div class="desc">Any 2 of 10×2</div>
+    </div>
+    <div class="mark-badge">
+      <div class="co" style="color:var(--co5)">CO5</div>
+      <div class="marks" style="color:var(--co5)">25</div>
+      <div class="desc">Any 5 of 5×5</div>
+    </div>
+    <div class="mark-badge">
+      <div class="co" style="color:var(--co6)">CO6</div>
+      <div class="marks" style="color:var(--co6)">10</div>
+      <div class="desc">Short notes ×2</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ CO1 ═══════════════════ -->
+<div class="section" id="co1">
+  <div class="section-header">
+    <span class="co-badge co1">CO1</span>
+    <h2>Security Attacks, Terms & Classical Ciphers</h2>
+    <span class="marks-note">10 marks | Any 2 Qs</span>
+  </div>
+
+  <!-- TOPIC: Security Attacks -->
+  <div class="topic" id="co1-attacks">
+    <div class="topic-header">
+      <span class="topic-num">1.1</span>
+      <h3>Types of Security Attacks <span class="tag tag-exam">Exam Favourite</span></h3>
+    </div>
+    <div class="topic-body">
+      <p>A <strong>security attack</strong> is any action that compromises the security of information owned by an organization.</p>
+      
+      <div class="two-col">
+        <div class="box">
+          <h5>🔇 Passive Attacks</h5>
+          <p>Attacker <em>observes only</em>. Does not modify anything.</p>
+          <ul>
+            <li><strong>Release of Message Contents:</strong> Eavesdropping — reading a sensitive message.</li>
+            <li><strong>Traffic Analysis:</strong> Even if message is encrypted, attacker observes patterns (who, when, how often).</li>
+          </ul>
+          <div class="warning"><strong>Key point:</strong> Passive attacks are <em>hard to detect</em> because nothing is changed. Prevention is the goal.</div>
+        </div>
+        <div class="box">
+          <h5>⚡ Active Attacks</h5>
+          <p>Attacker <em>modifies or creates</em> data streams.</p>
+          <ul>
+            <li><strong>Masquerade:</strong> Pretending to be someone else (fake identity).</li>
+            <li><strong>Replay:</strong> Capture a valid message and retransmit it later.</li>
+            <li><strong>Modification of Messages:</strong> Alter content in transit.</li>
+            <li><strong>Denial of Service (DoS):</strong> Prevent legitimate users from accessing a service.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exam-tip"><strong>📝 Professor's Pattern:</strong> CT1 asked "Is DoS active or passive?" → Active (it disrupts service). Also asked to "explain Replay Attack and DoS and how they can be prevented" — define, give mechanism, give prevention.</div>
+
+      <h4>Prevention of Replay Attack</h4>
+      <ul>
+        <li>Use <strong>timestamps</strong> or <strong>nonces</strong> (random numbers used once) in messages</li>
+        <li>Each message has a sequence number; receiver checks it hasn't been seen before</li>
+      </ul>
+
+      <h4>Prevention of DoS</h4>
+      <ul>
+        <li>Traffic filtering and rate limiting</li>
+        <li>Firewalls, intrusion detection systems</li>
+        <li>Redundant servers</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TOPIC: Terminologies -->
+  <div class="topic" id="co1-terms">
+    <div class="topic-header">
+      <span class="topic-num">1.2</span>
+      <h3>Core Cryptography Terminologies <span class="tag tag-exam">Must Know</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">A <strong>cryptosystem</strong> is defined as a five-tuple: <strong>(P, C, K, E, D)</strong> where P = plaintext space, C = ciphertext space, K = key space, E = encryption rules, D = decryption rules. For every key K, dₖ(eₖ(x)) = x.</div>
+
+      <table>
+        <tr><th>Term</th><th>Definition</th><th>Example</th></tr>
+        <tr><td><strong>Confidentiality</strong></td><td>Only intended receiver can read the message</td><td>Encrypted email</td></tr>
+        <tr><td><strong>Integrity</strong></td><td>Message has not been altered in transit</td><td>Hash verification</td></tr>
+        <tr><td><strong>Authentication</strong></td><td>Verify identity of sender/receiver</td><td>Digital signature</td></tr>
+        <tr><td><strong>Non-repudiation</strong></td><td>Sender cannot deny sending the message</td><td>Signed contract</td></tr>
+        <tr><td><strong>Authorization</strong></td><td>Access rights to information by authenticated entity</td><td>Login permissions</td></tr>
+        <tr><td><strong>Availability</strong></td><td>Resource accessible when needed by authorized entity</td><td>Server uptime</td></tr>
+        <tr><td><strong>Cryptography</strong></td><td>Science of making messages secure</td><td>AES, RSA</td></tr>
+        <tr><td><strong>Cryptanalysis</strong></td><td>Science of breaking cryptosystems</td><td>Frequency analysis</td></tr>
+        <tr><td><strong>Cryptology</strong></td><td>Cryptography + Cryptanalysis</td><td>—</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- TOPIC: Classical Ciphers -->
+  <div class="topic" id="co1-classical">
+    <div class="topic-header">
+      <span class="topic-num">1.3</span>
+      <h3>Classical Ciphers <span class="tag tag-exam">Always Asked</span></h3>
+    </div>
+    <div class="topic-body">
+      
+      <h4>Shift Cipher (Caesar Cipher)</h4>
+      <div class="concept">
+        <strong>Encryption:</strong> eₖ(x) = (x + K) mod 26 &nbsp;|&nbsp; <strong>Decryption:</strong> dₖ(y) = (y − K) mod 26<br>
+        Caesar Cipher = Shift Cipher with K=3. Key space = 26 (easily broken by exhaustive search).
+      </div>
+
+      <h4>Substitution Cipher</h4>
+      <p>Each letter maps to a unique letter using a random permutation π. Key space = 26! ≈ 4×10²⁶ (exhaustive search infeasible but vulnerable to <strong>frequency analysis</strong>).</p>
+      <div class="warning"><strong>Unforgettable Substitution Cipher:</strong> Use a long keyword with no repeated letters (e.g., "UNCOPYRIGHTABLE" or "FLOWCHARTING"). This creates the mapping. <em>This is exam-specific content!</em></div>
+
+      <div class="numerical">
+        <div class="num-title">Example: Unforgettable Cipher with keyword "FAIR ENOUGH"</div>
+        Key: FAIRENOUGHBCDGJKLMPQSTVWXYZ (write keyword first, removing duplicates, then remaining alphabet)<br>
+        a→F, b→A, c→I, d→R, e→E, f→N, g→O, h→U, i→G, j→H, k→B, l→C, m→D...
+      </div>
+
+      <h4>Affine Cipher</h4>
+      <div class="formula">eₖ(x) = (a·x + b) mod 26 &nbsp;&nbsp; dₖ(y) = a⁻¹(y − b) mod 26</div>
+      <p>Key is (a, b) where gcd(a, 26) = 1. The professor gave affine cipher decryption in the semester paper.</p>
+      
+      <div class="numerical">
+        <div class="num-title">Affine Cipher Decryption: a=7, b=22</div>
+        Find a⁻¹ = 7⁻¹ mod 26. Using extended Euclid: 7×15 = 105 = 4×26 + 1, so 7⁻¹ = 15.<br>
+        For each ciphertext char y: x = 15(y − 22) mod 26
+      </div>
+
+      <h4>Hill Cipher (Polyalphabetic) <span class="tag tag-num">Numerical</span></h4>
+      <p>Takes m plaintext letters at a time. Uses an m×m matrix K as key.</p>
+      <div class="concept">
+        <strong>Encryption:</strong> C = KP mod 26 &nbsp;|&nbsp; <strong>Decryption:</strong> P = K⁻¹C mod 26<br>
+        Condition: K must be invertible mod 26, i.e., gcd(det(K), 26) = 1.
+      </div>
+
+      <h4>Vigenère Cipher</h4>
+      <p>Polyalphabetic cipher. Uses a keyword repeated to match message length. Each position i uses shift key[i mod len(key)].</p>
+      
+      <div class="numerical">
+        <div class="num-title">In Vigenère cipher with key be k₁, k₂, ..., kₙ</div>
+        The jᵗʰ block character is encrypted using key kⱼ (cyclically).<br>
+        Decryption can be carried out: (cᵢ − kⱼ) mod 26 where j = i mod n.
+      </div>
+
+      <h4>Transposition (Permutation) Cipher</h4>
+      <p>Characters stay the same, but their <em>positions change</em> using a permutation. Key is a column ordering number (or a word converted to numbers by alphabetic position).</p>
+      <div class="exam-tip"><strong>📝 Exam Question Type:</strong> "Given First Key: 32145 and Second Key: 312, certain Plaintext became LETOTTLLOGHIM... What was the original?" → Apply inverse permutations in reverse order.</div>
+
+      <h4>Monoalphabetic vs Polyalphabetic</h4>
+      <table>
+        <tr><th>Property</th><th>Monoalphabetic</th><th>Polyalphabetic</th></tr>
+        <tr><td>Mapping</td><td>One plaintext char → one fixed ciphertext char</td><td>Same char can map to different ciphertext chars</td></tr>
+        <tr><td>Vulnerability</td><td>Frequency analysis (MORE vulnerable)</td><td>Harder to break (LESS vulnerable)</td></tr>
+        <tr><td>Examples</td><td>Shift, Substitution, Affine</td><td>Vigenère, Hill</td></tr>
+      </table>
+      <div class="exam-tip"><strong>📝 Professor asked:</strong> "Among monoalphabetic and polyalphabetic cipher, which is more vulnerable? Justify." → Monoalphabetic is more vulnerable because each character always maps to the same ciphertext character, making it susceptible to frequency analysis of the English language (e → most frequent, etc.).</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ CO2 ═══════════════════ -->
+<div class="section" id="co2">
+  <div class="section-header">
+    <span class="co-badge co2">CO2</span>
+    <h2>Mathematics of Cryptography</h2>
+    <span class="marks-note">15 marks | Any 3 Qs</span>
+  </div>
+
+  <div class="topic" id="co2-modular">
+    <div class="topic-header">
+      <span class="topic-num">2.1</span>
+      <h3>Modular Arithmetic <span class="tag tag-num">Numerical</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">
+        <strong>a ≡ b (mod m)</strong> means m divides (a − b), i.e., a and b have the same remainder when divided by m.<br>
+        Key rule: Remainders are always non-negative: −3 mod 7 = 4 (not −3).
+      </div>
+      <h4>Properties</h4>
+      <ul>
+        <li>(a + b) mod m = ((a mod m) + (b mod m)) mod m</li>
+        <li>(a × b) mod m = ((a mod m) × (b mod m)) mod m</li>
+        <li>(a − b) mod m = ((a mod m) − (b mod m) + m) mod m</li>
+      </ul>
+      <h4>Additive Inverse</h4>
+      <p>In Zₙ, b is the additive inverse of a if a + b ≡ 0 (mod n). Always exists. Example: additive inverse of 3 in Z₁₀ is 7.</p>
+      <h4>Multiplicative Inverse</h4>
+      <p>a has a multiplicative inverse in Zₙ <strong>if and only if gcd(a, n) = 1</strong>.</p>
+      <div class="numerical">
+        <div class="num-title">Find multiplicative inverse of 11 in Z₂₆</div>
+        Using Extended Euclidean: gcd(26, 11) = 1<br>
+        26 = 2×11 + 4<br>
+        11 = 2×4 + 3<br>
+        4 = 1×3 + 1<br>
+        3 = 3×1<br>
+        Back-substituting: 1 = 4 − 1×3 = 4 − (11 − 2×4) = 3×4 − 11 = 3(26 − 2×11) − 11 = 3×26 − 7×11<br>
+        So 11⁻¹ ≡ −7 ≡ 19 (mod 26). <strong>Answer: 19</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="co2-groups">
+    <div class="topic-header">
+      <span class="topic-num">2.2</span>
+      <h3>Groups, Rings & Fields (Algebraic Structures)</h3>
+    </div>
+    <div class="topic-body">
+      <table>
+        <tr><th>Structure</th><th>Operations</th><th>Properties</th><th>Example</th></tr>
+        <tr><td><strong>Group (G, •)</strong></td><td>1 operation</td><td>Closure, Associativity, Identity, Inverse. If also commutative → Abelian group.</td><td>(Zₙ, +) is abelian group</td></tr>
+        <tr><td><strong>Ring (R, +, ×)</strong></td><td>2 operations</td><td>(R,+) is abelian group; × is associative and distributive over +</td><td>(Zₙ, +, ×) is a ring</td></tr>
+        <tr><td><strong>Field (F, +, ×)</strong></td><td>2 operations</td><td>A commutative ring where all non-zero elements have multiplicative inverse</td><td>(Zₚ, +, ×) where p is prime</td></tr>
+      </table>
+      <div class="concept"><strong>Key Fact:</strong> (Zₙ, +, ×) is a field <strong>if and only if n is prime</strong>. GF(p) = Galois Field of order p.</div>
+      
+      <h4>GF(2ⁿ) — Used in AES</h4>
+      <p>Elements are n-bit words treated as polynomials with coefficients in GF(2). Addition = XOR. Multiplication = polynomial multiplication modulo an irreducible polynomial. AES uses GF(2⁸) with irreducible polynomial x⁸+x⁴+x³+x+1.</p>
+
+      <h4>Cyclic Groups & Primitive Elements</h4>
+      <div class="concept">
+        An element g is a <strong>primitive element (generator)</strong> of group G = (Zₙ*, ×) if the order of g equals φ(n) — i.e., the powers of g generate all elements of the group.<br>
+        Number of primitive elements = φ(φ(n)).
+      </div>
+      <div class="numerical">
+        <div class="num-title">How many primitive elements in (Z*₁₉, ×)?</div>
+        φ(19) = 18 (19 is prime)<br>
+        Number of primitive elements = φ(φ(19)) = φ(18) = φ(2)×φ(3²) = 1×6 = <strong>6</strong><br>
+        First primitive element: Test 2: ord(2) mod 19. Compute 2^(18/2)=2^9=512≡18≡-1≠1 mod 19; 2^(18/3)=2^6=64≡7≠1 mod 19. Since neither = 1, 2 is primitive. <strong>First primitive element = 2</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="co2-gcd">
+    <div class="topic-header">
+      <span class="topic-num">2.3</span>
+      <h3>GCD, Euclidean & Extended Euclidean Algorithm <span class="tag tag-num">Numerical</span></h3>
+    </div>
+    <div class="topic-body">
+      <h4>Euclidean Algorithm</h4>
+      <p>Repeatedly apply: gcd(a, b) = gcd(b, a mod b) until remainder = 0.</p>
+      <div class="numerical">
+        <div class="num-title">gcd(26, 11)</div>
+        26 = 2×11 + 4 → gcd(11, 4)<br>
+        11 = 2×4 + 3 → gcd(4, 3)<br>
+        4 = 1×3 + 1 → gcd(3, 1)<br>
+        3 = 3×1 + 0 → gcd = <strong>1</strong>
+      </div>
+
+      <h4>Extended Euclidean Algorithm</h4>
+      <p>Finds s, t such that s×a + t×b = gcd(a, b). Used to find multiplicative inverse.</p>
+      <div class="numerical">
+        <div class="num-title">Find inverse of 53 in Z₁₀₀</div>
+        100 = 1×53 + 47<br>
+        53 = 1×47 + 6<br>
+        47 = 7×6 + 5<br>
+        6 = 1×5 + 1<br>
+        5 = 5×1<br>
+        Back-substituting: 1 = 6 − 1×5 = 6 − (47 − 7×6) = 8×6 − 47 = 8(53−47) − 47 = 8×53 − 9×47 = 8×53 − 9(100−53) = 17×53 − 9×100<br>
+        So 53⁻¹ ≡ 17 (mod 100). <strong>Answer: 17</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="co2-theorems">
+    <div class="topic-header">
+      <span class="topic-num">2.4</span>
+      <h3>Euler's φ, Fermat's & Euler's Theorem <span class="tag tag-num">Numerical</span> <span class="tag tag-exam">Always In Exam</span></h3>
+    </div>
+    <div class="topic-body">
+      <h4>Euler's Phi Function φ(n)</h4>
+      <div class="concept">
+        φ(n) = count of integers from 1 to n that are coprime to n.<br>
+        If n = p₁^e₁ × p₂^e₂ × ... then φ(n) = ∏(pᵢ^eᵢ − pᵢ^(eᵢ⁻¹))
+      </div>
+      <div class="numerical">
+        <div class="num-title">Key formulas</div>
+        φ(p) = p−1 for prime p<br>
+        φ(pⁿ) = pⁿ − pⁿ⁻¹<br>
+        φ(m×n) = φ(m)×φ(n) when gcd(m,n)=1<br>
+        <br>
+        φ(26) = φ(2×13) = φ(2)×φ(13) = 1×12 = 12<br>
+        φ(100) = φ(4×25) = φ(4)×φ(25) = 2×20 = 40<br>
+        φ(71) = 70 (71 is prime)
+      </div>
+
+      <h4>Fermat's Little Theorem</h4>
+      <div class="formula">If p is prime and gcd(a, p) = 1:  a^(p−1) ≡ 1 (mod p)</div>
+      <p>Also: a⁻¹ mod p = a^(p−2) mod p</p>
+
+      <h4>Euler's Theorem</h4>
+      <div class="formula">If gcd(a, n) = 1:  a^φ(n) ≡ 1 (mod n)</div>
+      <div class="formula">Second version (no restriction): a^(k×φ(n)+1) ≡ a (mod n)</div>
+      <div class="exam-tip"><strong>📝 Common Exam Question:</strong> "Using Euler's Theorem, find multiplicative inverse of 7 in Z₃₆."<br>φ(36) = φ(4)×φ(9) = 2×6 = 12. So 7⁻¹ = 7^(φ(36)−1) = 7^11 mod 36.<br>7² = 49 ≡ 13; 7⁴ ≡ 169 ≡ 25; 7⁸ ≡ 625 ≡ 13; 7^11 = 7^8 × 7^2 × 7 = 13×13×7 = 1183 ≡ 31 mod 36. <strong>Answer: 31</strong></div>
+      
+      <div class="numerical">
+        <div class="num-title">Find value of 71⁻¹ mod 100</div>
+        φ(100) = 40. 71⁻¹ ≡ 71^39 mod 100.<br>
+        71² = 5041 ≡ 41; 71⁴ ≡ 41² = 1681 ≡ 81; 71⁸ ≡ 81² = 6561 ≡ 61;<br>
+        71¹⁶ ≡ 61² = 3721 ≡ 21; 71³² ≡ 21² = 441 ≡ 41;<br>
+        71³⁹ = 71³²×71⁴×71²×71 = 41×81×41×71 mod 100<br>
+        = (41×81 mod 100) × (41×71 mod 100) = (3321 mod 100)×(2911 mod 100) = 21×11 = 231 ≡ <strong>31</strong> mod 100
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="co2-crt">
+    <div class="topic-header">
+      <span class="topic-num">2.5</span>
+      <h3>Chinese Remainder Theorem (CRT) <span class="tag tag-num">Numerical</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">
+        Solve a system: x ≡ a₁ (mod m₁), x ≡ a₂ (mod m₂), ..., x ≡ aₙ (mod mₙ)<br>
+        where m₁, m₂, ... are pairwise coprime.<br>
+        Solution: x = Σ aᵢ × Mᵢ × yᵢ (mod M), where M = m₁×m₂×...×mₙ, Mᵢ = M/mᵢ, yᵢ = Mᵢ⁻¹ mod mᵢ
+      </div>
+      <div class="numerical">
+        <div class="num-title">Solve: x ≡ 4 (mod 7), x ≡ 7 (mod 8), x ≡ 4 (mod 13)</div>
+        M = 7×8×13 = 728<br>
+        M₁ = 728/7 = 104, M₂ = 728/8 = 91, M₃ = 728/13 = 56<br>
+        y₁ = 104⁻¹ mod 7 = (104 mod 7)⁻¹ = 6⁻¹ mod 7 = 6 (since 6×6=36≡1)<br>
+        y₂ = 91⁻¹ mod 8 = (91 mod 8)⁻¹ = 3⁻¹ mod 8 = 3 (since 3×3=9≡1)<br>
+        y₃ = 56⁻¹ mod 13 = (56 mod 13)⁻¹ = 4⁻¹ mod 13 = 10 (since 4×10=40≡1)<br>
+        x = (4×104×6 + 7×91×3 + 4×56×10) mod 728<br>
+        = (2496 + 1911 + 2240) mod 728 = 6647 mod 728 = <strong>367</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="co2-primes">
+    <div class="topic-header">
+      <span class="topic-num">2.6</span>
+      <h3>Primes, Primitive Roots & Discrete Logarithms</h3>
+    </div>
+    <div class="topic-body">
+      <h4>Primitive Roots</h4>
+      <div class="concept">
+        A primitive root g of prime p is an element whose powers generate all of Z*ₚ = {1, 2, ..., p−1}.<br>
+        Checking: g is primitive root mod p iff g^((p-1)/q) ≢ 1 (mod p) for all prime factors q of (p-1).
+      </div>
+      <div class="numerical">
+        <div class="num-title">Find all primitive roots of (Z*₁₃, ×)</div>
+        φ(13) = 12. Number of primitive roots = φ(12) = φ(4)×φ(3) = 2×2 = 4<br>
+        p-1 = 12. Prime factors of 12: 2 and 3.<br>
+        Test g=2: 2^6 mod 13 = 64 mod 13 = 12 ≠ 1 ✓; 2^4 mod 13 = 16 mod 13 = 3 ≠ 1 ✓. So 2 is a primitive root.<br>
+        Other generators: 2^k where gcd(k, 12) = 1 → k ∈ {1,5,7,11}. So generators = 2¹=2, 2⁵=32≡6, 2⁷=128≡11, 2¹¹≡7. <strong>Primitive roots: 2, 6, 7, 11</strong>
+      </div>
+
+      <h4>Discrete Logarithm</h4>
+      <p>Given g, p and y = gˣ mod p, finding x is the <strong>Discrete Logarithm Problem (DLP)</strong> — computationally infeasible for large p. This is the security basis for DH, ElGamal, and ECC.</p>
+
+      <div class="numerical">
+        <div class="num-title">Find discrete log of log₃ 6 mod 7 (from past paper)</div>
+        Compute powers of 3 mod 7: 3¹=3, 3²=2, 3³=6, 3⁴=4, 3⁵=5, 3⁶=1<br>
+        3³ = 6 mod 7, so log₃ 6 ≡ <strong>3</strong> (mod 7)
+      </div>
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="topic-header">
+      <span class="topic-num">2.7</span>
+      <h3>Euler's Criterion & Quadratic Congruence <span class="tag tag-num">Numerical</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">
+        In equation x² ≡ a (mod p), a is a <strong>Quadratic Residue (QR)</strong> if solutions exist; <strong>Quadratic Non-Residue (QNR)</strong> otherwise.<br>
+        <strong>Euler's Criterion:</strong> a^((p-1)/2) ≡ 1 mod p → QR; ≡ -1 mod p → QNR
+      </div>
+      <div class="numerical">
+        <div class="num-title">Is 14 a QR in Z*₂₃?</div>
+        14^((23-1)/2) = 14^11 mod 23<br>
+        14² = 196 ≡ 196-8×23 = 196-184 = 12; 14⁴ ≡ 144 ≡ 144-6×23 = 6; 14⁸ ≡ 36 ≡ 13; 14^11 = 14^8 × 14^2 × 14 = 13×12×14 mod 23<br>
+        = 156×14 mod 23 = (156 mod 23)×14 = 18×14 = 252 mod 23 = 252-10×23 = 22 ≡ -1 mod 23 → <strong>QNR</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ CO3 ═══════════════════ -->
+<div class="section" id="co3">
+  <div class="section-header">
+    <span class="co-badge co3">CO3</span>
+    <h2>Symmetric Key Cryptosystems</h2>
+    <span class="marks-note">20 marks | Answer ALL</span>
+  </div>
+
+  <div class="warning"><strong>⚠️ CO3 is worth 20 marks and you must answer ALL questions. This is your biggest single unit. Know DES, AES, RC4, and all Block Cipher Modes deeply.</strong></div>
+
+  <div class="topic" id="co3-des">
+    <div class="topic-header">
+      <span class="topic-num">3.1</span>
+      <h3>DES — Data Encryption Standard <span class="tag tag-exam">Very Frequently Asked</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">
+        DES: 64-bit blocks, 56-bit key, 16 rounds. Developed by IBM (1971), adopted by NIST in 1977. <br>
+        DES is a <strong>Feistel cipher</strong> — uses both invertible and non-invertible components.
+      </div>
+
+      <h4>DES Overall Structure</h4>
+      <ol>
+        <li><strong>Initial Permutation (IP):</strong> Rearranges the 64 bits of plaintext using a fixed permutation table</li>
+        <li><strong>16 Rounds:</strong> Each round uses subkey Kᵢ. Left half = previous right half. Right half = Lᵢ₋₁ XOR F(Rᵢ₋₁, Kᵢ)</li>
+        <li><strong>Inverse IP (IP⁻¹):</strong> Final permutation to produce ciphertext</li>
+      </ol>
+      <div class="formula">Lᵢ = Rᵢ₋₁ &nbsp;&nbsp;&nbsp; Rᵢ = Lᵢ₋₁ ⊕ F(Rᵢ₋₁, Kᵢ)</div>
+
+      <h4>The F Function (Round Function)</h4>
+      <ol>
+        <li><strong>Expansion (E-box):</strong> Expand 32 bits → 48 bits (some bits duplicated)</li>
+        <li><strong>XOR with round key:</strong> 48 bits XOR 48-bit subkey</li>
+        <li><strong>S-Box substitution:</strong> 8 S-boxes, each takes 6-bit input → 4-bit output. Total: 48→32 bits. This is where <em>confusion</em> happens.</li>
+        <li><strong>P permutation:</strong> Permutes the 32 bits. Provides <em>diffusion</em>.</li>
+      </ol>
+
+      <h4>S-Box Usage — Exam Question</h4>
+      <div class="numerical">
+        <div class="num-title">What will be the output of S₂ box if input is 101010?</div>
+        Input: 101010. Row = outer bits = 1,0 = (10)₂ = row 2. Column = inner bits = 0101 = col 5.<br>
+        Look up S₂ table at row 2, column 5. (Use the given table in exam.)<br>
+        Format: First bit and last bit form the row; middle 4 bits form the column.
+      </div>
+
+      <h4>DES Key Schedule (Key Generation)</h4>
+      <ol>
+        <li>56-bit key (8 bits are parity bits, ignored) → 64-bit input</li>
+        <li>Apply Permuted Choice 1 (PC-1) → two 28-bit halves C₀ and D₀</li>
+        <li>For each round i: Left-shift Cᵢ₋₁ and Dᵢ₋₁ (1 or 2 positions) → Cᵢ, Dᵢ</li>
+        <li>Apply PC-2 to CᵢDᵢ → 48-bit round key Kᵢ</li>
+      </ol>
+      <div class="exam-tip"><strong>📝 Key exam question:</strong> "Draw the flow diagram to generate round keys of AES-128." (same concept — show the iterative structure). For DES, show the C/D split, shifts, and PC-2 selection.</div>
+
+      <h4>Avalanche Effect in DES</h4>
+      <div class="concept">
+        <strong>Avalanche Effect:</strong> A small change in plaintext or key (even 1 bit) should produce a significant change in ciphertext (many bits flip). DES exhibits a strong avalanche effect. <br>
+        This is desirable because it prevents an attacker from predicting ciphertext changes.
+      </div>
+
+      <h4>Confusion and Diffusion (Shannon's Principles)</h4>
+      <table>
+        <tr><th>Property</th><th>Meaning</th><th>Achieved by</th></tr>
+        <tr><td><strong>Confusion</strong></td><td>Hides relationship between ciphertext and key. Each bit of ciphertext depends on several parts of the key.</td><td>S-boxes (non-linear substitution)</td></tr>
+        <tr><td><strong>Diffusion</strong></td><td>Hides relationship between ciphertext and plaintext. Change 1 plaintext bit → many ciphertext bits change.</td><td>P-boxes (permutation/transposition)</td></tr>
+      </table>
+
+      <h4>Weaknesses of DES</h4>
+      <ul>
+        <li>Key is only 56 bits → Broken by exhaustive search ("DES Challenge III" in 22 hours)</li>
+        <li>Vulnerable to differential and linear cryptanalysis</li>
+        <li>Solution: <strong>Triple DES</strong> (3DES) — apply DES three times with different keys</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="topic" id="co3-aes">
+    <div class="topic-header">
+      <span class="topic-num">3.2</span>
+      <h3>AES — Advanced Encryption Standard <span class="tag tag-exam">Most Important</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">
+        AES: 128-bit blocks, key size 128/192/256 bits → 10/12/14 rounds. Non-Feistel cipher (all transformations are invertible). Published by NIST in 2001. Much more secure than DES.
+      </div>
+
+      <h4>AES Data Structure</h4>
+      <p>128-bit block = 4×4 matrix of bytes called the <strong>State</strong>. Filled column by column.</p>
+
+      <h4>The 4 Transformations in Each Round</h4>
+      <div class="two-col">
+        <div class="box">
+          <h5>1. SubBytes (Confusion)</h5>
+          <p>Each byte independently replaced using a fixed S-box (16×16 lookup table in GF(2⁸)). Non-linear → provides confusion.<br>
+          Inverse: InvSubBytes</p>
+        </div>
+        <div class="box">
+          <h5>2. ShiftRows (Permutation)</h5>
+          <p>Row 0: no shift. Row 1: left-shift by 1. Row 2: left-shift by 2. Row 3: left-shift by 3.<br>
+          Inverse: InvShiftRows (right shift)</p>
+        </div>
+        <div class="box">
+          <h5>3. MixColumns (Diffusion)</h5>
+          <p>Each column multiplied by a fixed 4×4 matrix in GF(2⁸). Provides inter-byte diffusion. <em>NOT used in the final round.</em><br>
+          Inverse: InvMixColumns</p>
+        </div>
+        <div class="box">
+          <h5>4. AddRoundKey</h5>
+          <p>XOR state with the round key (128-bit). This is its own inverse. Used in every round including the first pre-round and the final round.</p>
+        </div>
+      </div>
+
+      <div class="exam-tip"><strong>📝 "Which transformation is NOT used in the final round of AES?"</strong> → <strong>MixColumns</strong> is not used in the final round. The final round contains only SubBytes, ShiftRows, AddRoundKey.</div>
+
+      <h4>AES Key Expansion</h4>
+      <p>From 1 cipher key, create Nᵣ+1 round keys (11 round keys for AES-128). Each round key = 128 bits = 4 words of 32 bits each.</p>
+      <p>Process for word w[i] where i ≥ 4 (for AES-128):</p>
+      <ul>
+        <li>If i mod 4 ≠ 0: w[i] = w[i-1] XOR w[i-4]</li>
+        <li>If i mod 4 = 0: w[i] = SubWord(RotWord(w[i-1])) XOR Rcon[i/4] XOR w[i-4]</li>
+      </ul>
+      <p>RotWord = cyclic left shift of 4 bytes. SubWord = apply S-box to each byte. Rcon = round constant.</p>
+
+      <h4>AES Round Key for Bit Representation — Past Paper Question</h4>
+      <div class="numerical">
+        <div class="num-title">What is output of first round of DES (or AES) when plaintext and key are all 1s?</div>
+        For DES: If both plaintext and key are all 1s, go through IP, expand, XOR with subkey (derived from all-1s key via permutations/shifts), S-box substitution, P-box, and IP⁻¹. The actual value requires computing the tables — describe the procedure and say "avalanche means result will differ significantly from all-1s input."
+      </div>
+
+      <h4>AES Security</h4>
+      <ul>
+        <li>No known differential or linear attacks</li>
+        <li>Brute force with 128-bit key: 2¹²⁸ operations — infeasible</li>
+        <li>AES is vulnerable to <strong>related-key attacks</strong> and <strong>side-channel attacks</strong> (timing, power)</li>
+      </ul>
+      <div class="exam-tip"><strong>📝 "AES is vulnerable to which type of attacks?"</strong> → Related-key attacks, side-channel attacks (timing attack, power analysis).</div>
+    </div>
+  </div>
+
+  <div class="topic" id="co3-rc4">
+    <div class="topic-header">
+      <span class="topic-num">3.3</span>
+      <h3>RC4 Stream Cipher <span class="tag tag-exam">Always 3 marks</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">RC4 is a variable key-size stream cipher designed in 1987 by Ron Rivest. Simple, fast. Used in SSL, WEP, WPA. Generates a pseudorandom keystream XORed with plaintext.</div>
+
+      <h4>S and T Vector Initialization</h4>
+      <div class="numerical">
+        <div class="num-title">Step 1: Initialize S and T vectors</div>
+        S[i] = i for i = 0 to 255 (S is initially identity permutation)<br>
+        T[i] = K[i mod keylen] (T is key repeated to fill 256 bytes)<br>
+        <br>
+        Step 2: Initial Permutation of S:<br>
+        j = 0<br>
+        for i = 0 to 255:<br>
+        &nbsp;&nbsp;j = (j + S[i] + T[i]) mod 256<br>
+        &nbsp;&nbsp;Swap(S[i], S[j])
+      </div>
+
+      <h4>Keystream Generation</h4>
+      <div class="numerical">
+        <div class="num-title">Step 3: Stream Generation</div>
+        i = 0, j = 0<br>
+        Loop:<br>
+        &nbsp;&nbsp;i = (i + 1) mod 256<br>
+        &nbsp;&nbsp;j = (j + S[i]) mod 256<br>
+        &nbsp;&nbsp;Swap(S[i], S[j])<br>
+        &nbsp;&nbsp;t = (S[i] + S[j]) mod 256<br>
+        &nbsp;&nbsp;k = S[t]  ← output keystream byte
+      </div>
+      <div class="exam-tip"><strong>📝 Past paper:</strong> "If key for stream cipher is 5B7625F9 (hex), what will be S and T vectors for first 16 bytes?" → Write out the initialization with the hex key bytes cycling through T[0]..T[15], then show the S permutation.</div>
+    </div>
+  </div>
+
+  <div class="topic" id="co3-modes">
+    <div class="topic-header">
+      <span class="topic-num">3.4</span>
+      <h3>Block Cipher Modes of Operation <span class="tag tag-exam">Always In Exam</span></h3>
+    </div>
+    <div class="topic-body">
+
+      <table>
+        <tr><th>Mode</th><th>Formula</th><th>Features</th><th>Error Propagation</th></tr>
+        <tr><td><strong>ECB</strong></td><td>Cᵢ = E(K, Pᵢ)</td><td>Simplest. Same plaintext → same ciphertext. Pattern preserved. Parallel processing ✓</td><td>Error in Cᵢ affects only Pᵢ</td></tr>
+        <tr><td><strong>CBC</strong></td><td>Cᵢ = E(K, Pᵢ ⊕ Cᵢ₋₁)</td><td>Uses IV for first block. Chaining hides patterns. No parallel encryption.</td><td>Error in Cᵢ → errors in Pᵢ (most bits) and Pᵢ₊₁ (1 bit)</td></tr>
+        <tr><td><strong>CFB</strong></td><td>Cᵢ = Pᵢ ⊕ E(K, Cᵢ₋₁)</td><td>Stream cipher-like. No padding needed. Self-synchronizing.</td><td>Propagates for several blocks</td></tr>
+        <tr><td><strong>OFB</strong></td><td>Oᵢ = E(K, Oᵢ₋₁); Cᵢ = Pᵢ ⊕ Oᵢ</td><td>Keystream independent of plaintext/ciphertext. No error propagation.</td><td>Error in Cᵢ affects only Pᵢ (1 bit)</td></tr>
+        <tr><td><strong>CTR</strong></td><td>Cᵢ = Pᵢ ⊕ E(K, Counter+i)</td><td>Random access. Parallel ✓. No feedback.</td><td>Same as OFB</td></tr>
+      </table>
+
+      <h4>Ciphertext Stealing (CTS)</h4>
+      <div class="concept">
+        Problem: Last block may be shorter than block size. Padding increases ciphertext size.<br>
+        <strong>Solution — Ciphertext Stealing:</strong> Encrypt without increasing the message size by "stealing" bits from the second-to-last ciphertext block to pad the last plaintext block.
+      </div>
+      <p><strong>CBC-CTS Encryption (Last two blocks Pₙ₋₁ and Pₙ, where |Pₙ| = M bits, M &lt; B):</strong></p>
+      <ol>
+        <li>Xₙ₋₁ = Pₙ₋₁ XOR Cₙ₋₂</li>
+        <li>Eₙ₋₁ = Encrypt(K, Xₙ₋₁)</li>
+        <li>Cₙ = Head(Eₙ₋₁, M) — first M bits become last ciphertext block</li>
+        <li>Pad Pₙ with zeros: P = Pₙ || 0^(B-M)</li>
+        <li>Dn = Eₙ₋₁ XOR P</li>
+        <li>Cₙ₋₁ = Encrypt(K, Dn)</li>
+      </ol>
+
+      <h4>LFSR (Linear Feedback Shift Register)</h4>
+      <div class="concept">
+        An LFSR generates a pseudo-random sequence. The output bit is a linear function (XOR) of some of its bits. The recurrence relation defines which bits are fed back.<br>
+        Example: zₙ₊₁ = (zₙ + zₙ₊₃) mod 2
+      </div>
+      <div class="numerical">
+        <div class="num-title">LFSR: z(n+4) = (z(n) + z(n+3)) mod 2, seed c₀=1, c₁=0, c₂=0, c₃=1</div>
+        The sequence: 1,0,0,1, then z₄ = (z₀+z₃) = (1+1)=0; z₅=(z₁+z₄)=(0+0)=0; z₆=(z₂+z₅)=(0+0)=0; z₇=(z₃+z₆)=(1+0)=1...<br>
+        Sequence: 1,0,0,1,0,0,0,1,0,0,1,0,0,0,1... Period will be determined when the seed repeats.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ CO4 ═══════════════════ -->
+<div class="section" id="co4">
+  <div class="section-header">
+    <span class="co-badge co4">CO4</span>
+    <h2>Asymmetric Key Cryptosystems</h2>
+    <span class="marks-note">20 marks | Any 2 Qs × 10</span>
+  </div>
+
+  <div class="topic" id="co4-rsa">
+    <div class="topic-header">
+      <span class="topic-num">4.1</span>
+      <h3>RSA Algorithm <span class="tag tag-exam">Always 10 marks</span> <span class="tag tag-num">Numerical</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">RSA (Rivest-Shamir-Adleman, 1977) security is based on the <strong>difficulty of factoring large numbers</strong>. Most widely used public-key system.</div>
+
+      <h4>Key Generation</h4>
+      <ol>
+        <li>Choose two large primes p and q</li>
+        <li>n = p × q (modulus, public)</li>
+        <li>φ(n) = (p−1)(q−1)</li>
+        <li>Choose e such that 1 &lt; e &lt; φ(n) and gcd(e, φ(n)) = 1</li>
+        <li>Find d: e×d ≡ 1 mod φ(n) → d = e⁻¹ mod φ(n)</li>
+        <li>Public key: (e, n). Private key: (d, n)</li>
+      </ol>
+
+      <h4>Encryption & Decryption</h4>
+      <div class="formula">Encryption: C = Mᵉ mod n &nbsp;&nbsp;&nbsp; Decryption: M = Cᵈ mod n</div>
+      <p><strong>Proof:</strong> Cᵈ = (Mᵉ)ᵈ = M^(ed) = M^(t×φ(n)+1) ≡ M (mod n) by Euler's theorem.</p>
+
+      <div class="numerical">
+        <div class="num-title">RSA Example (from professor's PPT)</div>
+        p=17, q=11 → n=187, φ(n)=160<br>
+        e=7 (gcd(7,160)=1), d=23 (since 7×23=161=160+1≡1 mod 160)<br>
+        Encrypt M=88: C = 88⁷ mod 187 = <strong>11</strong><br>
+        Decrypt C=11: M = 11²³ mod 187 = <strong>88</strong>
+      </div>
+
+      <h4>RSA Attacks</h4>
+      <table>
+        <tr><th>Attack</th><th>Method</th><th>Defense</th></tr>
+        <tr><td>Factorization</td><td>Factor n to get φ(n) → find d</td><td>n must be ≥ 1024 bits (2048 recommended)</td></tr>
+        <tr><td>Chosen-Ciphertext</td><td>Access to decryption oracle. Multiply C by Xᵉ → get info about P.</td><td>OAEP padding</td></tr>
+        <tr><td>Short Message</td><td>If message space is small, attacker can search exhaustively</td><td>Pad with OAEP</td></tr>
+        <tr><td>Cycling</td><td>Repeatedly encrypt C until you get C back → Pₖ₋₁ = P</td><td>Use large key sizes</td></tr>
+        <tr><td>Timing</td><td>Measure time of exponentiation to guess key bits</td><td>Blinding (add noise to operations)</td></tr>
+        <tr><td>Small exponent e</td><td>If e=3 and same message sent to 3 receivers → CRT gives P³</td><td>Use e = 65537</td></tr>
+      </table>
+
+      <h4>RSA Digital Signature</h4>
+      <div class="numerical">
+        <div class="num-title">Alice has n=143, e=103, d=7. Message M=8. Find signature.</div>
+        Signature S = M^d mod n = 8^7 mod 143<br>
+        8² = 64; 8⁴ = 4096 ≡ 4096-28×143 = 4096-4004 = 92; 8⁷ = 8⁴×8²×8 = 92×64×8 mod 143<br>
+        92×64 = 5888 ≡ 5888-41×143 = 5888-5863 = 25; 25×8 = 200 ≡ 200-143 = <strong>57</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="co4-dh">
+    <div class="topic-header">
+      <span class="topic-num">4.2</span>
+      <h3>Diffie-Hellman Key Exchange <span class="tag tag-num">Numerical</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">First published public-key algorithm (1976). Allows two parties to establish a shared secret key over an insecure channel. Security based on <strong>Discrete Logarithm Problem</strong>.</div>
+
+      <h4>Algorithm</h4>
+      <p>Public parameters: prime q, primitive root α of q.</p>
+      <ul>
+        <li>Alice: choose secret Xₐ &lt; q, compute Yₐ = αˣᵃ mod q, send Yₐ</li>
+        <li>Bob: choose secret X_B &lt; q, compute Y_B = αˣᵇ mod q, send Y_B</li>
+        <li>Alice computes K = (Y_B)^Xₐ mod q</li>
+        <li>Bob computes K = (Yₐ)^X_B mod q</li>
+        <li>Both get same K = α^(XₐX_B) mod q</li>
+      </ul>
+
+      <div class="numerical">
+        <div class="num-title">DH Example: q=353, α=3, Xₐ=97, X_B=233</div>
+        Yₐ = 3⁹⁷ mod 353 = 40<br>
+        Y_B = 3²³³ mod 353 = 248<br>
+        K = 248⁹⁷ mod 353 = 160 (Alice)<br>
+        K = 40²³³ mod 353 = 160 (Bob) ✓
+      </div>
+
+      <h4>Man-in-the-Middle Attack on DH</h4>
+      <div class="exam-tip"><strong>📝 Very important question — explain MITM on DH with numbers:</strong></div>
+      <ol>
+        <li>Darth generates two key pairs (X_D1, Y_D1) and (X_D2, Y_D2)</li>
+        <li>Alice sends Yₐ → Darth intercepts, sends Y_D1 to Bob, computes K₂ = Yₐ^X_D2</li>
+        <li>Bob sends Y_B → Darth intercepts, sends Y_D2 to Alice, computes K₁ = Y_B^X_D1</li>
+        <li>Alice-Darth share K₂; Bob-Darth share K₁. Alice and Bob think they share a key but Darth intercepts all!</li>
+      </ol>
+      <p><strong>Fix:</strong> Authenticate public keys using digital certificates/signatures.</p>
+    </div>
+  </div>
+
+  <div class="topic" id="co4-elgamal">
+    <div class="topic-header">
+      <span class="topic-num">4.3</span>
+      <h3>ElGamal Cryptosystem <span class="tag tag-num">Numerical</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">Based on Discrete Logarithm Problem. Probabilistic (different ciphertexts for same plaintext using different r).</div>
+      <h4>Key Generation (Bob)</h4>
+      <ul>
+        <li>Choose large prime p, primitive root e₁</li>
+        <li>Choose secret d ≤ p−2, compute e₂ = e₁ᵈ mod p</li>
+        <li>Public key: (e₁, e₂, p). Private key: d</li>
+      </ul>
+      <h4>Encryption (Alice)</h4>
+      <ul>
+        <li>Choose random r, compute C₁ = e₁ʳ mod p</li>
+        <li>Compute C₂ = (e₂ʳ × P) mod p</li>
+        <li>Send (C₁, C₂)</li>
+      </ul>
+      <h4>Decryption (Bob)</h4>
+      <div class="formula">P = [C₂ × (C₁ᵈ)⁻¹] mod p = [C₂ × C₁^(p-1-d)] mod p</div>
+      <div class="numerical">
+        <div class="num-title">ElGamal Example: p=11, e₁=2, d=3, e₂=8, r=4, P=7</div>
+        C₁ = 2⁴ mod 11 = 16 mod 11 = 5<br>
+        C₂ = (8⁴ × 7) mod 11 = (4096 × 7) mod 11 = (4096 mod 11 × 7) mod 11 = (3 × 7) mod 11 = 21 mod 11 = 10<br>
+        Actually: 8⁴=4096; 4096 mod 11 = 4096-372×11 = 4096-4092 = 4. C₂ = (4×7) mod 11 = 28 mod 11 = 6<br>
+        C = (5, 6). Decrypt: C₁ᵈ = 5³ mod 11 = 125 mod 11 = 4. P = 6 × 4⁻¹ mod 11 = 6 × 3 = 18 mod 11 = 7 ✓
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="co4-ecc">
+    <div class="topic-header">
+      <span class="topic-num">4.4</span>
+      <h3>Elliptic Curve Cryptography (ECC) <span class="tag tag-exam">Always Asked</span> <span class="tag tag-num">Numerical</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">
+        ECC provides same security as RSA/DH with much smaller key sizes (160-bit ECC ≈ 1024-bit RSA). Security based on <strong>Elliptic Curve Discrete Logarithm Problem (ECDLP)</strong>: given Q = kP, find k.
+      </div>
+
+      <h4>Elliptic Curve Equation</h4>
+      <div class="formula">y² ≡ x³ + ax + b (mod p) &nbsp;&nbsp; where 4a³ + 27b² ≠ 0</div>
+      <p>The set of points satisfying this + a point at infinity O forms an additive group.</p>
+
+      <h4>Point Addition Rules — Most Important for Numericals</h4>
+      <div class="numerical">
+        <div class="num-title">Case 1: P ≠ Q (P + Q = R)</div>
+        λ = (y_Q − y_P) / (x_Q − x_P) mod p  [use multiplicative inverse for division]<br>
+        x_R = λ² − x_P − x_Q mod p<br>
+        y_R = λ(x_P − x_R) − y_P mod p
+      </div>
+      <div class="numerical">
+        <div class="num-title">Case 2: P = Q (Doubling, 2P)</div>
+        λ = (3x_P² + a) / (2y_P) mod p<br>
+        x_R = λ² − 2x_P mod p<br>
+        y_R = λ(x_P − x_R) − y_P mod p
+      </div>
+      <div class="numerical">
+        <div class="num-title">Case 3: P = (x, y), Q = (x, −y mod p) → P + Q = O (point at infinity)</div>
+      </div>
+
+      <div class="numerical">
+        <div class="num-title">E₂₃(1,1): Find (1,7) + (6,4)</div>
+        λ = (4−7)/(6−1) mod 23 = (−3)(5⁻¹) mod 23 = (20)(14) mod 23 = 280 mod 23 = 280 − 12×23 = 4<br>
+        Wait, let me recalculate: 5⁻¹ mod 23: 5×14=70=3×23+1, so 5⁻¹=14.<br>
+        λ = (−3 mod 23) × 14 = 20 × 14 = 280 mod 23 = 280 − 12×23 = 280 − 276 = 4<br>
+        x_R = 4² − 1 − 6 = 16 − 7 = 9 mod 23 = 9<br>
+        y_R = 4(1 − 9) − 7 = 4(−8) − 7 = −32 − 7 = −39 mod 23 = −39 + 2×23 = 7<br>
+        Result: <strong>(9, 7)</strong>
+      </div>
+
+      <div class="numerical">
+        <div class="num-title">E₂₃(1,1): Find P+R where P=(5,4) and R=(18,3). Note: Q=(18,20), P+Q=(9,7)</div>
+        If R = (18, 3) and Q = (18, 20): since 3+20=23≡0 mod 23, R = −Q.<br>
+        So P + R = P + (−Q) = P − Q = (P+Q result) adjusted.<br>
+        Alternatively, use the formula directly with P=(5,4) and R=(18,3).<br>
+        λ = (3−4)/(18−5) mod 23 = (−1)(13⁻¹) mod 23. 13⁻¹: 13×16=208=9×23+1, so 13⁻¹=16.<br>
+        λ = (−1)(16) = −16 mod 23 = 7<br>
+        x_R = 7² − 5 − 18 = 49 − 23 = 26 mod 23 = 3<br>
+        y_R = 7(5 − 3) − 4 = 14 − 4 = 10<br>
+        <strong>P + R = (3, 10)</strong>
+      </div>
+
+      <h4>ECC Encryption & Decryption</h4>
+      <ul>
+        <li><strong>Key Gen:</strong> Choose point G (generator), private key n_B, public key P_B = n_B × G</li>
+        <li><strong>Encrypt:</strong> Choose random k. Ciphertext = {kG, P_m + k×P_B}</li>
+        <li><strong>Decrypt:</strong> (P_m + k×P_B) − n_B×(kG) = P_m + k×n_B×G − n_B×k×G = P_m</li>
+      </ul>
+
+      <h4>ECDLP</h4>
+      <p>Given P and Q = kP, finding k is infeasible for large groups. This is the security foundation of ECC.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ CO5 ═══════════════════ -->
+<div class="section" id="co5">
+  <div class="section-header">
+    <span class="co-badge co5">CO5</span>
+    <h2>Message Integrity, Authentication & Key Management</h2>
+    <span class="marks-note">25 marks | Any 5 Qs × 5</span>
+  </div>
+
+  <div class="topic" id="co5-hash">
+    <div class="topic-header">
+      <span class="topic-num">5.1</span>
+      <h3>Hash Functions — Properties & Algorithms <span class="tag tag-exam">6 Properties = 6 marks</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">A hash function H maps a message of any size to a fixed-length digest. H: M → h where |h| is fixed regardless of |M|.</div>
+      
+      <h4>6 Properties of a Cryptographic Hash Function</h4>
+      <ol>
+        <li><strong>Variable input size:</strong> H can be applied to a block of data of any size</li>
+        <li><strong>Fixed output size:</strong> H produces a fixed-length output (e.g., 256 bits for SHA-256)</li>
+        <li><strong>Efficiency:</strong> H(x) is relatively easy to compute for any given x</li>
+        <li><strong>One-way (Preimage resistance):</strong> Given h, it is computationally infeasible to find x such that H(x) = h</li>
+        <li><strong>Weak collision resistance (2nd preimage):</strong> Given x, infeasible to find y ≠ x such that H(y) = H(x)</li>
+        <li><strong>Strong collision resistance:</strong> Infeasible to find ANY pair (x, y) with x ≠ y such that H(x) = H(y)</li>
+      </ol>
+
+      <h4>Hash Algorithms Comparison</h4>
+      <table>
+        <tr><th>Algorithm</th><th>Digest Size</th><th>Block Size</th><th>Rounds</th></tr>
+        <tr><td>MD5</td><td>128 bits</td><td>512 bits</td><td>4 passes × 16 steps</td></tr>
+        <tr><td>SHA-1</td><td>160 bits</td><td>512 bits</td><td>4 passes</td></tr>
+        <tr><td>SHA-256</td><td>256 bits</td><td>512 bits</td><td>64 rounds</td></tr>
+        <tr><td>SHA-512</td><td>512 bits</td><td>1024 bits</td><td>80 rounds</td></tr>
+      </table>
+
+      <h4>Iterated Hash Structure (Merkle-Damgård)</h4>
+      <p>Message is padded and split into L blocks. Hash uses a compression function f:</p>
+      <div class="formula">CV₀ = IV (initial value) &nbsp;&nbsp;&nbsp; CVᵢ = f(CVᵢ₋₁, Yᵢ₋₁) &nbsp;&nbsp;&nbsp; H(M) = CV_L</div>
+    </div>
+  </div>
+
+  <div class="topic" id="co5-mac">
+    <div class="topic-header">
+      <span class="topic-num">5.2</span>
+      <h3>MDC vs MAC, HMAC & CMAC <span class="tag tag-exam">Always In Exam</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="two-col">
+        <div class="box">
+          <h5>MDC — Modification Detection Code</h5>
+          <p>A hash of the message that proves <em>integrity only</em> — that the message hasn't been changed. No authentication of sender. Anyone can compute H(M).</p>
+          <p>Use case: Software downloads (verify file integrity via published hash).</p>
+        </div>
+        <div class="box">
+          <h5>MAC — Message Authentication Code</h5>
+          <p>Hash computed using a secret key shared by sender and receiver. Proves both <em>integrity AND authentication</em>. If attacker intercepts, they can't forge a new MAC without the secret key.</p>
+          <p>Computed as: MAC = H(K || M) or using HMAC construction.</p>
+        </div>
+      </div>
+
+      <h4>HMAC (Hashed MAC)</h4>
+      <ol>
+        <li>Pad key K with zeros to block size → K⁺</li>
+        <li>Compute ipad-key: K⁺ XOR ipad (ipad = 0x36 repeated)</li>
+        <li>Prepend to message → compute hash: intermediate = H((K⁺⊕ipad) || M)</li>
+        <li>Compute opad-key: K⁺ XOR opad (opad = 0x5C repeated)</li>
+        <li>HMAC = H((K⁺⊕opad) || intermediate)</li>
+      </ol>
+      <div class="concept">HMAC uses the underlying hash function twice, making it very secure. Resistant to length-extension attacks.</div>
+
+      <h4>CMAC (Cipher-based MAC)</h4>
+      <p>Uses a block cipher (like AES) in CBC mode. The last block is XORed with a derived subkey before encryption to prevent forgery. More efficient for hardware implementations.</p>
+
+      <h4>MDC vs MAC — When to Use</h4>
+      <table>
+        <tr><th></th><th>MDC</th><th>MAC</th></tr>
+        <tr><td>Integrity</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Authentication</td><td>✗</td><td>✓</td></tr>
+        <tr><td>Requires shared secret</td><td>✗</td><td>✓</td></tr>
+        <tr><td>Example use</td><td>File checksum</td><td>Authenticated API request</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="topic" id="co5-sig">
+    <div class="topic-header">
+      <span class="topic-num">5.3</span>
+      <h3>Digital Signatures — RSA & ElGamal Schemes</h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">Digital signature provides <strong>authentication + non-repudiation + integrity</strong>. Only the sender with the private key can create the signature; anyone with the public key can verify.</div>
+      
+      <h4>RSA Signature Scheme</h4>
+      <ul>
+        <li><strong>Sign:</strong> S = H(M)ᵈ mod n (sign the hash using private key d)</li>
+        <li><strong>Verify:</strong> Compute H(M), compare with Sᵉ mod n</li>
+      </ul>
+
+      <h4>ElGamal Signature Scheme</h4>
+      <p>Public params: prime p, primitive root α, public key β = αᵃ mod p (a is private).</p>
+      <ul>
+        <li>Choose random k, gcd(k, p−1)=1</li>
+        <li>r = αᵏ mod p</li>
+        <li>s = k⁻¹(H(M) − a×r) mod (p−1)</li>
+        <li>Signature = (r, s)</li>
+        <li><strong>Verify:</strong> αᴴ⁽ᴹ⁾ ≡ βʳ × rˢ (mod p)</li>
+      </ul>
+      <div class="exam-tip"><strong>📝 Diagram-based question:</strong> "Using proper diagram, explain Iterated Hash." → Show IV → compression function → chaining variable → ... → final hash. Show how message is padded and processed in blocks.</div>
+    </div>
+  </div>
+
+  <div class="topic" id="co5-auth">
+    <div class="topic-header">
+      <span class="topic-num">5.4</span>
+      <h3>Entity Authentication Protocols <span class="tag tag-exam">5 marks each</span></h3>
+    </div>
+    <div class="topic-body">
+      <h4>Password-Based Authentication Methods</h4>
+      <ol>
+        <li><strong>Fixed Password (plain):</strong> Same password every time. Vulnerable to eavesdropping, replay, dictionary attack.</li>
+        <li><strong>Hashed Password:</strong> Store H(password) instead of plaintext. Better, but dictionary attack still possible.</li>
+        <li><strong>Salted Password:</strong> Store H(salt || password). Salt is random value added per user. Makes dictionary attacks infeasible.</li>
+        <li><strong>Two-factor (ATM card + PIN):</strong> "Something you have" + "Something you know"</li>
+      </ol>
+      
+      <h4>One-Time Password (OTP)</h4>
+      <ul>
+        <li><strong>Approach 1:</strong> Pre-agreed list of passwords, used sequentially</li>
+        <li><strong>Approach 2:</strong> Pᵢ₊₁ = E(Pᵢ, K) — sequentially updated, encrypted with previous password</li>
+        <li><strong>Approach 3:</strong> Hash chain: P₀ = H^n(seed), P₁ = H^(n-1)(seed), ... Pₙ = seed. Used in reverse.</li>
+      </ul>
+
+      <h4>Challenge-Response Protocol</h4>
+      <p>Claimant proves identity without sending the secret:</p>
+      <ol>
+        <li>Claimant: "I am Alice, I want access"</li>
+        <li>Verifier sends Nonce (random number = challenge)</li>
+        <li>Alice responds with E_K(Nonce) — encrypted response</li>
+        <li>Verifier decrypts and checks it matches</li>
+      </ol>
+
+      <h4>KDC Protocols</h4>
+      <p>Key Distribution Center (KDC) = trusted third party that creates session keys between users.</p>
+      <div class="concept"><strong>Needham-Schroeder Protocol:</strong> 5-step protocol. Alice requests session key for Bob from KDC. KDC creates ticket for Bob. Mutual authentication using nonces.</div>
+      <div class="concept"><strong>Otway-Rees Protocol:</strong> More efficient. Both Alice and Bob communicate with KDC simultaneously. Prevents replay attacks via nonces.</div>
+      <div class="exam-tip"><strong>📝 "Illustrate and Explain a simple protocol by which Alice and Bob can exchange messages using a symmetric key cryptosystem taking the help of a KDC."</strong> Show the 3-party exchange: (1) A→KDC: request for session key; (2) KDC→A: session key encrypted for A and ticket for B; (3) A→B: ticket; (4) B verifies with KDC's key.</div>
+    </div>
+  </div>
+
+  <div class="topic" id="co5-key">
+    <div class="topic-header">
+      <span class="topic-num">5.5</span>
+      <h3>Key Management & Distribution</h3>
+    </div>
+    <div class="topic-body">
+      <h4>Problem of Key Distribution</h4>
+      <p>In symmetric key system with n users, n(n-1)/2 keys needed. Very difficult to manage and distribute securely.</p>
+      
+      <h4>Session Keys via KDC</h4>
+      <ol>
+        <li>Each user shares a secret key with the KDC only</li>
+        <li>When two users want to communicate, KDC creates a temporary <strong>session key</strong></li>
+        <li>Session key sent to both users encrypted with their respective KDC keys</li>
+        <li>Session key used for the duration of communication, then discarded</li>
+      </ol>
+
+      <h4>Station-to-Station (STS) Key Agreement</h4>
+      <p>Extends Diffie-Hellman with digital signatures to prevent MITM attack. Both parties sign their DH public values.</p>
+
+      <h4>Kerberos</h4>
+      <p>Popular authentication system (used in Windows). Three components: Authentication Server (AS), Ticket-Granting Server (TGS), and Real Server. User authenticates once to AS, gets a ticket for TGS, then gets service tickets for each server needed.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ CO6 ═══════════════════ -->
+<div class="section" id="co6">
+  <div class="section-header">
+    <span class="co-badge co6">CO6</span>
+    <h2>Image Encryption</h2>
+    <span class="marks-note">10 marks | Short notes × 2</span>
+  </div>
+
+  <div class="warning"><strong>⚠️ CO6 = Short notes format, 5 marks each. Pick any 2 from: Image Encryption, Image Scrambling, Watermarking, LFSR Encryption, Confusion & Diffusion, Chaotic/Non-Chaotic Encryption, IESCG, Performance Measures.</strong></div>
+
+  <div class="topic" id="co6-intro">
+    <div class="topic-header">
+      <span class="topic-num">6.1</span>
+      <h3>Overview of Image Encryption</h3>
+    </div>
+    <div class="topic-body">
+      <p>Digital images are widely used in military, medical, and personal applications. Traditional ciphers (AES, DES) are NOT ideal for images because:</p>
+      <ul>
+        <li>Images have <strong>high redundancy</strong> — large areas of similar pixels</li>
+        <li>Images have <strong>strong correlation between adjacent pixels</strong></li>
+        <li>Images are <strong>less sensitive</strong> to small changes (a few pixel changes aren't noticeable)</li>
+        <li>Images have <strong>bulk data</strong> — traditional ciphers are slow</li>
+      </ul>
+
+      <h4>Image Encryption Methods Classification</h4>
+      <div class="two-col">
+        <div class="box">
+          <h5>Position Permutation Based</h5>
+          <p>Rearrange pixels/bits/blocks. Destroys spatial correlation. Histogram unchanged.</p>
+          <ul>
+            <li>Bit permutation</li>
+            <li>Pixel permutation</li>
+            <li>Block permutation</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h5>Value Transform Based</h5>
+          <p>Change pixel values using mathematical functions. Changes the histogram.</p>
+          <ul>
+            <li>LFSR-based XOR</li>
+            <li>Mask operation</li>
+            <li>Cyclic shift</li>
+          </ul>
+        </div>
+      </div>
+      <p><strong>Hybrid Methods:</strong> Combination of both — first permute (confusion), then transform values (diffusion). Most secure.</p>
+    </div>
+  </div>
+
+  <div class="topic" id="co6-confusion">
+    <div class="topic-header">
+      <span class="topic-num">6.2</span>
+      <h3>Confusion and Diffusion in Image Encryption <span class="tag tag-exam">Short Note</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="two-col">
+        <div class="box">
+          <h5>Confusion Step</h5>
+          <p><strong>Purpose:</strong> Destroy spatial correlation between adjacent pixels.</p>
+          <p><strong>Method:</strong> Scramble/permute pixel locations.</p>
+          <p><strong>Result:</strong> Image looks like noise, but histogram of original = histogram of confused image.</p>
+          <p><strong>Problem:</strong> Histogram analysis can still detect scrambled image.</p>
+        </div>
+        <div class="box">
+          <h5>Diffusion Step</h5>
+          <p><strong>Purpose:</strong> Change pixel values so histogram becomes uniformly distributed.</p>
+          <p><strong>Method:</strong> XOR pixels with pseudo-random values, bit/pixel value transformation.</p>
+          <p><strong>Result:</strong> Histogram of diffused image is flat — each gray level appears with equal probability.</p>
+        </div>
+      </div>
+      <div class="concept">
+        A complete image encryption system performs <strong>Confusion first, then Diffusion</strong>. Confusion handles the <em>where</em> (position), Diffusion handles the <em>what value</em>. Both together provide comprehensive security.
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="co6-scrambling">
+    <div class="topic-header">
+      <span class="topic-num">6.3</span>
+      <h3>Image Scrambling — Scan Patterns & Arnold Transform <span class="tag tag-exam">Short Note</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">Image scrambling rearranges pixel positions to reduce intelligibility. It's a basic form of confusion.</div>
+
+      <h4>SCAN Patterns (8 Types)</h4>
+      <ol>
+        <li><strong>Raster Horizontal:</strong> Row by row, left to right</li>
+        <li><strong>Raster Vertical:</strong> Column by column, top to bottom</li>
+        <li><strong>Snake Horizontal:</strong> Alternate row directions (zigzag horizontally)</li>
+        <li><strong>Snake Vertical:</strong> Alternate column directions</li>
+        <li><strong>Z Horizontal:</strong> Z-shaped pattern</li>
+        <li><strong>Z Vertical:</strong> Vertical Z-shape</li>
+        <li><strong>Diagonal:</strong> Diagonal traversal</li>
+        <li><strong>Zigzag:</strong> Diagonal zigzag (used in JPEG)</li>
+        <li><strong>Spiral:</strong> Outward/inward spiral</li>
+      </ol>
+
+      <h4>Arnold Cat Map</h4>
+      <div class="formula">
+        x' = (x + y) mod N<br>
+        y' = (x + 2y) mod N
+      </div>
+      <p>Applied to an N×N image. The transformation is periodic — after some iterations, original image reappears. Key is the number of iterations.</p>
+      <div class="concept"><strong>Important:</strong> Arnold Cat Map only permutes positions — histogram is unchanged. Need diffusion step too.</div>
+
+      <h4>Pixel Sieve Method</h4>
+      <p>Image is divided into two parts using a key. Part 1 contains odd-indexed pixels, Part 2 contains even-indexed. They are interleaved in a different order to create the scrambled image.</p>
+      <div class="numerical">
+        <div class="num-title">Bit Sieve Method</div>
+        Original: [1,0,0,1,1,1,0,1,0,0]<br>
+        Key:      [1,1,0,1,0,0,1,0,1,1]<br>
+        Share 1 (key=1 positions): bits at positions where key=1<br>
+        Share 2 (key=0 positions): bits at positions where key=0<br>
+        Scrambled image created by interleaving the shares.
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="co6-lfsr">
+    <div class="topic-header">
+      <span class="topic-num">6.4</span>
+      <h3>LFSR-Based Image Encryption <span class="tag tag-exam">Short Note</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">
+        <strong>LFSR (Linear Feedback Shift Register)</strong> generates a pseudo-random binary sequence. The register is initialized to a non-zero state (key). Output is XORed with image pixels.
+      </div>
+      <p>LFSR structure: n-bit register. Each clock cycle, bits shift right. New bit = XOR of selected bits (feedback polynomial).</p>
+
+      <h4>LFSR-Based Encryption Process</h4>
+      <ol>
+        <li>Initialize LFSR with seed (secret key)</li>
+        <li>Generate LFSR sequence of length = image size</li>
+        <li>XOR each pixel value with corresponding LFSR bit/byte</li>
+        <li>Decryption: Same process (XOR is its own inverse)</li>
+      </ol>
+
+      <h4>Mask Operation</h4>
+      <div class="numerical">
+        <div class="num-title">Mask-based diffusion for 4×5 image</div>
+        Generate sequence of length (w+h) = (5+4) = 9 using random-seq()<br>
+        Create 2D Mask: row i = circular shift of row i-1<br>
+        Example Mask (4×5):<br>
+        1 3 4 2 5<br>
+        2 5 1 3 4<br>
+        3 4 2 5 1<br>
+        5 1 3 4 2<br>
+        XOR image with Mask → encrypted image
+      </div>
+    </div>
+  </div>
+
+  <div class="topic" id="co6-chaos">
+    <div class="topic-header">
+      <span class="topic-num">6.5</span>
+      <h3>Chaotic & Non-Chaotic Image Encryption <span class="tag tag-exam">Short Note</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">
+        <strong>Chaos theory:</strong> Deterministic systems that are extremely sensitive to initial conditions. "The approximate present does not approximately determine the future." Used to generate pseudo-random sequences for encryption.
+      </div>
+
+      <h4>Chaotic Maps</h4>
+      <table>
+        <tr><th>Map</th><th>Formula</th><th>Properties</th></tr>
+        <tr><td>Logistic Map (1D)</td><td>xₙ₊₁ = r·xₙ(1−xₙ)</td><td>Chaotic for r ∈ (3.57, 4)</td></tr>
+        <tr><td>Skew Tent Map</td><td>Piecewise linear, parameter a</td><td>Uniform distribution, 0.5 ≤ a &lt; 1</td></tr>
+        <tr><td>Arnold Cat Map (2D)</td><td>x'=(x+y) mod N; y'=(x+2y) mod N</td><td>Image scrambling, periodic</td></tr>
+        <tr><td>Henon Map (2D)</td><td>xₙ₊₁=1−axₙ²+yₙ; yₙ₊₁=bxₙ</td><td>a=1.4, b=0.3 canonical</td></tr>
+      </table>
+
+      <h4>Chaos-Based Encryption Process</h4>
+      <ol>
+        <li><strong>Confusion Phase:</strong> Generate chaotic sequence → derive permutation → permute image rows/columns repeatedly</li>
+        <li><strong>Diffusion Phase:</strong> Generate binary sequence from chaotic map → XOR with confused image (Iterative XOR or Mask Operation)</li>
+      </ol>
+
+      <h4>Advantages of Chaos-Based Encryption</h4>
+      <ul>
+        <li>Good randomness and unpredictability</li>
+        <li>Highly sensitive to key (initial conditions)</li>
+        <li>Large key space</li>
+        <li>Fast for real-time applications</li>
+      </ul>
+
+      <h4>Non-Chaotic Methods</h4>
+      <ul>
+        <li>LFSR-based (deterministic but not chaotic)</li>
+        <li>SCAN-pattern based scrambling</li>
+        <li>Cyclic group-based permutation (IESCG)</li>
+        <li>Fibonacci transform</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="topic" id="co6-iescg">
+    <div class="topic-header">
+      <span class="topic-num">6.6</span>
+      <h3>IESCG — Image Encryption by Sequence from Cyclic Groups <span class="tag tag-exam">Short Note</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">
+        IESCG uses properties of cyclic groups (Z*ₚ, ×) to generate a pseudo-random permutation for image encryption. Security is rooted in the same mathematics as DH and ElGamal.
+      </div>
+
+      <h4>Permutation Generation from Cyclic Group</h4>
+      <ol>
+        <li>Choose prime p &gt; n (image size), and generator g of Z*ₚ</li>
+        <li>Compute sequence: s₀=g, s₁=g², s₂=g³, ... (mod p)</li>
+        <li>Keep only values sᵢ ≤ n (discard others)</li>
+        <li>The resulting sequence is the permutation</li>
+      </ol>
+      <div class="numerical">
+        <div class="num-title">Example: n=5, p=7, g=6 (generator of Z*₇)</div>
+        6¹=6, 6²=36≡1, 6³=6, ... Actually 6 has order 2, not 6. Use g=3:<br>
+        3¹=3, 3²=2, 3³=6, 3⁴=4, 3⁵=5, 3⁶=1 → all values 1-6 appear.<br>
+        Keep values ≤ 5: 3,2,−,4,5,1. Permutation = [3,2,4,5,1] for positions 1-5.
+      </div>
+
+      <h4>IESCG Encryption System</h4>
+      <ul>
+        <li><strong>Confusion Phase:</strong> Row permutation (using permutation from cyclic group for rows) and column permutation (different cyclic group for columns), iterated multiple times alternately</li>
+        <li><strong>Diffusion Phase:</strong> (i) Bit Level Permutation (BLP) — permute bits within pixel blocks; (ii) Bit Level Transformation (BLT) — circular shift of pixel values based on position</li>
+      </ul>
+
+      <h4>Why Cyclic Groups?</h4>
+      <ul>
+        <li>Mathematically well-understood</li>
+        <li>Large key space (p, g parameters)</li>
+        <li>Generation is fast</li>
+        <li>Different generators give different permutations</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="topic" id="co6-watermark">
+    <div class="topic-header">
+      <span class="topic-num">6.7</span>
+      <h3>Image Watermarking <span class="tag tag-exam">Short Note</span></h3>
+    </div>
+    <div class="topic-body">
+      <div class="concept">
+        <strong>Watermarking:</strong> Hiding identity information within an image to prove ownership and prevent unauthorized use. Different from encryption — the image is still viewable, but carries a hidden mark.
+      </div>
+
+      <h4>Watermarking Process</h4>
+      <ol>
+        <li>Create watermark image (logo, signature, etc.)</li>
+        <li>Scramble watermark using a key (for security)</li>
+        <li>Embed scrambled watermark into original image (in spatial or frequency domain)</li>
+        <li>Result: Watermarked image — visually similar to original</li>
+      </ol>
+
+      <h4>Comparison: Cryptography vs Steganography vs Watermarking</h4>
+      <table>
+        <tr><th>Technique</th><th>Goal</th><th>Visibility</th></tr>
+        <tr><td>Cryptography</td><td>Protect content of message (make it unreadable)</td><td>Cipher is visible but unreadable</td></tr>
+        <tr><td>Steganography</td><td>Hide existence of message</td><td>Message completely hidden in cover</td></tr>
+        <tr><td>Watermarking</td><td>Prove ownership/identity</td><td>Image visible, watermark hidden inside</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="topic" id="co6-measures">
+    <div class="topic-header">
+      <span class="topic-num">6.8</span>
+      <h3>Performance Measures for Image Encryption <span class="tag tag-exam">Short Note</span></h3>
+    </div>
+    <div class="topic-body">
+      <h4>Key Space Analysis</h4>
+      <p>Key space must be large enough to resist brute-force attacks (at least 2¹²⁸ operations recommended).</p>
+
+      <h4>Information Entropy</h4>
+      <div class="formula">H(m) = -Σ pr(mᵢ) × log₂(pr(mᵢ))</div>
+      <p>Maximum entropy = 8 bits for an 8-bit grayscale image (all pixel values equally likely). A good encrypted image should have entropy ≈ 7.999.</p>
+
+      <h4>Histogram Analysis</h4>
+      <p>Original image has non-uniform histogram (peaks at common pixel values). Encrypted image should have a <strong>flat (uniform) histogram</strong>.</p>
+
+      <h4>Correlation Coefficient</h4>
+      <div class="formula">r_xy = [Σ(xᵢ − mean(x))(yᵢ − mean(y))] / [N × Z(x) × Z(y)]</div>
+      <p>Measures correlation between adjacent pixels. Original image: r ≈ 0.97 (high correlation). Encrypted image: r ≈ 0.001 (near zero). Ideal = 0.</p>
+
+      <h4>Differential Attack Resistance — NPCR & UACI</h4>
+      <div class="concept">
+        <strong>NPCR (Number of Pixel Change Rate):</strong> Change 1 pixel in plaintext → compare the two ciphertext images. Should be ≈ 99.6% (nearly all pixels change).<br>
+        <strong>UACI (Unified Average Changing Intensity):</strong> Average intensity difference between two encrypted images. Ideal = 33.33%.
+      </div>
+
+      <h4>Key Sensitivity</h4>
+      <p>A tiny change in the key should produce completely different encrypted images. Measured by NPCR/UACI between images encrypted with slightly different keys. Should be ≈ 99.6% and 33.33%.</p>
+
+      <h4>PSNR (Peak Signal-to-Noise Ratio)</h4>
+      <div class="formula">MSE = (1/MN) Σ(f(x,y) − f'(x,y))² &nbsp;&nbsp;&nbsp; PSNR = 10 log₁₀(255²/MSE)</div>
+      <p>For image encryption, low PSNR is desired (encrypted image looks nothing like original).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ QUICK REFERENCE ════════ -->
+<div class="section">
+  <div class="section-header">
+    <h2 style="color:var(--accent)">⚡ Quick Reference — Professor's Favourite Questions</h2>
+  </div>
+
+  <div class="topic">
+    <div class="topic-header">
+      <span class="topic-num">★</span>
+      <h3>Most Repeated Questions Across Papers</h3>
+    </div>
+    <div class="topic-body">
+      <h4>CO1 — Likely Questions</h4>
+      <ul>
+        <li>Explain Replay Attack and DoS. How to prevent?</li>
+        <li>Illustrate Unforgettable Substitution Cipher (with example keyword)</li>
+        <li>Explain monoalphabetic vs polyalphabetic; which is more vulnerable?</li>
+        <li>Define integrity and non-repudiation with examples</li>
+        <li>Transposition cipher with double permutation</li>
+      </ul>
+
+      <h4>CO2 — Likely Questions</h4>
+      <ul>
+        <li>Find multiplicative inverse using Extended Euclidean Algorithm</li>
+        <li>Prove φ(n) is even for n &gt; 2</li>
+        <li>Find all primitive roots of (Z*ₙ, ×)</li>
+        <li>Solve system of congruences using CRT</li>
+        <li>Check if a polynomial is irreducible/reducible over GF(2)</li>
+        <li>Find inverse of matrix over Z_n (Hill cipher basis)</li>
+      </ul>
+
+      <h4>CO3 — Likely Questions</h4>
+      <ul>
+        <li>Explain DES Key Generation with flow diagram</li>
+        <li>What is the output of S₂ box for input 101010?</li>
+        <li>Describe Avalanche Effect in DES</li>
+        <li>Explain structure of each round in AES during encryption</li>
+        <li>Explain permutation phase (ShiftRows) in AES</li>
+        <li>Explain MixColumns in AES with example</li>
+        <li>Which transformation is NOT used in final AES round?</li>
+        <li>Explain RC4 S and T vector initialization with example key</li>
+        <li>List modes of operation of Modern Block Cipher</li>
+        <li>Explain Ciphertext Stealing</li>
+        <li>Explain CBC mode</li>
+      </ul>
+
+      <h4>CO4 — Likely Questions</h4>
+      <ul>
+        <li>RSA encryption/decryption with numerical example</li>
+        <li>Explain plaintext attacks on RSA (short message, cycling, unconcealed)</li>
+        <li>Diffie-Hellman key exchange with numerical + MITM attack</li>
+        <li>ElGamal cryptosystem with numerical example</li>
+        <li>ECC point addition + encryption/decryption with example</li>
+        <li>Explain ECDLP</li>
+        <li>Find points on elliptic curve E₂₃(1,1)</li>
+      </ul>
+
+      <h4>CO5 — Likely Questions</h4>
+      <ul>
+        <li>Six properties of Hash Function</li>
+        <li>Difference between MDC and MAC with scenarios</li>
+        <li>Difference between HMAC and CMAC with scenarios</li>
+        <li>Explain Iterated Hash structure with diagram</li>
+        <li>Password-based entity authentication (all 4 methods)</li>
+        <li>KDC simple protocol / Needham-Schroeder / Otway-Rees</li>
+        <li>RSA signature scheme with numerical</li>
+        <li>Security scheme question (2024 Q8: sender encrypts with Key1, hashes, encrypts hash with Key2 — what objectives are achieved?)</li>
+      </ul>
+
+      <h4>CO6 — Likely Short Notes</h4>
+      <ul>
+        <li>Image Encryption Methods (position, value, hybrid)</li>
+        <li>Confusion and Diffusion in image encryption</li>
+        <li>Image Scrambling (SCAN patterns + Arnold Cat Map)</li>
+        <li>LFSR-based encryption + mask operation</li>
+        <li>Chaotic image encryption (logistic map, process)</li>
+        <li>IESCG — permutation from cyclic groups</li>
+        <li>Performance measures (entropy, NPCR, UACI, correlation)</li>
+        <li>Image Watermarking vs Cryptography vs Steganography</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+// Make topic headers toggleable
+document.querySelectorAll('.topic-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const body = header.nextElementSibling;
+    if (body && body.classList.contains('topic-body')) {
+      if (body.style.display === 'none') {
+        body.style.display = 'block';
+      } else {
+        body.style.display = 'none';
+      }
+    }
+  });
+});
+
+// Smooth scrolling for nav links
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', e => {
+    const href = link.getAttribute('href');
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>

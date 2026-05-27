@@ -1,0 +1,2509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Technologies II — Complete Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #13161e;
+    --surface2: #1a1e2a;
+    --border: #252a38;
+    --accent: #e8b86d;
+    --accent2: #6d9ee8;
+    --accent3: #e86d8a;
+    --accent4: #6de8b8;
+    --text: #d4cfc7;
+    --text-muted: #7a7870;
+    --text-bright: #f0ebe2;
+    --co1: #e86d8a;
+    --co2: #e8b86d;
+    --co3: #6d9ee8;
+    --co4: #6de8b8;
+    --co5: #b86de8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 16px;
+    line-height: 1.75;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    width: 280px;
+    min-width: 280px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    padding: 0 0 2rem 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  #sidebar::-webkit-scrollbar { width: 4px; }
+  #sidebar::-webkit-scrollbar-track { background: transparent; }
+  #sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .sidebar-header {
+    padding: 1.5rem 1.25rem 1rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+    z-index: 10;
+  }
+
+  .sidebar-header h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .sidebar-header p {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .co-section { padding: 0.75rem 0 0.25rem; }
+
+  .co-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1.25rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+
+  .co-label:hover { color: var(--text-bright); }
+
+  .co-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .co1-dot { background: var(--co1); }
+  .co2-dot { background: var(--co2); }
+  .co3-dot { background: var(--co3); }
+  .co4-dot { background: var(--co4); }
+  .co5-dot { background: var(--co5); }
+
+  .nav-links { list-style: none; }
+
+  .nav-links a {
+    display: block;
+    padding: 0.3rem 1.25rem 0.3rem 2.25rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    line-height: 1.4;
+    transition: color 0.15s, background 0.15s;
+    border-left: 2px solid transparent;
+  }
+
+  .nav-links a:hover {
+    color: var(--text-bright);
+    background: var(--surface2);
+    border-left-color: var(--accent);
+  }
+
+  /* ── MAIN CONTENT ── */
+  #main {
+    flex: 1;
+    max-width: 900px;
+    padding: 3rem 3.5rem 6rem;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text-bright);
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 span { color: var(--accent); }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-outline { border: 1px solid var(--border); color: var(--text-muted); }
+
+  /* ── EXAM PATTERN BOX ── */
+  .exam-pattern {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .exam-pattern h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .pattern-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 0.75rem;
+  }
+
+  .pattern-item {
+    text-align: center;
+    padding: 0.75rem;
+    background: var(--surface);
+    border-radius: 3px;
+    border: 1px solid var(--border);
+  }
+
+  .pattern-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--accent);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .pattern-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── CO UNITS ── */
+  .co-unit {
+    margin-bottom: 5rem;
+  }
+
+  .co-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .co-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+
+  .co1-tag { background: rgba(232,109,138,0.12); color: var(--co1); border: 1px solid rgba(232,109,138,0.25); }
+  .co2-tag { background: rgba(232,184,109,0.12); color: var(--co2); border: 1px solid rgba(232,184,109,0.25); }
+  .co3-tag { background: rgba(109,158,232,0.12); color: var(--co3); border: 1px solid rgba(109,158,232,0.25); }
+  .co4-tag { background: rgba(109,232,184,0.12); color: var(--co4); border: 1px solid rgba(109,232,184,0.25); }
+  .co5-tag { background: rgba(184,109,232,0.12); color: var(--co5); border: 1px solid rgba(184,109,232,0.25); }
+
+  .co-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--text-bright);
+    font-weight: 700;
+  }
+
+  /* ── TOPICS ── */
+  .topic {
+    margin-bottom: 3rem;
+    scroll-margin-top: 2rem;
+  }
+
+  .topic-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--text-bright);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  .topic-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  /* ── SUBSECTIONS ── */
+  .subsection {
+    margin: 1.25rem 0;
+  }
+
+  .subsection h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .subsection h4::after {
+    content: '';
+    display: block;
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  p { margin-bottom: 0.75rem; }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    padding: 1rem 1.25rem;
+    border-radius: 3px;
+    margin: 1.25rem 0;
+    font-size: 0.9rem;
+  }
+
+  .callout-exam {
+    background: rgba(232,184,109,0.07);
+    border-left: 3px solid var(--accent);
+  }
+
+  .callout-exam strong {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .callout-tip {
+    background: rgba(109,232,184,0.07);
+    border-left: 3px solid var(--co4);
+  }
+
+  .callout-tip strong {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--co4);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .callout-warn {
+    background: rgba(232,109,138,0.07);
+    border-left: 3px solid var(--co1);
+  }
+
+  .callout-warn strong {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--co1);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  /* ── COMPARISON TABLES ── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1.25rem 0;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+
+  thead {
+    background: var(--surface2);
+  }
+
+  thead th {
+    padding: 0.65rem 1rem;
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--surface2); }
+
+  tbody td {
+    padding: 0.6rem 1rem;
+    vertical-align: top;
+    color: var(--text);
+  }
+
+  tbody td:first-child {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent2);
+    white-space: nowrap;
+  }
+
+  /* ── CODE BLOCKS ── */
+  .code-block {
+    background: #0a0c10;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    margin: 1.25rem 0;
+    overflow: hidden;
+  }
+
+  .code-lang {
+    background: var(--surface2);
+    padding: 0.4rem 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .code-lang span {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  pre {
+    padding: 1.25rem;
+    overflow-x: auto;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: #c9d1d9;
+  }
+
+  pre .kw { color: #ff7b72; }
+  pre .str { color: #a5d6ff; }
+  pre .cmt { color: #8b949e; font-style: italic; }
+  pre .cls { color: #ffa657; }
+  pre .fn { color: #d2a8ff; }
+  pre .num { color: #79c0ff; }
+
+  code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.82em;
+    color: var(--accent2);
+    background: rgba(109,158,232,0.1);
+    padding: 0.1em 0.35em;
+    border-radius: 2px;
+  }
+
+  /* ── PRIORITY STARS ── */
+  .priority {
+    display: inline-flex;
+    gap: 1px;
+    margin-left: 0.5rem;
+  }
+
+  .star { color: var(--accent); font-size: 0.8rem; }
+  .star-empty { color: var(--border); font-size: 0.8rem; }
+
+  /* ── QUICK REF TABLE ── */
+  .quick-ref {
+    margin: 2rem 0;
+  }
+
+  .quick-ref-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .quick-ref-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── LISTS ── */
+  ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  li { margin-bottom: 0.35rem; }
+
+  li::marker { color: var(--accent); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+
+  /* ── FLOW DIAGRAM ── */
+  .flow {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin: 1.25rem 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text);
+    white-space: pre;
+    overflow-x: auto;
+    line-height: 1.8;
+  }
+
+  /* ── TOP PRIORITY CHEAT SHEET ── */
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .cheat-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1rem;
+  }
+
+  .cheat-item-q {
+    font-size: 0.82rem;
+    color: var(--text-bright);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    font-family: 'Source Serif 4', serif;
+  }
+
+  .cheat-item-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+  }
+
+  /* ── BACK TO TOP ── */
+  .back-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    margin-top: 2rem;
+    transition: color 0.2s;
+  }
+
+  .back-top:hover { color: var(--accent); }
+
+  /* ── SCROLL INDICATOR ── */
+  #progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--co1), var(--accent), var(--co3), var(--co4), var(--co5));
+    z-index: 1000;
+    transition: width 0.1s;
+  }
+
+  @media (max-width: 768px) {
+    #sidebar { display: none; }
+    #main { padding: 2rem 1.5rem 4rem; }
+    .hero h1 { font-size: 2rem; }
+    .pattern-grid { grid-template-columns: 1fr; }
+    .cheat-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- ── SIDEBAR ── -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <h2>Navigation</h2>
+    <p>Web Technologies II</p>
+  </div>
+
+  <div class="co-section">
+    <div class="co-label"><span class="co-dot co1-dot"></span> CO1 — Server Side</div>
+    <ul class="nav-links">
+      <li><a href="#t1-1">1.1 What is Server-Side Programming</a></li>
+      <li><a href="#t1-2">1.2 Client vs Server Technologies</a></li>
+      <li><a href="#t1-3">1.3 Web App Directory Structure</a></li>
+      <li><a href="#t1-4">1.4 WAR File</a></li>
+      <li><a href="#t1-5">1.5 Web Server vs App Server</a></li>
+      <li><a href="#t1-6">1.6 Session Management</a></li>
+      <li><a href="#t1-7">1.7 Security Issues</a></li>
+      <li><a href="#t1-8">1.8 Long Polling</a></li>
+      <li><a href="#t1-9">1.9 Servlet Container</a></li>
+    </ul>
+  </div>
+
+  <div class="co-section">
+    <div class="co-label"><span class="co-dot co2-dot"></span> CO2 — Servlet, JSP, Beans</div>
+    <ul class="nav-links">
+      <li><a href="#t2-1">2.1 Servlet Life Cycle</a></li>
+      <li><a href="#t2-2">2.2 forward() vs sendRedirect()</a></li>
+      <li><a href="#t2-3">2.3 JSP Implicit Objects</a></li>
+      <li><a href="#t2-4">2.4 JSP Directives</a></li>
+      <li><a href="#t2-5">2.5 JavaBeans & Bean Tags</a></li>
+      <li><a href="#t2-6">2.6 Filters</a></li>
+    </ul>
+  </div>
+
+  <div class="co-section">
+    <div class="co-label"><span class="co-dot co3-dot"></span> CO3 — JDBC</div>
+    <ul class="nav-links">
+      <li><a href="#t3-1">3.1 JDBC Drivers</a></li>
+      <li><a href="#t3-2">3.2 JDBC Connection Steps</a></li>
+      <li><a href="#t3-3">3.3 Statement vs PreparedStatement</a></li>
+      <li><a href="#t3-4">3.4 Scrollable & Updatable ResultSet</a></li>
+      <li><a href="#t3-5">3.5 Batch Processing</a></li>
+      <li><a href="#t3-6">3.6 Stored Procedures</a></li>
+      <li><a href="#t3-7">3.7 execute() Methods</a></li>
+      <li><a href="#t3-8">3.8 SQL Injection & Metadata</a></li>
+    </ul>
+  </div>
+
+  <div class="co-section">
+    <div class="co-label"><span class="co-dot co4-dot"></span> CO4 — CGI Programming</div>
+    <ul class="nav-links">
+      <li><a href="#t4-1">4.1 What is CGI</a></li>
+      <li><a href="#t4-2">4.2 CGI Principles</a></li>
+      <li><a href="#t4-3">4.3 Identifying CGI Requests</a></li>
+      <li><a href="#t4-4">4.4 Environment Variables</a></li>
+      <li><a href="#t4-5">4.5 GET vs POST in CGI</a></li>
+      <li><a href="#t4-6">4.6 CGI Program Structure</a></li>
+      <li><a href="#t4-7">4.7 CGI Languages & Examples</a></li>
+      <li><a href="#t4-8">4.8 CGI vs Servlets</a></li>
+    </ul>
+  </div>
+
+  <div class="co-section">
+    <div class="co-label"><span class="co-dot co5-dot"></span> CO5 — Web Services</div>
+    <ul class="nav-links">
+      <li><a href="#t5-1">5.1 Web Services Overview</a></li>
+      <li><a href="#t5-2">5.2 XML-RPC</a></li>
+      <li><a href="#t5-3">5.3 SOAP</a></li>
+      <li><a href="#t5-4">5.4 WSDL</a></li>
+      <li><a href="#t5-5">5.5 XML-RPC vs SOAP</a></li>
+      <li><a href="#t5-6">5.6 Microservices</a></li>
+      <li><a href="#t5-7">5.7 MVC Architecture</a></li>
+    </ul>
+  </div>
+
+  <div class="co-section">
+    <div class="co-label"><span class="co-dot" style="background:var(--accent)"></span> Quick Revision</div>
+    <ul class="nav-links">
+      <li><a href="#cheatsheet">Top Repeated Questions</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── MAIN CONTENT ── -->
+<main id="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">Jadavpur University · BIT 3rd Year · 2nd Semester</div>
+    <h1>Web Technologies <span>II</span><br>Complete Study Guide</h1>
+    <p style="color:var(--text-muted); max-width:560px; margin-top:0.75rem; font-size:0.95rem;">
+      All 5 Course Outcomes covered unit-by-unit. Topics explained with core concepts, professor-expected answer patterns, code examples, and comparison tables.
+    </p>
+    <div class="hero-meta">
+      <span class="badge badge-outline">Full Marks: 100</span>
+      <span class="badge badge-outline">5 COs × 20 Marks</span>
+      <span class="badge badge-outline">Based on 2022 · 2023 · 2024 Papers</span>
+    </div>
+  </div>
+
+  <!-- EXAM PATTERN -->
+  <div class="exam-pattern">
+    <h3>⬡ Exam Pattern per CO</h3>
+    <div class="pattern-grid">
+      <div class="pattern-item">
+        <div class="pattern-num">4</div>
+        <div class="pattern-label">MCQs</div>
+      </div>
+      <div class="pattern-item">
+        <div class="pattern-num">4×2</div>
+        <div class="pattern-label">Short Answer (2 marks each)</div>
+      </div>
+      <div class="pattern-item">
+        <div class="pattern-num">2×4</div>
+        <div class="pattern-label">Long Answer (4 marks each)</div>
+      </div>
+    </div>
+    <p style="font-size:0.82rem; color:var(--text-muted); margin-top:1rem;">
+      The professor values: precise definitions, compare/contrast answers, code snippets with explanation, deployment knowledge, and security awareness woven into answers.
+    </p>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- CO1 -->
+  <!-- ════════════════════════════════════════════ -->
+  <section class="co-unit" id="co1">
+    <div class="co-header">
+      <span class="co-number co1-tag">CO 1</span>
+      <h2>Server-Side Programming</h2>
+    </div>
+
+    <!-- 1.1 -->
+    <div class="topic" id="t1-1">
+      <div class="topic-title">
+        <span class="topic-num">1.1</span>
+        What is Server-Side Programming?
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <p>When you visit a website, some processing happens in your browser (client-side — HTML, CSS, JS) and some happens on the web server (server-side). Server-side programming means writing code that runs on the server, generates dynamic content, and sends it back to the client.</p>
+
+      <div class="callout callout-tip">
+        <strong>Simple Analogy</strong>
+        Think of a restaurant. The menu you read is client-side (static). But the kitchen that prepares your food based on your order is server-side (dynamic, based on input).
+      </div>
+
+      <div class="callout callout-exam">
+        <strong>📋 Exam Alert — Asked in 2022 and 2024</strong>
+        "What benefits does server-side programming bring?" — Write a structured list with brief explanation of each point.
+      </div>
+
+      <div class="subsection">
+        <h4>Benefits / Advantages</h4>
+        <ul>
+          <li><strong>Dynamic Content Generation</strong> — Pages generated at runtime based on user input or database data, unlike static HTML.</li>
+          <li><strong>Database Integration</strong> — Server can query databases and return personalized results to each user.</li>
+          <li><strong>Security</strong> — Sensitive logic (authentication, payment processing) stays on the server, never exposed to the client.</li>
+          <li><strong>Session Management</strong> — Server can track users across multiple requests using cookies, hidden fields, or URL rewriting.</li>
+          <li><strong>Business Logic Centralization</strong> — Rules are written once on the server, not duplicated across clients.</li>
+          <li><strong>Platform Independence</strong> — The client only needs a browser regardless of OS.</li>
+          <li><strong>Reduced Client Load</strong> — Heavy computation happens on the server, not on potentially weak client devices.</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 1.2 -->
+    <div class="topic" id="t1-2">
+      <div class="topic-title">
+        <span class="topic-num">1.2</span>
+        Client-Side vs Server-Side Technologies
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <p>One of the most repeated comparison questions. Know it cold.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Aspect</th><th>Client-Side</th><th>Server-Side</th></tr></thead>
+          <tbody>
+            <tr><td>Where it runs</td><td>In the user's browser</td><td>On the web server</td></tr>
+            <tr><td>Languages</td><td>HTML, CSS, JavaScript</td><td>Java (Servlets/JSP), PHP, Python, CGI</td></tr>
+            <tr><td>DB Access</td><td>Cannot directly</td><td>Can directly</td></tr>
+            <tr><td>Visibility</td><td>Source code visible (View Source)</td><td>Source code hidden</td></tr>
+            <tr><td>Speed</td><td>Faster (no network round-trip)</td><td>Slower (request must travel to server)</td></tr>
+            <tr><td>Security</td><td>Less secure (user can manipulate)</td><td>More secure</td></tr>
+            <tr><td>Validation</td><td>Quick UI feedback</td><td>Authoritative/final validation</td></tr>
+            <tr><td>Examples</td><td>Form validation before submit</td><td>Login auth, fetching records</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-exam">
+        <strong>📋 Exam Twist — 2023 Paper</strong>
+        "Compare client-side and server-side <em>validation of forms</em>." — Client-side validation improves UX but can be bypassed. Server-side validation ensures data integrity and cannot be bypassed. <strong>Both should always be used together.</strong>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 1.3 -->
+    <div class="topic" id="t1-3">
+      <div class="topic-title">
+        <span class="topic-num">1.3</span>
+        Web Application & Directory Structure
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <p>A web application is a collection of web resources (HTML, Servlets, JSPs, static files, configuration) packaged together and deployed on a server like Apache Tomcat.</p>
+
+      <div class="flow">MyWebApp/                   ← Root of web application
+│
+├── index.html              ← Static pages, JSPs (directly accessible by browser)
+├── style.css
+│
+└── WEB-INF/                ← PROTECTED — NOT accessible by browser directly
+    │
+    ├── web.xml             ← Deployment Descriptor (maps URLs to Servlets)
+    │
+    ├── classes/            ← Compiled .class files
+    │   └── HelloServlet.class
+    │
+    └── lib/                ← JAR files (JDBC drivers, third-party libraries)
+        └── mysql-connector.jar</div>
+
+      <div class="callout callout-warn">
+        <strong>⚠ Critical Point</strong>
+        The <code>WEB-INF</code> directory is NEVER served directly by the web server. A browser cannot access <code>http://yoursite.com/WEB-INF/web.xml</code>. This is a security feature protecting your configuration and compiled code.
+      </div>
+
+      <div class="subsection">
+        <h4>web.xml — Deployment Descriptor</h4>
+        <p>Tells Tomcat which class handles which URL, filter mappings, session timeout, etc.</p>
+        <div class="code-block">
+          <div class="code-lang"><span></span> XML — web.xml</div>
+          <pre>&lt;servlet&gt;
+    &lt;servlet-name&gt;Hello&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;HelloServlet&lt;/servlet-class&gt;
+&lt;/servlet&gt;
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;Hello&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/hello&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 1.4 -->
+    <div class="topic" id="t1-4">
+      <div class="topic-title">
+        <span class="topic-num">1.4</span>
+        WAR File
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <p><strong>WAR = Web Application Archive.</strong> A single compressed file (like ZIP) containing the entire web application (HTML, JSPs, Servlets, WEB-INF, web.xml, JARs). Used to deploy web applications to a server.</p>
+
+      <div class="callout callout-exam">
+        <strong>📋 Asked in 2023 and 2024</strong>
+        Tests whether you understand the full deployment pipeline, not just writing code.
+      </div>
+
+      <div class="subsection">
+        <h4>How to Create a WAR File</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> Shell</div>
+          <pre><span class="cmt"># Using JAR tool (run from web app root directory)</span>
+jar -cvf MyApp.war *
+
+<span class="cmt"># Using Maven</span>
+mvn package
+<span class="cmt"># Produces .war file in the target/ folder</span></pre>
+        </div>
+        <p>Using IDE (Eclipse/IntelliJ): Right-click project → Export → WAR file</p>
+      </div>
+
+      <div class="subsection">
+        <h4>How to Deploy</h4>
+        <p>Copy the <code>.war</code> file into Tomcat's <code>webapps/</code> folder. Tomcat automatically extracts and deploys it. Access via <code>http://localhost:8080/MyApp</code>.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 1.5 -->
+    <div class="topic" id="t1-5">
+      <div class="topic-title">
+        <span class="topic-num">1.5</span>
+        Web Server vs Application Server
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Aspect</th><th>Web Server</th><th>Application Server</th></tr></thead>
+          <tbody>
+            <tr><td>Primary job</td><td>Serves static content (HTML, images, CSS)</td><td>Runs business logic, handles dynamic content</td></tr>
+            <tr><td>Protocols</td><td>HTTP/HTTPS</td><td>HTTP + EJB, RMI, JMS etc.</td></tr>
+            <tr><td>Examples</td><td>Apache HTTP Server, Nginx</td><td>Apache Tomcat, JBoss, WebLogic, GlassFish</td></tr>
+            <tr><td>Database</td><td>Cannot connect directly</td><td>Can connect to databases</td></tr>
+            <tr><td>Servlet/JSP</td><td>No (without add-ons)</td><td>Yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-tip">
+        <strong>📝 Important Nuance</strong>
+        Tomcat is technically a <em>Servlet Container / Web Container</em> that also functions as a basic web server. Full application servers like JBoss support the complete Java EE stack including EJBs.
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 1.6 -->
+    <div class="topic" id="t1-6">
+      <div class="topic-title">
+        <span class="topic-num">1.6</span>
+        Session Management
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <p>HTTP is <strong>stateless</strong> — each request is independent, the server has no memory of previous requests. Session management is the technique of maintaining state across multiple requests from the same user.</p>
+
+      <div class="subsection">
+        <h4>Method 1 — Cookies</h4>
+        <p>A cookie is a small text file stored on the client's machine by the browser.</p>
+        <ol>
+          <li>First visit: Server generates a unique session ID and sends it as a cookie in the HTTP response header.</li>
+          <li>Subsequent visits: Browser automatically sends the cookie back in every request.</li>
+          <li>Server reads the cookie, identifies the user.</li>
+        </ol>
+        <div class="code-block">
+          <div class="code-lang"><span></span> HTTP Header</div>
+          <pre>Set-Cookie: JSESSIONID=abc123; Path=/; HttpOnly</pre>
+        </div>
+        <p style="color:var(--co1); font-size:0.85rem;">Limitation: User can disable cookies in browser.</p>
+      </div>
+
+      <div class="subsection">
+        <h4>Method 2 — Hidden Form Fields</h4>
+        <p>Server embeds session data inside a hidden HTML input field.</p>
+        <div class="code-block">
+          <div class="code-lang"><span></span> HTML</div>
+          <pre>&lt;input type="hidden" name="sessionid" value="12345"&gt;</pre>
+        </div>
+        <p style="color:var(--co1); font-size:0.85rem;">Limitation: Only works when user submits a form. Normal hyperlinks don't send hidden fields.</p>
+      </div>
+
+      <div class="subsection">
+        <h4>Method 3 — URL Rewriting</h4>
+        <p>Session ID is appended directly to every URL.</p>
+        <div class="code-block">
+          <div class="code-lang"><span></span> URL</div>
+          <pre>http://example.com/page.jsp;jsessionid=abc123</pre>
+        </div>
+        <p style="color:var(--co4); font-size:0.85rem;">Advantage: Works even when cookies are disabled.</p>
+        <p style="color:var(--co1); font-size:0.85rem;">Disadvantage: Every URL must be dynamically generated. Security risk if URL is shared.</p>
+      </div>
+
+      <div class="subsection">
+        <h4>Method 4 — HttpSession Object (Java — Most Important)</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> Java</div>
+          <pre><span class="cmt">// Get or create a session</span>
+<span class="cls">HttpSession</span> session = request.getSession();
+
+<span class="cmt">// Store data in session</span>
+session.setAttribute(<span class="str">"username"</span>, <span class="str">"Alice"</span>);
+
+<span class="cmt">// Retrieve data</span>
+<span class="cls">String</span> user = (<span class="cls">String</span>) session.getAttribute(<span class="str">"username"</span>);
+
+<span class="cmt">// Invalidate session (logout)</span>
+session.invalidate();</pre>
+        </div>
+        <p>HttpSession internally uses cookies (JSESSIONID) or URL rewriting — it abstracts the mechanism from the developer.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 1.7 -->
+    <div class="topic" id="t1-7">
+      <div class="topic-title">
+        <span class="topic-num">1.7</span>
+        Security Issues in Server-Side Code
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Attack</th><th>What it is</th><th>Mitigation</th></tr></thead>
+          <tbody>
+            <tr><td>SQL Injection</td><td>Malicious SQL inserted in input fields to manipulate queries</td><td>Use PreparedStatement (see CO3)</td></tr>
+            <tr><td>XSS</td><td>Stored JS code executed when other users view the page</td><td>Escape/sanitize output; use &lt;c:out&gt; in JSTL</td></tr>
+            <tr><td>Session Hijacking</td><td>Attacker steals session ID and impersonates the user</td><td>HttpOnly + Secure cookie flags; use HTTPS</td></tr>
+            <tr><td>Unauthorized File Access</td><td>User navigates to ../../../etc/passwd via URL</td><td>Keep sensitive files in WEB-INF; validate all file paths</td></tr>
+            <tr><td>Trusting Client Input</td><td>Client modifies hidden fields or bypasses client-side validation</td><td>Always validate ALL input on server side</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 1.8 -->
+    <div class="topic" id="t1-8">
+      <div class="topic-title">
+        <span class="topic-num">1.8</span>
+        Long Polling
+        <span class="priority"><span class="star">★</span><span class="star-empty">☆</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <p>Normal HTTP: Client sends request → Server responds immediately → Connection closes.</p>
+      <p><strong>Long Polling:</strong> Client sends request → Server holds the connection open until it has new data → Server responds → Client immediately sends another request. This simulates real-time communication.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th></th><th>Details</th></tr></thead>
+          <tbody>
+            <tr><td>Advantages</td><td>Simpler than WebSockets, works with standard HTTP</td></tr>
+            <tr><td>Disadvantages</td><td>Server holds many open connections (resource-intensive), latency higher than WebSockets</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 1.9 -->
+    <div class="topic" id="t1-9">
+      <div class="topic-title">
+        <span class="topic-num">1.9</span>
+        Servlet Container / Web Container
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <p>A Servlet Container (like Apache Tomcat) is the runtime environment for servlets. Responsibilities:</p>
+      <ul>
+        <li><strong>Lifecycle management</strong> — creating, initializing, and destroying servlet instances</li>
+        <li><strong>Request routing</strong> — mapping incoming URLs to the correct servlet</li>
+        <li><strong>Threading</strong> — creating a new thread for each request</li>
+        <li><strong>Security</strong> — enforcing access control defined in web.xml</li>
+        <li><strong>Session management</strong> — managing HttpSession objects</li>
+        <li><strong>JSP compilation</strong> — converting JSP files into servlet class files</li>
+      </ul>
+    </div>
+
+    <a href="#main" class="back-top">↑ Back to top</a>
+  </section>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- CO2 -->
+  <!-- ════════════════════════════════════════════ -->
+  <section class="co-unit" id="co2">
+    <div class="co-header">
+      <span class="co-number co2-tag">CO 2</span>
+      <h2>Servlets, JSP & JavaBeans</h2>
+    </div>
+
+    <!-- 2.1 -->
+    <div class="topic" id="t2-1">
+      <div class="topic-title">
+        <span class="topic-num">2.1</span>
+        Servlet Life Cycle
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <div class="callout callout-exam">
+        <strong>📋 Appears Every Year — Very High Priority</strong>
+        Know all three methods, their signatures, when they're called, and how many times each is called.
+      </div>
+
+      <div class="flow">Servlet Class Loaded by Container
+         ↓
+      init()  ← Called ONCE when servlet is first loaded
+         ↓
+   service()  ← Called for EVERY request (spawns a new thread each time)
+     ↙    ↘
+doGet()  doPost()
+         ↓
+  destroy()  ← Called ONCE when server shuts down / servlet unloaded
+         ↓
+  Garbage Collection by JVM</div>
+
+      <div class="subsection">
+        <h4>init() — Called Once</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> Java</div>
+          <pre><span class="kw">public void</span> <span class="fn">init</span>() <span class="kw">throws</span> <span class="cls">ServletException</span> {
+    <span class="cmt">// One-time initialization</span>
+    <span class="cmt">// e.g., opening DB connection, reading config</span>
+}</pre>
+        </div>
+        <ul>
+          <li>Called only <strong>once</strong> in the servlet's lifetime</li>
+          <li>Called when first requested OR at server startup (if <code>load-on-startup</code> configured)</li>
+          <li>Not called for subsequent user requests</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h4>service() — Called Per Request</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> Java</div>
+          <pre><span class="kw">public void</span> <span class="fn">service</span>(<span class="cls">HttpServletRequest</span> request,
+                    <span class="cls">HttpServletResponse</span> response)
+    <span class="kw">throws</span> <span class="cls">ServletException</span>, <span class="cls">IOException</span> {
+    <span class="cmt">// Checks request type, calls doGet() or doPost()</span>
+}</pre>
+        </div>
+        <ul>
+          <li>Called for every incoming request</li>
+          <li>Container creates a <strong>new thread</strong> (not new servlet instance) per request</li>
+          <li>You generally override <code>doGet()</code>/<code>doPost()</code> not <code>service()</code> directly</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h4>doGet() — Handles HTTP GET</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> Java</div>
+          <pre><span class="kw">public void</span> <span class="fn">doGet</span>(<span class="cls">HttpServletRequest</span> request,
+                   <span class="cls">HttpServletResponse</span> response)
+    <span class="kw">throws</span> <span class="cls">ServletException</span>, <span class="cls">IOException</span> {
+
+    response.setContentType(<span class="str">"text/html"</span>);
+    <span class="cls">PrintWriter</span> out = response.getWriter();
+    out.println(<span class="str">"&lt;html&gt;&lt;body&gt;"</span>);
+    out.println(<span class="str">"&lt;h1&gt;Hello from doGet!&lt;/h1&gt;"</span>);
+    out.println(<span class="str">"&lt;/body&gt;&lt;/html&gt;"</span>);
+}</pre>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h4>destroy() — Cleanup</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> Java</div>
+          <pre><span class="kw">public void</span> <span class="fn">destroy</span>() {
+    <span class="cmt">// Cleanup: close DB connections, release resources</span>
+}</pre>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h4>load-on-startup (Asked in 2022)</h4>
+        <p>Forces servlet loading at server startup, not on first request. Useful for servlets with heavy initialization.</p>
+        <div class="code-block">
+          <div class="code-lang"><span></span> XML — web.xml</div>
+          <pre>&lt;servlet&gt;
+    &lt;servlet-name&gt;MyServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;com.example.MyServlet&lt;/servlet-class&gt;
+    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;  <span class="cmt">&lt;!-- positive = load at startup --&gt;</span>
+&lt;/servlet&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 2.2 -->
+    <div class="topic" id="t2-2">
+      <div class="topic-title">
+        <span class="topic-num">2.2</span>
+        forward() vs sendRedirect()
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Aspect</th><th>forward()</th><th>sendRedirect()</th></tr></thead>
+          <tbody>
+            <tr><td>Who handles it</td><td>Web container (server-side)</td><td>Browser (client-side)</td></tr>
+            <tr><td>URL in browser</td><td>Does NOT change</td><td>Changes to new URL</td></tr>
+            <tr><td>Round trips</td><td>1 (no extra network call)</td><td>2 (server tells browser, browser makes new request)</td></tr>
+            <tr><td>Request object</td><td>Shared (same request/response)</td><td>New request created</td></tr>
+            <tr><td>Speed</td><td>Faster</td><td>Slower</td></tr>
+            <tr><td>Use case</td><td>Internal navigation (servlet to JSP)</td><td>Redirect to external URL or after form POST</td></tr>
+            <tr><td>Class used</td><td>RequestDispatcher</td><td>HttpServletResponse</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code-block">
+        <div class="code-lang"><span></span> Java — forward()</div>
+        <pre><span class="cmt">// URL in browser: still shows /MyServlet</span>
+<span class="cmt">// result.jsp can access request attributes set here</span>
+<span class="cls">RequestDispatcher</span> rd = request.getRequestDispatcher(<span class="str">"result.jsp"</span>);
+rd.forward(request, response);</pre>
+      </div>
+
+      <div class="code-block">
+        <div class="code-lang"><span></span> Java — sendRedirect()</div>
+        <pre><span class="cmt">// URL in browser: changes to login.jsp</span>
+<span class="cmt">// Original request data is LOST</span>
+response.sendRedirect(<span class="str">"login.jsp"</span>);</pre>
+      </div>
+
+      <div class="callout callout-tip">
+        <strong>When to use sendRedirect</strong>
+        After a form POST — to prevent duplicate submission on browser refresh (POST/Redirect/GET pattern).
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 2.3 -->
+    <div class="topic" id="t2-3">
+      <div class="topic-title">
+        <span class="topic-num">2.3</span>
+        JSP Implicit Objects
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <p>JSP provides 9 built-in objects automatically available without any declaration.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Object</th><th>Type</th><th>Scope</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>request</td><td>HttpServletRequest</td><td>Request</td><td>Read request parameters, attributes</td></tr>
+            <tr><td>response</td><td>HttpServletResponse</td><td>Page</td><td>Send response, set headers</td></tr>
+            <tr><td>session</td><td>HttpSession</td><td>Session</td><td>Store user session data</td></tr>
+            <tr><td>application</td><td>ServletContext</td><td>Application</td><td>Data shared across all users</td></tr>
+            <tr><td>out</td><td>JspWriter</td><td>Page</td><td>Write output to browser</td></tr>
+            <tr><td>config</td><td>ServletConfig</td><td>Page</td><td>Servlet configuration info</td></tr>
+            <tr><td>pageContext</td><td>PageContext</td><td>Page</td><td>Access all other implicit objects</td></tr>
+            <tr><td>page</td><td>Object</td><td>Page</td><td>Reference to current JSP (like <code>this</code>)</td></tr>
+            <tr><td>exception</td><td>Throwable</td><td>Page</td><td>Error pages only — thrown exception</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-tip">
+        <strong>Scope Hierarchy (MCQ favorite)</strong>
+        page &lt; request &lt; session &lt; application (narrowest to widest)
+      </div>
+
+      <div class="subsection">
+        <h4>ServletContext vs PageContext (asked 2023)</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Aspect</th><th>ServletContext (application)</th><th>PageContext</th></tr></thead>
+            <tbody>
+              <tr><td>Scope</td><td>Application-wide (all users, all pages)</td><td>Single JSP page only</td></tr>
+              <tr><td>Shared?</td><td>Yes, across all servlets and JSPs</td><td>No, specific to current page</td></tr>
+              <tr><td>Use</td><td>App-level config, shared resources, counters</td><td>Access other implicit objects, forward</td></tr>
+              <tr><td>Created by</td><td>Servlet container (one per web app)</td><td>JSP container (one per JSP execution)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 2.4 -->
+    <div class="topic" id="t2-4">
+      <div class="topic-title">
+        <span class="topic-num">2.4</span>
+        JSP Directives
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <p>Directives give instructions to the JSP container about how to translate the JSP page into a Servlet. Syntax: <code>&lt;%@ directive attribute="value" %&gt;</code></p>
+
+      <div class="subsection">
+        <h4>Page Directive — Key Attributes</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> JSP</div>
+          <pre>&lt;%@ page language=<span class="str">"java"</span>
+         contentType=<span class="str">"text/html; charset=UTF-8"</span>
+         import=<span class="str">"java.util.*, java.sql.*"</span>
+         session=<span class="str">"true"</span>
+         errorPage=<span class="str">"error.jsp"</span>
+         isErrorPage=<span class="str">"false"</span>
+         buffer=<span class="str">"8kb"</span>
+%&gt;</pre>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Attribute</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td>language</td><td>Scripting language (always java)</td></tr>
+              <tr><td>contentType</td><td>MIME type of response</td></tr>
+              <tr><td>import</td><td>Java classes to import</td></tr>
+              <tr><td>session</td><td>Whether to use session (true/false)</td></tr>
+              <tr><td>errorPage</td><td>Which page handles errors</td></tr>
+              <tr><td>isErrorPage</td><td>Is this an error handler? (enables exception object)</td></tr>
+              <tr><td>buffer</td><td>Output buffer size</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h4>Include Directive vs Include Action — Asked 2022, 2023, 2024 Every Year!</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Aspect</th><th>Include Directive &lt;%@ include %&gt;</th><th>Include Action &lt;jsp:include&gt;</th></tr></thead>
+            <tbody>
+              <tr><td>When included</td><td>Translation time (compile time)</td><td>Request time (runtime)</td></tr>
+              <tr><td>Type</td><td>Static inclusion</td><td>Dynamic inclusion</td></tr>
+              <tr><td>File changes</td><td>Won't reflect until JSP recompiled</td><td>Reflect immediately</td></tr>
+              <tr><td>Variable sharing</td><td>Can share scripting variables</td><td>Cannot share scripting variables</td></tr>
+              <tr><td>Syntax</td><td><code>&lt;%@ include file="header.jsp" %&gt;</code></td><td><code>&lt;jsp:include page="header.jsp" /&gt;</code></td></tr>
+              <tr><td>Use case</td><td>Static headers/footers</td><td>Dynamic content that changes per request</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 2.5 -->
+    <div class="topic" id="t2-5">
+      <div class="topic-title">
+        <span class="topic-num">2.5</span>
+        JavaBeans & Bean Tags
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <div class="subsection">
+        <h4>JavaBean Requirements</h4>
+        <ul>
+          <li>Public no-argument constructor</li>
+          <li>Private fields (properties)</li>
+          <li>Public getter and setter methods for each property</li>
+          <li>Implements <code>java.io.Serializable</code></li>
+        </ul>
+        <div class="code-block">
+          <div class="code-lang"><span></span> Java — Bean Class</div>
+          <pre><span class="kw">public class</span> <span class="cls">Student</span> <span class="kw">implements</span> java.io.<span class="cls">Serializable</span> {
+    <span class="kw">private</span> <span class="cls">String</span> name;
+    <span class="kw">private int</span> age;
+
+    <span class="kw">public</span> <span class="fn">Student</span>() {}   <span class="cmt">// no-arg constructor</span>
+
+    <span class="kw">public</span> <span class="cls">String</span> <span class="fn">getName</span>() { <span class="kw">return</span> name; }
+    <span class="kw">public void</span> <span class="fn">setName</span>(<span class="cls">String</span> name) { <span class="kw">this</span>.name = name; }
+
+    <span class="kw">public int</span> <span class="fn">getAge</span>() { <span class="kw">return</span> age; }
+    <span class="kw">public void</span> <span class="fn">setAge</span>(<span class="kw">int</span> age) { <span class="kw">this</span>.age = age; }
+}</pre>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h4>The 3 JSP Bean Tags (asked specifically in 2023)</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> JSP</div>
+          <pre><span class="cmt">&lt;!-- 1. useBean — Create or locate a bean --&gt;</span>
+&lt;jsp:useBean id=<span class="str">"s"</span> class=<span class="str">"com.example.Student"</span> scope=<span class="str">"session"</span> /&gt;
+
+<span class="cmt">&lt;!-- 2. setProperty — Set a property --&gt;</span>
+&lt;jsp:setProperty name=<span class="str">"s"</span> property=<span class="str">"name"</span> value=<span class="str">"Alice"</span> /&gt;
+&lt;jsp:setProperty name=<span class="str">"s"</span> property=<span class="str">"*"</span> /&gt;  <span class="cmt">&lt;!-- auto-fill from request params --&gt;</span>
+
+<span class="cmt">&lt;!-- 3. getProperty — Display a property --&gt;</span>
+&lt;jsp:getProperty name=<span class="str">"s"</span> property=<span class="str">"name"</span> /&gt;</pre>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h4>JSP Custom Tags vs JavaBeans (asked 2022, 2023)</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Aspect</th><th>JavaBeans</th><th>JSP Custom Tags</th></tr></thead>
+            <tbody>
+              <tr><td>Purpose</td><td>Business logic, data holding</td><td>Custom HTML-like tags in JSP</td></tr>
+              <tr><td>Used for</td><td>Encapsulating data/logic</td><td>Replacing scriptlets with tag-based syntax</td></tr>
+              <tr><td>Interface</td><td>jsp:useBean/get/setProperty</td><td>Used like &lt;prefix:tagname /&gt;</td></tr>
+              <tr><td>Complexity</td><td>Simple</td><td>Requires TLD (Tag Library Descriptor) file</td></tr>
+              <tr><td>Scope support</td><td>page, request, session, application</td><td>No scope concept</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 2.6 -->
+    <div class="topic" id="t2-6">
+      <div class="topic-title">
+        <span class="topic-num">2.6</span>
+        Filters
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <p>A Filter intercepts requests before they reach a servlet and/or responses before they reach the client. Think of it as a checkpoint.</p>
+
+      <div class="flow">Browser → Request → [Filter1] → [Filter2] → Servlet
+Browser ← Response ← [Filter1] ← [Filter2] ← Servlet</div>
+
+      <div class="subsection">
+        <h4>Uses of Filters</h4>
+        <ul>
+          <li>Authentication / Authorization (block unauthorized access)</li>
+          <li>Logging (record every request)</li>
+          <li>Compression</li>
+          <li>Input validation</li>
+          <li>IP-based access control (professor's favorite example!)</li>
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <h4>IP Filter — Asked in 2022 and 2024 (Write this code!)</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> Java — IPFilter.java</div>
+          <pre><span class="kw">import</span> javax.servlet.*;
+<span class="kw">import</span> javax.servlet.http.*;
+
+<span class="kw">public class</span> <span class="cls">IPFilter</span> <span class="kw">implements</span> <span class="cls">Filter</span> {
+
+    <span class="kw">public void</span> <span class="fn">init</span>(<span class="cls">FilterConfig</span> config) <span class="kw">throws</span> <span class="cls">ServletException</span> {}
+
+    <span class="kw">public void</span> <span class="fn">doFilter</span>(<span class="cls">ServletRequest</span> request,
+                         <span class="cls">ServletResponse</span> response,
+                         <span class="cls">FilterChain</span> chain)
+        <span class="kw">throws</span> IOException, <span class="cls">ServletException</span> {
+
+        <span class="cls">String</span> clientIP = request.getRemoteAddr();
+
+        <span class="kw">if</span> (clientIP.equals(<span class="str">"172.16.4.248"</span>)) {
+            chain.doFilter(request, response);  <span class="cmt">// Allowed</span>
+        } <span class="kw">else</span> {
+            <span class="cls">HttpServletResponse</span> res = (<span class="cls">HttpServletResponse</span>) response;
+            res.sendError(<span class="cls">HttpServletResponse</span>.SC_FORBIDDEN, <span class="str">"Access Denied"</span>);
+        }
+    }
+
+    <span class="kw">public void</span> <span class="fn">destroy</span>() {}
+}</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-lang"><span></span> XML — Filter Registration in web.xml</div>
+          <pre>&lt;filter&gt;
+    &lt;filter-name&gt;IPFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;IPFilter&lt;/filter-class&gt;
+&lt;/filter&gt;
+&lt;filter-mapping&gt;
+    &lt;filter-name&gt;IPFilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;</pre>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h4>Count Filter (appeared in 2022)</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> Java</div>
+          <pre><span class="kw">public class</span> <span class="cls">CountFilter</span> <span class="kw">implements</span> <span class="cls">Filter</span> {
+    <span class="kw">private int</span> count = <span class="num">0</span>;
+
+    <span class="kw">public void</span> <span class="fn">doFilter</span>(<span class="cls">ServletRequest</span> req, <span class="cls">ServletResponse</span> res,
+                         <span class="cls">FilterChain</span> chain)
+        <span class="kw">throws</span> IOException, <span class="cls">ServletException</span> {
+        count++;
+        <span class="cls">System</span>.out.println(<span class="str">"Servlet accessed "</span> + count + <span class="str">" times"</span>);
+        chain.doFilter(req, res);
+    }
+
+    <span class="kw">public void</span> <span class="fn">init</span>(<span class="cls">FilterConfig</span> c) <span class="kw">throws</span> <span class="cls">ServletException</span> {}
+    <span class="kw">public void</span> <span class="fn">destroy</span>() {}
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <a href="#main" class="back-top">↑ Back to top</a>
+  </section>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- CO3 -->
+  <!-- ════════════════════════════════════════════ -->
+  <section class="co-unit" id="co3">
+    <div class="co-header">
+      <span class="co-number co3-tag">CO 3</span>
+      <h2>JDBC & Database Connectivity</h2>
+    </div>
+
+    <!-- 3.1 -->
+    <div class="topic" id="t3-1">
+      <div class="topic-title">
+        <span class="topic-num">3.1</span>
+        JDBC Architecture & 4 Driver Types
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <p>JDBC (Java Database Connectivity) is an API that allows Java programs to interact with relational databases using SQL, regardless of which database is used.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>Name</th><th>How It Works</th><th>Merits</th><th>Demerits</th></tr></thead>
+          <tbody>
+            <tr><td>Type 1</td><td>JDBC-ODBC Bridge</td><td>Translates JDBC to ODBC calls</td><td>Easy setup, any ODBC DB</td><td>Platform-dependent (Windows), slow, requires ODBC</td></tr>
+            <tr><td>Type 2</td><td>Native-API Driver</td><td>JDBC → DB native API calls</td><td>Faster than Type 1</td><td>Requires native libraries on client</td></tr>
+            <tr><td>Type 3</td><td>Network Protocol Driver</td><td>Pure Java → middleware server → DB</td><td>Pure Java, no client install</td><td>Requires middleware server</td></tr>
+            <tr><td>Type 4</td><td>Thin Driver (most used)</td><td>Pure Java → DB native protocol directly</td><td>Fastest, pure Java, no middleware</td><td>Separate driver per database</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 3.2 -->
+    <div class="topic" id="t3-2">
+      <div class="topic-title">
+        <span class="topic-num">3.2</span>
+        JDBC Connection — 5 Steps + Role of DriverManager
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <div class="code-block">
+        <div class="code-lang"><span></span> Java — Complete JDBC Example</div>
+        <pre><span class="kw">import</span> java.sql.*;
+
+<span class="kw">public class</span> <span class="cls">DBExample</span> {
+    <span class="kw">public static void</span> <span class="fn">main</span>(<span class="cls">String</span>[] args) <span class="kw">throws</span> <span class="cls">Exception</span> {
+
+        <span class="cmt">// Step 1: Register the Driver</span>
+        <span class="cls">Class</span>.forName(<span class="str">"com.mysql.jdbc.Driver"</span>);
+
+        <span class="cmt">// Step 2: Create Connection</span>
+        <span class="cls">Connection</span> con = <span class="cls">DriverManager</span>.getConnection(
+            <span class="str">"jdbc:mysql://localhost:3306/mydb"</span>,
+            <span class="str">"root"</span>, <span class="str">"password"</span>
+        );
+
+        <span class="cmt">// Step 3: Create Statement</span>
+        <span class="cls">Statement</span> stmt = con.createStatement();
+
+        <span class="cmt">// Step 4: Execute Query</span>
+        <span class="cls">ResultSet</span> rs = stmt.executeQuery(<span class="str">"SELECT * FROM students"</span>);
+        <span class="kw">while</span> (rs.next()) {
+            <span class="cls">System</span>.out.println(rs.getInt(<span class="num">1</span>) + <span class="str">" "</span> + rs.getString(<span class="num">2</span>));
+        }
+
+        <span class="cmt">// Step 5: Close Connection</span>
+        con.close();
+    }
+}</pre>
+      </div>
+
+      <div class="subsection">
+        <h4>Role of DriverManager (asked 2024)</h4>
+        <ul>
+          <li>Maintains a list of registered JDBC drivers</li>
+          <li>Selects the appropriate driver based on the connection URL</li>
+          <li>Establishes the connection via <code>getConnection(url, user, password)</code></li>
+          <li>Checks each registered driver to see if it can handle the given URL</li>
+        </ul>
+        <div class="callout callout-tip">
+          <strong>Connection URL Format</strong>
+          MySQL: <code>jdbc:mysql://localhost:3306/dbname</code> | Oracle: <code>jdbc:oracle:thin:@localhost:1521:xe</code>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 3.3 -->
+    <div class="topic" id="t3-3">
+      <div class="topic-title">
+        <span class="topic-num">3.3</span>
+        Statement vs PreparedStatement
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <div class="callout callout-exam">
+        <strong>📋 Asked 2022, 2023, and 2024 — Appears Every Year</strong>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Aspect</th><th>Statement</th><th>PreparedStatement</th></tr></thead>
+          <tbody>
+            <tr><td>SQL compilation</td><td>Compiled every execution</td><td>Compiled once, reused</td></tr>
+            <tr><td>Performance</td><td>Slower for repeated queries</td><td>Faster</td></tr>
+            <tr><td>SQL Injection</td><td>VULNERABLE</td><td>PROTECTED</td></tr>
+            <tr><td>Parameters</td><td>Concatenated into string</td><td>Uses ? placeholders</td></tr>
+            <tr><td>Use case</td><td>One-time, no user input</td><td>Repeated queries, user input</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subsection">
+        <h4>When to Use PreparedStatement</h4>
+        <ol>
+          <li>When query will be executed <strong>multiple times</strong> (performance)</li>
+          <li>When query contains <strong>user-supplied input</strong> (security — prevents SQL injection)</li>
+          <li>When working with <strong>binary data</strong> (BLOB, CLOB)</li>
+        </ol>
+      </div>
+
+      <div class="code-block">
+        <div class="code-lang"><span></span> Java — Vulnerable vs Safe</div>
+        <pre><span class="cmt">// ❌ VULNERABLE — SQL Injection possible</span>
+<span class="cls">String</span> username = request.getParameter(<span class="str">"user"</span>);
+<span class="cls">String</span> query = <span class="str">"SELECT * FROM users WHERE username='"</span> + username + <span class="str">"'"</span>;
+<span class="cls">Statement</span> stmt = con.createStatement();
+<span class="cls">ResultSet</span> rs = stmt.executeQuery(query);
+
+<span class="cmt">// ✅ SAFE — PreparedStatement</span>
+<span class="cls">PreparedStatement</span> pstmt = con.prepareStatement(
+    <span class="str">"SELECT * FROM users WHERE username = ?"</span>
+);
+pstmt.setString(<span class="num">1</span>, username);   <span class="cmt">// Parameter binding — injection impossible</span>
+<span class="cls">ResultSet</span> rs = pstmt.executeQuery();</pre>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 3.4 -->
+    <div class="topic" id="t3-4">
+      <div class="topic-title">
+        <span class="topic-num">3.4</span>
+        Scrollable & Updatable ResultSet
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <div class="callout callout-exam">
+        <strong>📋 Asked 2022, 2023, and 2024 — Appears Every Year</strong>
+      </div>
+
+      <p>By default, a ResultSet can only move <strong>forward</strong> (<code>next()</code>) and is <strong>read-only</strong>.</p>
+
+      <div class="code-block">
+        <div class="code-lang"><span></span> Java — Creating Scrollable + Updatable ResultSet</div>
+        <pre><span class="cls">Statement</span> stmt = con.createStatement(
+    <span class="cls">ResultSet</span>.TYPE_SCROLL_SENSITIVE,    <span class="cmt">// Can scroll in both directions</span>
+    <span class="cls">ResultSet</span>.CONCUR_UPDATABLE          <span class="cmt">// Can update rows</span>
+);
+<span class="cls">ResultSet</span> rs = stmt.executeQuery(<span class="str">"SELECT * FROM emp"</span>);</pre>
+      </div>
+
+      <div class="subsection">
+        <h4>ResultSet Type Constants</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Constant</th><th>Meaning</th></tr></thead>
+            <tbody>
+              <tr><td>TYPE_FORWARD_ONLY</td><td>Default. Only next() allowed</td></tr>
+              <tr><td>TYPE_SCROLL_INSENSITIVE</td><td>Can scroll; doesn't see DB changes after RS opened</td></tr>
+              <tr><td>TYPE_SCROLL_SENSITIVE</td><td>Can scroll; DOES see DB changes</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h4>Scrollable Navigation Methods</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> Java</div>
+          <pre>rs.next();          <span class="cmt">// Move forward one row</span>
+rs.previous();      <span class="cmt">// Move backward one row</span>
+rs.first();         <span class="cmt">// Move to first row</span>
+rs.last();          <span class="cmt">// Move to last row</span>
+rs.absolute(<span class="num">5</span>);     <span class="cmt">// Move to row 5</span>
+rs.relative(-<span class="num">2</span>);   <span class="cmt">// Move 2 rows back from current</span></pre>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h4>Updatable ResultSet — Merits & Demerits</h4>
+        <p><strong>Merits:</strong></p>
+        <ul>
+          <li>Can update database directly through ResultSet without separate UPDATE query</li>
+          <li>Code is simpler for update-while-reading scenarios</li>
+          <li>Can insert new rows using <code>rs.moveToInsertRow()</code></li>
+        </ul>
+        <p><strong>Demerits:</strong></p>
+        <ul>
+          <li>Performance overhead — database must keep more metadata</li>
+          <li>Not all databases/drivers support it</li>
+          <li>Joins and aggregates typically cannot produce updatable result sets</li>
+          <li>Concurrency issues when multiple users access the same data</li>
+        </ul>
+        <div class="code-block">
+          <div class="code-lang"><span></span> Java — Update via ResultSet</div>
+          <pre><span class="kw">while</span> (rs.next()) {
+    <span class="kw">if</span> (rs.getString(<span class="str">"dept"</span>).equals(<span class="str">"IT"</span>)) {
+        rs.updateDouble(<span class="str">"salary"</span>, rs.getDouble(<span class="str">"salary"</span>) * <span class="num">1.1</span>);
+        rs.updateRow();  <span class="cmt">// Commit this row's changes</span>
+    }
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 3.5 -->
+    <div class="topic" id="t3-5">
+      <div class="topic-title">
+        <span class="topic-num">3.5</span>
+        Batch Processing
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <p>Collects multiple SQL statements and sends them all at once instead of one round trip per statement.</p>
+
+      <div class="flow">Without Batching:   INSERT → DB → resp | INSERT → DB → resp | INSERT → DB → resp
+                    (3 round trips)
+
+With Batching:    [INSERT + INSERT + INSERT] → DB → [resp, resp, resp]
+                    (1 round trip)</div>
+
+      <div class="code-block">
+        <div class="code-lang"><span></span> Java — Batch Processing</div>
+        <pre>con.setAutoCommit(<span class="kw">false</span>); <span class="cmt">// Important: disable auto-commit</span>
+
+<span class="cls">PreparedStatement</span> pstmt = con.prepareStatement(
+    <span class="str">"INSERT INTO emp VALUES (?, ?, ?)"</span>
+);
+
+<span class="kw">for</span> (<span class="kw">int</span> i = <span class="num">1</span>; i &lt;= <span class="num">1000</span>; i++) {
+    pstmt.setInt(<span class="num">1</span>, i);
+    pstmt.setString(<span class="num">2</span>, <span class="str">"Employee"</span> + i);
+    pstmt.setDouble(<span class="num">3</span>, <span class="num">50000.0</span>);
+    pstmt.addBatch();   <span class="cmt">// Add to batch, don't execute yet</span>
+
+    <span class="kw">if</span> (i % <span class="num">100</span> == <span class="num">0</span>) {
+        pstmt.executeBatch();   <span class="cmt">// Execute every 100 records</span>
+        con.commit();
+    }
+}
+
+pstmt.executeBatch();   <span class="cmt">// Execute remaining</span>
+con.commit();
+con.setAutoCommit(<span class="kw">true</span>);</pre>
+      </div>
+
+      <div class="subsection">
+        <h4>Key Methods</h4>
+        <ul>
+          <li><code>addBatch()</code> — adds statement to batch</li>
+          <li><code>executeBatch()</code> — executes all batched statements, returns <code>int[]</code> (affected rows per statement)</li>
+          <li><code>clearBatch()</code> — clears all batched statements</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 3.6 -->
+    <div class="topic" id="t3-6">
+      <div class="topic-title">
+        <span class="topic-num">3.6</span>
+        Stored Procedures
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <p>A precompiled SQL program stored in the database. Called from Java using <code>CallableStatement</code>.</p>
+
+      <div class="code-block">
+        <div class="code-lang"><span></span> Java — Calling a Stored Procedure</div>
+        <pre><span class="cmt">// Assumes: CREATE PROCEDURE getEmp(IN empId INT)</span>
+<span class="cls">CallableStatement</span> cstmt = con.prepareCall(<span class="str">"{call getEmp(?)}"</span>);
+cstmt.setInt(<span class="num">1</span>, <span class="num">101</span>);
+<span class="cls">ResultSet</span> rs = cstmt.executeQuery();
+<span class="kw">while</span> (rs.next()) {
+    <span class="cls">System</span>.out.println(rs.getString(<span class="str">"name"</span>));
+}</pre>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 3.7 -->
+    <div class="topic" id="t3-7">
+      <div class="topic-title">
+        <span class="topic-num">3.7</span>
+        execute() vs executeQuery() vs executeUpdate()
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Method</th><th>Returns</th><th>Use When</th></tr></thead>
+          <tbody>
+            <tr><td>executeQuery()</td><td>ResultSet</td><td>SELECT statements</td></tr>
+            <tr><td>executeUpdate()</td><td>int (affected rows)</td><td>INSERT, UPDATE, DELETE, DDL</td></tr>
+            <tr><td>execute()</td><td>boolean</td><td>Unknown statement type; true if ResultSet returned</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 3.8 -->
+    <div class="topic" id="t3-8">
+      <div class="topic-title">
+        <span class="topic-num">3.8</span>
+        SQL Injection & DatabaseMetaData
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <div class="subsection">
+        <h4>DatabaseMetaData</h4>
+        <p>Provides information about the database itself (not about data in tables).</p>
+        <div class="code-block">
+          <div class="code-lang"><span></span> Java</div>
+          <pre><span class="cls">DatabaseMetaData</span> dbmd = con.getMetaData();
+<span class="cls">System</span>.out.println(dbmd.getDatabaseProductName());
+<span class="cls">System</span>.out.println(dbmd.getDatabaseProductVersion());
+<span class="cls">System</span>.out.println(dbmd.getMaxConnections());
+
+<span class="cmt">// Get all table names</span>
+<span class="cls">ResultSet</span> tables = dbmd.getTables(<span class="kw">null</span>, <span class="kw">null</span>, <span class="str">"%"</span>,
+    <span class="kw">new</span> <span class="cls">String</span>[]{<span class="str">"TABLE"</span>});
+<span class="kw">while</span> (tables.next()) {
+    <span class="cls">System</span>.out.println(tables.getString(<span class="str">"TABLE_NAME"</span>));
+}</pre>
+        </div>
+        <p><strong>Use cases:</strong> Schema discovery, building generic database tools, migration scripts.</p>
+      </div>
+    </div>
+
+    <a href="#main" class="back-top">↑ Back to top</a>
+  </section>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- CO4 -->
+  <!-- ════════════════════════════════════════════ -->
+  <section class="co-unit" id="co4">
+    <div class="co-header">
+      <span class="co-number co4-tag">CO 4</span>
+      <h2>CGI Programming</h2>
+    </div>
+
+    <!-- 4.1 -->
+    <div class="topic" id="t4-1">
+      <div class="topic-title">
+        <span class="topic-num">4.1</span>
+        What is CGI?
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <p><strong>CGI = Common Gateway Interface.</strong> It is a standard (not a language, not a program — a <em>standard interface</em>) that defines how a web server can pass a client's request to an external program and receive the response back.</p>
+
+      <div class="callout callout-warn">
+        <strong>⚠ Critical Point</strong>
+        Each CGI request spawns a <strong>new OS process</strong>. This is CGI's biggest weakness compared to Servlets (which use threads).
+      </div>
+
+      <div class="flow">Client Browser
+     |
+     | HTTP Request
+     ↓
+  Web Server
+     |
+     | Launches CGI program (new process!)
+     ↓
+  CGI Program (runs, processes request)
+     |
+     | Writes output to stdout
+     ↓
+  Web Server reads stdout
+     |
+     | Sends output as HTTP Response
+     ↓
+Client Browser</div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 4.2 -->
+    <div class="topic" id="t4-2">
+      <div class="topic-title">
+        <span class="topic-num">4.2</span>
+        Principles of CGI Architecture
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <ol>
+        <li>CGI is a specification, not a language</li>
+        <li>The web server identifies a CGI request by URL (e.g., <code>/cgi-bin/script.pl</code>)</li>
+        <li>Server sets environment variables with request information</li>
+        <li>Server launches the CGI program as a separate OS process</li>
+        <li>CGI program reads data from environment variables (GET) or stdin (POST)</li>
+        <li>CGI program writes its output (headers + body) to stdout</li>
+        <li>Server reads stdout and sends it as the HTTP response to the client</li>
+      </ol>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 4.3 -->
+    <div class="topic" id="t4-3">
+      <div class="topic-title">
+        <span class="topic-num">4.3</span>
+        How Web Server Identifies a CGI Request
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <p>Two ways:</p>
+      <ol>
+        <li><strong>Special directory:</strong> URL path includes a designated CGI directory (conventionally <code>/cgi-bin/</code>). Any executable file in this directory is treated as CGI.</li>
+        <li><strong>File extension:</strong> Server configured to treat certain extensions (<code>.cgi</code>, <code>.pl</code>) as CGI scripts.</li>
+      </ol>
+      <div class="code-block">
+        <div class="code-lang"><span></span> URL Examples</div>
+        <pre>http://example.com/cgi-bin/hello.pl   <span class="cmt"># CGI — in cgi-bin directory</span>
+http://example.com/index.html          <span class="cmt"># Static — not CGI</span></pre>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 4.4 -->
+    <div class="topic" id="t4-4">
+      <div class="topic-title">
+        <span class="topic-num">4.4</span>
+        Environment Variables in CGI
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <p>The web server communicates request information to the CGI program through environment variables.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Variable</th><th>Contains</th></tr></thead>
+          <tbody>
+            <tr><td>QUERY_STRING</td><td>URL-encoded form data (GET method)</td></tr>
+            <tr><td>REQUEST_METHOD</td><td>"GET" or "POST"</td></tr>
+            <tr><td>CONTENT_LENGTH</td><td>Length of POST data (bytes)</td></tr>
+            <tr><td>CONTENT_TYPE</td><td>MIME type of POST data</td></tr>
+            <tr><td>REMOTE_ADDR</td><td>Client's IP address</td></tr>
+            <tr><td>SERVER_NAME</td><td>Server's hostname</td></tr>
+            <tr><td>SERVER_PORT</td><td>Server's port number</td></tr>
+            <tr><td>HTTP_USER_AGENT</td><td>Client browser information</td></tr>
+            <tr><td>PATH_INFO</td><td>Extra path info after script name</td></tr>
+            <tr><td>SCRIPT_NAME</td><td>Name of the CGI script</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 4.5 -->
+    <div class="topic" id="t4-5">
+      <div class="topic-title">
+        <span class="topic-num">4.5</span>
+        GET vs POST in CGI
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Aspect</th><th>GET</th><th>POST</th></tr></thead>
+          <tbody>
+            <tr><td>Data location</td><td>Appended to URL</td><td>Sent in HTTP request body</td></tr>
+            <tr><td>CGI reads from</td><td>QUERY_STRING environment variable</td><td>stdin (standard input)</td></tr>
+            <tr><td>Size limit</td><td>~1024 characters</td><td>No limit</td></tr>
+            <tr><td>Visibility</td><td>Visible in browser URL bar</td><td>Not visible in URL</td></tr>
+            <tr><td>EOF signal</td><td>N/A</td><td>Server does NOT send EOF — must read CONTENT_LENGTH bytes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 4.6 -->
+    <div class="topic" id="t4-6">
+      <div class="topic-title">
+        <span class="topic-num">4.6</span>
+        CGI Program Output Structure
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <p>Every CGI program MUST output:</p>
+      <ol>
+        <li>HTTP headers (minimum: <code>Content-Type</code>)</li>
+        <li>A <strong>blank line</strong> (separates headers from body — MANDATORY)</li>
+        <li>The content body</li>
+      </ol>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 4.7 -->
+    <div class="topic" id="t4-7">
+      <div class="topic-title">
+        <span class="topic-num">4.7</span>
+        CGI Languages & Examples
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <div class="subsection">
+        <h4>Languages Used for CGI (asked 2022, 2023)</h4>
+        <p>Perl, Python, Bash/Shell, C/C++, Ruby — CGI is language-agnostic. Java is rarely used for CGI (Servlets are preferred).</p>
+      </div>
+
+      <div class="subsection">
+        <h4>Hello World in Python CGI (asked 2022, 2023)</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> Python — hello.py</div>
+          <pre><span class="cmt">#!/usr/bin/python</span>
+
+<span class="fn">print</span>(<span class="str">"Content-type: text/html"</span>)  <span class="cmt"># Header</span>
+<span class="fn">print</span>(<span class="str">""</span>)                           <span class="cmt"># Blank line (MANDATORY)</span>
+<span class="fn">print</span>(<span class="str">"&lt;html&gt;&lt;body&gt;"</span>)
+<span class="fn">print</span>(<span class="str">"&lt;h1&gt;Hello World!&lt;/h1&gt;"</span>)
+<span class="fn">print</span>(<span class="str">"&lt;/body&gt;&lt;/html&gt;"</span>)</pre>
+        </div>
+        <p><strong>Deployment procedure:</strong></p>
+        <ol>
+          <li>Place in server's <code>cgi-bin</code> directory: <code>/var/www/cgi-bin/hello.py</code></li>
+          <li>Make executable: <code>chmod +x hello.py</code></li>
+          <li>Ensure shebang line (<code>#!/usr/bin/python</code>) is correct</li>
+          <li>Access via: <code>http://localhost/cgi-bin/hello.py</code></li>
+        </ol>
+      </div>
+
+      <div class="subsection">
+        <h4>Sum of Two Integers CGI (asked 2022, 2023)</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> Python — sum.py</div>
+          <pre><span class="cmt">#!/usr/bin/python</span>
+<span class="kw">import</span> cgi
+
+<span class="fn">print</span>(<span class="str">"Content-type: text/html\n"</span>)
+
+form = cgi.<span class="cls">FieldStorage</span>()
+a = <span class="fn">int</span>(form.getvalue(<span class="str">"a"</span>, <span class="num">0</span>))
+b = <span class="fn">int</span>(form.getvalue(<span class="str">"b"</span>, <span class="num">0</span>))
+
+<span class="fn">print</span>(<span class="str">"&lt;html&gt;&lt;body&gt;"</span>)
+<span class="fn">print</span>(f<span class="str">"&lt;h2&gt;Sum of {a} and {b} = {a + b}&lt;/h2&gt;"</span>)
+<span class="fn">print</span>(<span class="str">"&lt;/body&gt;&lt;/html&gt;"</span>)</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-lang"><span></span> HTML — Form to submit values</div>
+          <pre>&lt;form action=<span class="str">"/cgi-bin/sum.py"</span> method=<span class="str">"GET"</span>&gt;
+    A: &lt;input type=<span class="str">"text"</span> name=<span class="str">"a"</span>&gt;
+    B: &lt;input type=<span class="str">"text"</span> name=<span class="str">"b"</span>&gt;
+    &lt;input type=<span class="str">"submit"</span> value=<span class="str">"Calculate"</span>&gt;
+&lt;/form&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 4.8 -->
+    <div class="topic" id="t4-8">
+      <div class="topic-title">
+        <span class="topic-num">4.8</span>
+        CGI vs Servlets
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Aspect</th><th>CGI</th><th>Java Servlet</th></tr></thead>
+          <tbody>
+            <tr><td>Process model</td><td>New OS process per request (slow)</td><td>New thread per request (fast)</td></tr>
+            <tr><td>Speed</td><td>Slow (process startup overhead)</td><td>Fast</td></tr>
+            <tr><td>Language</td><td>Any language</td><td>Java only</td></tr>
+            <tr><td>Memory sharing</td><td>No (each process isolated)</td><td>Yes (threads share JVM)</td></tr>
+            <tr><td>Platform</td><td>Often platform-specific</td><td>Platform-independent (JVM)</td></tr>
+            <tr><td>Persistence</td><td>Variables lost after request</td><td>Can persist data between requests</td></tr>
+            <tr><td>Security</td><td>Less control</td><td>Java Security Manager</td></tr>
+            <tr><td>DB connection</td><td>New connection each time</td><td>Can use connection pooling</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subsection">
+        <h4>Advantages of CGI (know these too)</h4>
+        <ul>
+          <li>Language independence — can be written in any language</li>
+          <li>Simplicity — straightforward I/O model (stdin/stdout)</li>
+          <li>Isolation — a crash doesn't affect the server</li>
+          <li>Wide support — virtually all web servers support CGI</li>
+        </ul>
+      </div>
+    </div>
+
+    <a href="#main" class="back-top">↑ Back to top</a>
+  </section>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- CO5 -->
+  <!-- ════════════════════════════════════════════ -->
+  <section class="co-unit" id="co5">
+    <div class="co-header">
+      <span class="co-number co5-tag">CO 5</span>
+      <h2>Web Services, SOA & Cloud</h2>
+    </div>
+
+    <!-- 5.1 -->
+    <div class="topic" id="t5-1">
+      <div class="topic-title">
+        <span class="topic-num">5.1</span>
+        Web Services Overview
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <p>A Web Service is a software system that provides functionality over a network using standard internet protocols, enabling applications on different platforms to communicate.</p>
+
+      <div class="subsection">
+        <h4>Advantages of Web Services (asked 2022, 2023, 2024)</h4>
+        <ul>
+          <li><strong>Interoperability</strong> — different platforms and languages can communicate</li>
+          <li><strong>Reusability</strong> — a service written once can be used by any client</li>
+          <li><strong>Loose coupling</strong> — client and server can evolve independently</li>
+          <li><strong>Standardized communication</strong> — uses HTTP and XML, universally supported</li>
+          <li><strong>Firewall-friendly</strong> — uses HTTP port 80/443, rarely blocked</li>
+          <li><strong>Cost reduction</strong> — reuse existing services instead of building from scratch</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 5.2 -->
+    <div class="topic" id="t5-2">
+      <div class="topic-title">
+        <span class="topic-num">5.2</span>
+        XML-RPC
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <p>XML-RPC = XML Remote Procedure Call. Allows a program to execute a function on a remote machine over HTTP using XML.</p>
+
+      <div class="subsection">
+        <h4>Operational Principle</h4>
+        <ol>
+          <li>Client encodes the procedure name and parameters in XML</li>
+          <li>Sends via HTTP POST to the server</li>
+          <li>Server decodes XML, executes the function</li>
+          <li>Server encodes the result in XML</li>
+          <li>Sends XML response back via HTTP</li>
+        </ol>
+      </div>
+
+      <div class="subsection">
+        <h4>XML-RPC Request Format (asked 2022, 2023)</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> XML — Request</div>
+          <pre>&lt;?xml version=<span class="str">"1.0"</span>?&gt;
+&lt;methodCall&gt;
+    &lt;methodName&gt;calculator.add&lt;/methodName&gt;
+    &lt;params&gt;
+        &lt;param&gt;
+            &lt;value&gt;&lt;int&gt;2&lt;/int&gt;&lt;/value&gt;
+        &lt;/param&gt;
+        &lt;param&gt;
+            &lt;value&gt;&lt;int&gt;3&lt;/int&gt;&lt;/value&gt;
+        &lt;/param&gt;
+    &lt;/params&gt;
+&lt;/methodCall&gt;</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-lang"><span></span> XML — Response</div>
+          <pre>&lt;?xml version=<span class="str">"1.0"</span>?&gt;
+&lt;methodResponse&gt;
+    &lt;params&gt;
+        &lt;param&gt;
+            &lt;value&gt;&lt;int&gt;5&lt;/int&gt;&lt;/value&gt;
+        &lt;/param&gt;
+    &lt;/params&gt;
+&lt;/methodResponse&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 5.3 -->
+    <div class="topic" id="t5-3">
+      <div class="topic-title">
+        <span class="topic-num">5.3</span>
+        SOAP
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <p>SOAP = <strong>Simple Object Access Protocol.</strong> XML-based messaging protocol for exchanging structured information in web services. More powerful than XML-RPC.</p>
+
+      <div class="subsection">
+        <h4>SOAP Message Structure</h4>
+        <div class="callout callout-tip">
+          <strong>Mnemonic: Envelope → Header → Body</strong>
+          The professor's 2023 paper had "SOAP first → env? body" written on it — he wants you to know the structure sequence.
+        </div>
+        <div class="code-block">
+          <div class="code-lang"><span></span> XML — SOAP Structure</div>
+          <pre>&lt;soap:Envelope                          <span class="cmt">&lt;!-- MANDATORY: wraps everything --&gt;</span>
+    xmlns:soap=<span class="str">"http://schemas.xmlsoap.org/soap/envelope/"</span>&gt;
+
+    &lt;soap:Header&gt;                       <span class="cmt">&lt;!-- OPTIONAL: auth, routing info --&gt;</span>
+        &lt;auth:token&gt;abc123&lt;/auth:token&gt;
+    &lt;/soap:Header&gt;
+
+    &lt;soap:Body&gt;                         <span class="cmt">&lt;!-- MANDATORY: actual message --&gt;</span>
+        &lt;m:addRequest xmlns:m=<span class="str">"http://calculator.example.com"</span>&gt;
+            &lt;a&gt;2&lt;/a&gt;
+            &lt;b&gt;3&lt;/b&gt;
+        &lt;/m:addRequest&gt;
+    &lt;/soap:Body&gt;
+
+&lt;/soap:Envelope&gt;</pre>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h4>SOAP for Calculator.add(2,3) — Asked 2022 and 2024</h4>
+        <div class="code-block">
+          <div class="code-lang"><span></span> XML — SOAP Request</div>
+          <pre>&lt;?xml version=<span class="str">"1.0"</span>?&gt;
+&lt;soap:Envelope xmlns:soap=<span class="str">"http://schemas.xmlsoap.org/soap/envelope/"</span>
+               xmlns:calc=<span class="str">"http://calculator.example.com"</span>&gt;
+    &lt;soap:Body&gt;
+        &lt;calc:add&gt;
+            &lt;calc:a&gt;2&lt;/calc:a&gt;
+            &lt;calc:b&gt;3&lt;/calc:b&gt;
+        &lt;/calc:add&gt;
+    &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</pre>
+        </div>
+        <div class="code-block">
+          <div class="code-lang"><span></span> XML — SOAP Response</div>
+          <pre>&lt;?xml version=<span class="str">"1.0"</span>?&gt;
+&lt;soap:Envelope xmlns:soap=<span class="str">"http://schemas.xmlsoap.org/soap/envelope/"</span>
+               xmlns:calc=<span class="str">"http://calculator.example.com"</span>&gt;
+    &lt;soap:Body&gt;
+        &lt;calc:addResponse&gt;
+            &lt;calc:result&gt;5&lt;/calc:result&gt;
+        &lt;/calc:addResponse&gt;
+    &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;</pre>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 5.4 -->
+    <div class="topic" id="t5-4">
+      <div class="topic-title">
+        <span class="topic-num">5.4</span>
+        WSDL
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <p>WSDL = <strong>Web Services Description Language.</strong> An XML document that describes a web service — what operations it offers, what parameters they take, and where the service is located.</p>
+
+      <div class="callout callout-exam">
+        <strong>📋 Asked 2022, 2023, and 2024 — Appears Every Year</strong>
+      </div>
+
+      <div class="subsection">
+        <h4>How WSDL Helps Invoke a Web Service</h4>
+        <p>WSDL tells the client:</p>
+        <ul>
+          <li><strong>What operations are available</strong> — e.g., add, subtract, multiply</li>
+          <li><strong>What parameters each operation takes</strong> and their types</li>
+          <li><strong>What each operation returns</strong></li>
+          <li><strong>Where the service is located</strong> — the URL endpoint</li>
+          <li><strong>How to communicate</strong> — SOAP over HTTP, or HTTP GET/POST</li>
+        </ul>
+        <div class="callout callout-tip">
+          <strong>Model Answer (write exactly this)</strong>
+          A WSDL document acts as a contract between the web service provider and consumer. It describes the service interface (methods, parameters, return types) and the endpoint (URL). A client reads the WSDL and generates stub code to call the service, without knowing the internal implementation.
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 5.5 -->
+    <div class="topic" id="t5-5">
+      <div class="topic-title">
+        <span class="topic-num">5.5</span>
+        XML-RPC vs SOAP
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Aspect</th><th>XML-RPC</th><th>SOAP</th></tr></thead>
+          <tbody>
+            <tr><td>Complexity</td><td>Simple, lightweight</td><td>Complex, feature-rich</td></tr>
+            <tr><td>XML verbosity</td><td>Less verbose</td><td>More verbose</td></tr>
+            <tr><td>Data types</td><td>Limited (int, string, bool, array, struct)</td><td>Rich — any XSD type, custom types</td></tr>
+            <tr><td>Error handling</td><td>Basic &lt;fault&gt; element</td><td>Rich fault handling with codes</td></tr>
+            <tr><td>Header support</td><td>No</td><td>Yes (optional SOAP headers)</td></tr>
+            <tr><td>Standards body</td><td>Informal</td><td>W3C standard</td></tr>
+            <tr><td>WS-Security</td><td>No</td><td>Yes</td></tr>
+            <tr><td>Use case</td><td>Simple, quick integrations</td><td>Enterprise applications</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 5.6 -->
+    <div class="topic" id="t5-6">
+      <div class="topic-title">
+        <span class="topic-num">5.6</span>
+        Microservices Architecture
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <p>An application is broken into many small, independent services, each responsible for one specific function, each deployable independently.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Pros</th><th>Cons</th></tr></thead>
+          <tbody>
+            <tr><td>Independent deployment — update one without touching others</td><td>Complexity — managing many services is hard</td></tr>
+            <tr><td>Technology flexibility — different languages/databases per service</td><td>Network overhead — services communicate over network, adds latency</td></tr>
+            <tr><td>Fault isolation — failure of one service doesn't crash the whole app</td><td>Data consistency — each service has its own DB; consistency is hard</td></tr>
+            <tr><td>Targeted scalability — scale only the services that need it</td><td>Testing — integration testing is complex</td></tr>
+            <tr><td>Smaller codebases — easier to understand and maintain</td><td>Operational overhead — need DevOps expertise, Kubernetes etc.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- 5.7 -->
+    <div class="topic" id="t5-7">
+      <div class="topic-title">
+        <span class="topic-num">5.7</span>
+        MVC Architecture
+        <span class="priority"><span class="star">★</span><span class="star">★</span><span class="star-empty">☆</span></span>
+      </div>
+
+      <p>MVC = <strong>Model-View-Controller</strong> — a design pattern that separates application concerns.</p>
+
+      <div class="flow">User → Controller (Servlet) → Model (JavaBean / DB logic) → View (JSP)
+User ←─────────── View renders and returns result ─────────────────────</div>
+
+      <ul>
+        <li><strong>Model</strong> — Business logic and data (JavaBeans, JDBC code)</li>
+        <li><strong>View</strong> — Presentation layer (JSP pages)</li>
+        <li><strong>Controller</strong> — Request handling and routing (Servlets)</li>
+      </ul>
+
+      <div class="subsection">
+        <h4>Advantages of MVC</h4>
+        <ul>
+          <li>Separation of concerns — UI changes don't affect business logic</li>
+          <li>Easier to maintain and test each component independently</li>
+          <li>Multiple views can use the same model</li>
+          <li>Team members can work on different layers simultaneously</li>
+        </ul>
+      </div>
+    </div>
+
+    <a href="#main" class="back-top">↑ Back to top</a>
+  </section>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- CHEAT SHEET -->
+  <!-- ════════════════════════════════════════════ -->
+  <section class="co-unit" id="cheatsheet">
+    <div class="co-header">
+      <span class="co-number" style="background:rgba(232,184,109,0.12);color:var(--accent);border:1px solid rgba(232,184,109,0.25);">Quick Ref</span>
+      <h2>Top Repeated Questions</h2>
+    </div>
+
+    <p style="color:var(--text-muted); margin-bottom:1.5rem; font-size:0.9rem;">Questions that appeared in 2+ papers. Prioritize these for exam preparation.</p>
+
+    <div class="cheat-grid">
+      <div class="cheat-item">
+        <div class="cheat-item-q">Servlet life cycle (init/service/destroy)</div>
+        <div class="cheat-item-meta">⭐⭐⭐ Every year · CO2</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">forward() vs sendRedirect()</div>
+        <div class="cheat-item-meta">⭐⭐⭐ 2022, 2024 · CO2</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">Include directive vs include action tag</div>
+        <div class="cheat-item-meta">⭐⭐⭐ 2022, 2023, 2024 · CO2</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">PreparedStatement vs Statement</div>
+        <div class="cheat-item-meta">⭐⭐⭐ 2022, 2023, 2024 · CO3</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">Scrollable/Updatable ResultSet merits/demerits</div>
+        <div class="cheat-item-meta">⭐⭐⭐ 2022, 2023, 2024 · CO3</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">IP Filter code (172.16.4.248)</div>
+        <div class="cheat-item-meta">⭐⭐⭐ 2022, 2024 · CO2</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">SOAP message for Calculator.add(2,3)</div>
+        <div class="cheat-item-meta">⭐⭐⭐ 2022, 2024 · CO5</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">XML-RPC vs SOAP differences</div>
+        <div class="cheat-item-meta">⭐⭐⭐ 2022, 2023, 2024 · CO5</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">WSDL role in invoking web services</div>
+        <div class="cheat-item-meta">⭐⭐⭐ 2022, 2023, 2024 · CO5</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">Batch processing in JDBC</div>
+        <div class="cheat-item-meta">⭐⭐⭐ 2022, 2023, 2024 · CO3</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">Session management (all 3 methods)</div>
+        <div class="cheat-item-meta">⭐⭐⭐ 2022, 2024 · CO1</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">WAR file creation and deployment</div>
+        <div class="cheat-item-meta">⭐⭐ 2023, 2024 · CO1</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">CGI Hello World + deployment steps</div>
+        <div class="cheat-item-meta">⭐⭐ 2022, 2023 · CO4</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">JDBC driver types (4 types) with merits/demerits</div>
+        <div class="cheat-item-meta">⭐⭐ 2022, 2023 · CO3</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">JSP implicit objects (4 names + scope)</div>
+        <div class="cheat-item-meta">⭐⭐ 2023 · CO2</div>
+      </div>
+      <div class="cheat-item">
+        <div class="cheat-item-q">Microservices pros and cons</div>
+        <div class="cheat-item-meta">⭐⭐ 2023, 2024 · CO5</div>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem; padding:1.5rem; background:var(--surface2); border:1px solid var(--border); border-radius:4px; text-align:center;">
+      <p style="font-family:'IBM Plex Mono',monospace; font-size:0.7rem; letter-spacing:0.1em; color:var(--text-muted); text-transform:uppercase; margin-bottom:0.5rem;">Study Strategy</p>
+      <p style="color:var(--text-bright); font-family:'Source Serif 4',serif;">Master the ⭐⭐⭐ topics first. Each repeated topic = guaranteed marks. Then fill gaps with ⭐⭐ topics. Use the sidebar to jump between sections.</p>
+    </div>
+
+    <a href="#main" class="back-top">↑ Back to top</a>
+  </section>
+
+</main>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    document.getElementById('progress').style.width = progress + '%';
+  });
+
+  // Active nav highlighting
+  const topics = document.querySelectorAll('.topic[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.style.color = '';
+          link.style.borderLeftColor = '';
+        });
+        const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (active) {
+          active.style.color = 'var(--text-bright)';
+          active.style.borderLeftColor = 'var(--accent)';
+          active.scrollIntoView({ block: 'nearest' });
+        }
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  topics.forEach(t => observer.observe(t));
+</script>
+
+</body>
+</html>
